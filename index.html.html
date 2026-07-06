@@ -226,8 +226,10 @@
   </div>
 </div>
 
-<!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>emailjs.init("8A65B9t1eWUsgKExO");</script>
+<!-- Firebase Compat SDKs -->
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <script>
 const firebaseConfig = {
@@ -491,6 +493,17 @@ async function placeOrder(){
       <div class="confirm-row"><span style="color:#64748b">Total</span><span style="font-weight:700;color:#0ea5e9">${fmt(orderTotal)}</span></div>
       <div class="confirm-row"><span style="color:#64748b">Address</span><span>${address}</span></div>
       <div class="confirm-row"><span style="color:#64748b">Status</span><span class="badge" style="background:#d1fae5;color:#065f46">Pending</span></div>`;
+    // Send confirmation email
+    const itemsList = cart.map(i=>`${i.name} x${i.qty} - Rs. ${(i.price*i.qty).toLocaleString()}`).join('\n');
+    const orderTotal = cart.reduce((s,i)=>s+i.price*i.qty,0);
+    emailjs.send("service_jvfi5di", "template_2kyy8ga", {
+      customer_name: name,
+      customer_email: email,
+      order_items: itemsList,
+      total: orderTotal.toLocaleString(),
+      address: address
+    }).catch(e=>console.log('Email error:', e));
+
     cart=[];updateCartCount();goPage('confirmation');
   }catch(e){notif('Error: '+e.message);}
   finally{btn.textContent='Place Order ✓';btn.disabled=false;}
