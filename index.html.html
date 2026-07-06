@@ -439,16 +439,35 @@ async function placeOrder(){
   const btn=document.getElementById('place-order-btn');
   btn.textContent='Placing Order...';btn.disabled=true;
   try{
+    // Get all product refs first
+    const prodRefs = cart.map(ci=>{
+      const prod=products.find(p=>p.id===ci.id);
+      return prod?.firestoreId ? db.collection("products").doc(prod.firestoreId) : null;
+    }).filter(r=>r!==null);
+
     await db.runTransaction(async tx=>{
-      for(const ci of cart){
-        const prod=products.find(p=>p.id===ci.id);
-        if(!prod?.firestoreId) continue;
-        const ref=db.collection("products").doc(prod.firestoreId);
-        const snap=await tx.get(ref);
+      // ALL READS FIRST
+      const snaps = await Promise.all(prodRefs.map(ref=>tx.get(ref)));
+
+      // Validate stock
+      for(let i=0;i<cart.length;i++){
+        const ci=cart[i];
+        const snap=snaps[i];
+        if(!snap) continue;
         const curStock=snap.data().stock;
         if(curStock<ci.qty) throw new Error(`Only ${curStock} left for "${ci.name}"`);
-        tx.update(ref,{stock:curStock-ci.qty});
       }
+
+      // ALL WRITES AFTER READS
+      for(let i=0;i<cart.length;i++){
+        const ci=cart[i];
+        const snap=snaps[i];
+        if(!snap) continue;
+        const curStock=snap.data().stock;
+        tx.update(prodRefs[i],{stock:curStock-ci.qty});
+      }
+
+      // Save order
       const orderRef=db.collection("orders").doc();
       tx.set(orderRef,{
         orderId:'ORD'+Date.now(),
@@ -460,6 +479,7 @@ async function placeOrder(){
         createdAt:new Date().toISOString()
       });
     });
+
     cart.forEach(ci=>{const p=products.find(x=>x.id===ci.id);if(p) p.stock=Math.max(0,p.stock-ci.qty);});
     const orderTotal=cart.reduce((s,i)=>s+i.price*i.qty,0);
     document.getElementById('conf-msg').textContent=`Thank you, ${name}! Your order has been received.`;
