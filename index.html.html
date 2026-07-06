@@ -436,6 +436,9 @@ async function placeOrder(){
   const address=document.getElementById('f-address').value.trim();
   const email=document.getElementById('f-email').value.trim();
   if(!name||!phone||!address){notif('Please fill all required fields.');return;}
+  if(!/^\d+$/.test(phone)){notif('Phone number must contain numbers only!');return;}
+  if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){notif('Please enter a valid email address!');return;}
+  if(!email){notif('Email address is required!');return;}
   const btn=document.getElementById('place-order-btn');
   btn.textContent='Placing Order...';btn.disabled=true;
   try{
