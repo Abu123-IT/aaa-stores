@@ -9,8 +9,8 @@
   body{font-family:system-ui,sans-serif;background:#f1f5f9;color:#1e293b;min-height:100vh}
   input,select{font-family:inherit;outline:none}
   button{font-family:inherit;cursor:pointer}
-  #login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0f172a}
-  .login-box{background:#fff;border-radius:16px;padding:40px;width:360px;text-align:center}
+  #login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0f172a;padding:20px}
+  .login-box{background:#fff;border-radius:16px;padding:40px;width:100%;max-width:360px;text-align:center}
   .login-box h2{font-size:22px;font-weight:700;margin-bottom:6px}
   .login-box p{color:#64748b;font-size:14px;margin-bottom:28px}
   .login-box input{width:100%;border:1px solid #e2e8f0;border-radius:8px;padding:11px 14px;font-size:14px;margin-bottom:12px;background:#f8fafc}
@@ -18,47 +18,65 @@
   .login-btn:hover{background:#334155}
   .login-error{color:#dc2626;font-size:13px;margin-top:10px;display:none}
   #admin-screen{display:none}
-  nav{background:#1e293b;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px}
-  .logo{color:#fff;font-size:18px;font-weight:600;display:flex;align-items:center;gap:8px}
-  .admin-badge{background:#f59e0b;color:#fff;font-size:11px;padding:2px 8px;border-radius:20px;font-weight:600}
-  .logout-btn{background:rgba(255,255,255,.1);color:#fff;border:none;padding:7px 16px;border-radius:8px;font-size:13px;cursor:pointer}
-  .logout-btn:hover{background:rgba(255,255,255,.2)}
-  .admin-tabs{display:flex;gap:8px;padding:20px 28px 0;border-bottom:1px solid #e2e8f0;background:#fff}
-  .tab-btn{padding:10px 20px;border:none;background:transparent;font-size:14px;color:#64748b;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer}
+  nav{background:#1e293b;padding:0 16px;display:flex;align-items:center;justify-content:space-between;height:56px}
+  .logo{color:#fff;font-size:16px;font-weight:600;display:flex;align-items:center;gap:8px}
+  .admin-badge{background:#f59e0b;color:#fff;font-size:10px;padding:2px 6px;border-radius:20px;font-weight:600}
+  .logout-btn{background:rgba(255,255,255,.1);color:#fff;border:none;padding:6px 12px;border-radius:8px;font-size:12px;cursor:pointer}
+  .admin-tabs{display:flex;overflow-x:auto;padding:0 16px;border-bottom:1px solid #e2e8f0;background:#fff;scrollbar-width:none}
+  .admin-tabs::-webkit-scrollbar{display:none}
+  .tab-btn{padding:14px 16px;border:none;background:transparent;font-size:13px;color:#64748b;border-bottom:2px solid transparent;white-space:nowrap;cursor:pointer;flex-shrink:0}
   .tab-btn.active{color:#1e293b;font-weight:600;border-bottom-color:#1e293b}
-  .admin-body{padding:28px}
-  .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:28px}
-  .stat-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px}
-  .stat-label{font-size:13px;color:#64748b;margin-bottom:8px}
-  .stat-val{font-size:28px;font-weight:700}
+  .admin-body{padding:16px}
+  .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px}
+  .stat-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:16px}
+  .stat-label{font-size:12px;color:#64748b;margin-bottom:6px}
+  .stat-val{font-size:24px;font-weight:700}
   .table-wrap{background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:auto}
-  table{width:100%;border-collapse:collapse;font-size:13px}
-  th{padding:12px 16px;text-align:left;color:#64748b;font-weight:500;background:#f8fafc;white-space:nowrap}
-  td{padding:12px 16px;border-top:1px solid #f1f5f9;color:#1e293b}
+  table{width:100%;border-collapse:collapse;font-size:13px;min-width:500px}
+  th{padding:12px 14px;text-align:left;color:#64748b;font-weight:500;background:#f8fafc;white-space:nowrap}
+  td{padding:10px 14px;border-top:1px solid #f1f5f9;color:#1e293b;vertical-align:middle}
   .badge{font-size:11px;padding:2px 8px;border-radius:20px;font-weight:500;display:inline-block}
   .badge-blue{background:#e0f2fe;color:#0369a1}
-  .btn-delete{background:#fee2e2;color:#dc2626;border:none;padding:5px 12px;border-radius:6px;font-size:12px;cursor:pointer}
-  .btn-edit{background:#e0f2fe;color:#0369a1;border:none;padding:5px 12px;border-radius:6px;font-size:12px;margin-right:4px;cursor:pointer}
-  .add-form{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:28px;max-width:520px}
+  .btn-delete{background:#fee2e2;color:#dc2626;border:none;padding:5px 10px;border-radius:6px;font-size:11px;cursor:pointer}
+  .btn-edit{background:#e0f2fe;color:#0369a1;border:none;padding:5px 10px;border-radius:6px;font-size:11px;margin-right:4px;cursor:pointer}
+  .add-form{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px;max-width:540px}
   .form-group{margin-bottom:14px}
   .form-group label{font-size:13px;color:#64748b;display:block;margin-bottom:5px}
   .form-group input,.form-group select{width:100%;border:1px solid #e2e8f0;border-radius:8px;padding:9px 14px;font-size:14px;background:#f8fafc}
   .btn-green{background:#059669;color:#fff;border:none;padding:11px 24px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer}
   .btn-green:hover{background:#047857}
-  .order-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px;margin-bottom:14px}
-  .order-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;flex-wrap:wrap;gap:10px}
-  .order-id{font-weight:700;font-size:15px}
+
+  /* IMAGE UPLOAD */
+  .img-upload-wrap{border:2px dashed #e2e8f0;border-radius:10px;padding:16px;text-align:center;cursor:pointer;transition:border-color .2s;position:relative;background:#f8fafc}
+  .img-upload-wrap:hover{border-color:#6366f1}
+  .img-upload-wrap input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+  .img-preview{width:80px;height:80px;border-radius:8px;object-fit:cover;margin:8px auto;display:none}
+  .upload-progress{background:#e0f2fe;color:#0369a1;padding:6px 12px;border-radius:6px;font-size:12px;display:none;margin-top:8px}
+  .img-url-input{margin-top:10px}
+  .or-divider{text-align:center;color:#94a3b8;font-size:12px;margin:8px 0;position:relative}
+  .or-divider::before,.or-divider::after{content:'';position:absolute;top:50%;width:42%;height:1px;background:#e2e8f0}
+  .or-divider::before{left:0}.or-divider::after{right:0}
+
+  /* ORDERS */
+  .order-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:16px;margin-bottom:12px}
+  .order-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+  .order-id{font-weight:700;font-size:14px}
   .order-meta{font-size:12px;color:#64748b;margin-top:2px}
-  .status-select{font-size:12px;padding:5px 10px;border-radius:6px;border:1px solid #e2e8f0;background:#f8fafc;cursor:pointer}
-  .status-pill{font-size:12px;padding:4px 12px;border-radius:20px;font-weight:500;display:inline-block;margin-right:8px}
-  .order-items{font-size:13px;color:#64748b;margin-bottom:10px}
-  .order-item-row{display:flex;align-items:center;gap:8px;padding:4px 0}
-  .order-item-row img{width:28px;height:28px;border-radius:6px;object-fit:cover;flex-shrink:0}
-  .order-total{font-weight:700;color:#0ea5e9;font-size:15px}
+  .status-select{font-size:12px;padding:5px 8px;border-radius:6px;border:1px solid #e2e8f0;background:#f8fafc;cursor:pointer}
+  .status-pill{font-size:11px;padding:3px 10px;border-radius:20px;font-weight:500;display:inline-block;margin-right:6px}
+  .order-items{font-size:13px;color:#64748b;margin-bottom:8px}
+  .order-item-row{display:flex;align-items:center;gap:8px;padding:3px 0}
+  .order-item-row img{width:26px;height:26px;border-radius:5px;object-fit:cover;flex-shrink:0}
+  .order-total{font-weight:700;color:#0ea5e9;font-size:14px}
   .order-customer{font-size:13px;margin-bottom:8px;line-height:1.8}
-  #notif{position:fixed;top:16px;right:16px;background:#1e293b;color:#fff;padding:10px 18px;border-radius:10px;z-index:9999;font-size:14px;display:none}
-  .empty{text-align:center;padding:60px 0;color:#64748b;font-size:15px}
-  .refresh-btn{background:#e0f2fe;color:#0369a1;border:none;padding:7px 14px;border-radius:8px;font-size:13px;cursor:pointer;margin-left:10px}
+  #notif{position:fixed;top:16px;right:16px;background:#1e293b;color:#fff;padding:10px 16px;border-radius:10px;z-index:9999;font-size:13px;display:none;max-width:300px}
+  .empty{text-align:center;padding:40px 0;color:#64748b;font-size:14px}
+  .refresh-btn{background:#e0f2fe;color:#0369a1;border:none;padding:6px 12px;border-radius:8px;font-size:12px;cursor:pointer;margin-left:8px}
+
+  @media(max-width:600px){
+    .stats-grid{grid-template-columns:repeat(2,1fr)}
+    .add-form{max-width:100%}
+  }
 </style>
 </head>
 <body>
@@ -94,8 +112,8 @@
     <!-- DASHBOARD -->
     <div id="tab-dashboard">
       <div class="stats-grid" id="stats-grid"></div>
-      <div style="display:flex;align-items:center;margin-bottom:14px">
-        <h3 style="font-size:16px;font-weight:600">Recent Orders</h3>
+      <div style="display:flex;align-items:center;margin-bottom:12px">
+        <h3 style="font-size:15px;font-weight:600">Recent Orders</h3>
         <button class="refresh-btn" onclick="loadData()">🔄 Refresh</button>
       </div>
       <div id="recent-orders"></div>
@@ -103,10 +121,10 @@
 
     <!-- ORDERS -->
     <div id="tab-orders" style="display:none">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px">
-        <h3 style="font-size:16px;font-weight:600">All Orders</h3>
-        <div style="display:flex;gap:8px">
-          <select id="order-filter" onchange="renderOrders()" style="border:1px solid #e2e8f0;border-radius:8px;padding:7px 12px;font-size:13px;background:#fff">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+        <h3 style="font-size:15px;font-weight:600">All Orders</h3>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <select id="order-filter" onchange="renderOrders()" style="border:1px solid #e2e8f0;border-radius:8px;padding:6px 10px;font-size:13px;background:#fff">
             <option value="All">All Status</option>
             <option>Pending</option><option>Processing</option><option>Delivered</option><option>Cancelled</option>
           </select>
@@ -118,10 +136,10 @@
 
     <!-- PRODUCTS -->
     <div id="tab-products" style="display:none">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px">
-        <h3 style="font-size:16px;font-weight:600">All Products</h3>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+        <h3 style="font-size:15px;font-weight:600">All Products</h3>
         <div style="display:flex;gap:8px">
-          <input id="prod-search" placeholder="Search..." oninput="renderProducts()" style="border:1px solid #e2e8f0;border-radius:8px;padding:7px 14px;font-size:13px;width:180px;background:#fff"/>
+          <input id="prod-search" placeholder="Search..." oninput="renderProducts()" style="border:1px solid #e2e8f0;border-radius:8px;padding:6px 12px;font-size:13px;width:160px;background:#fff"/>
           <button class="refresh-btn" onclick="loadData()">🔄 Refresh</button>
         </div>
       </div>
@@ -136,11 +154,11 @@
     <!-- ADD PRODUCT -->
     <div id="tab-add" style="display:none">
       <div class="add-form">
-        <h3 style="font-size:16px;font-weight:600;margin-bottom:20px">Add New Product</h3>
+        <h3 style="font-size:15px;font-weight:600;margin-bottom:18px">Add New Product</h3>
+
         <div class="form-group"><label>Product Name *</label><input id="np-name" type="text" placeholder="e.g. Samsung Galaxy A35"/></div>
         <div class="form-group"><label>Price (Rs.) *</label><input id="np-price" type="number" placeholder="e.g. 89900"/></div>
         <div class="form-group"><label>Stock Quantity</label><input id="np-stock" type="number" placeholder="e.g. 50"/></div>
-        <div class="form-group"><label>Image URL *</label><input id="np-icon" type="text" placeholder="https://images.pexels.com/..."/></div>
         <div class="form-group"><label>Description</label><input id="np-desc" type="text" placeholder="Short product description"/></div>
         <div class="form-group"><label>Category</label>
           <select id="np-cat">
@@ -149,6 +167,24 @@
             <option>Toys</option><option>Food & Grocery</option><option>Tools</option>
           </select>
         </div>
+
+        <!-- IMAGE SECTION -->
+        <div class="form-group">
+          <label>Product Image</label>
+          <div class="img-upload-wrap" id="upload-wrap">
+            <input type="file" id="np-file" accept="image/*" onchange="handleFileSelect(this)"/>
+            <div style="font-size:28px;margin-bottom:6px">📁</div>
+            <div style="font-size:13px;color:#64748b">Click or drag to upload image</div>
+            <div style="font-size:11px;color:#94a3b8;margin-top:4px">JPG, PNG, WEBP supported</div>
+            <img id="img-preview" class="img-preview"/>
+            <div id="upload-progress" class="upload-progress">⏳ Uploading...</div>
+          </div>
+          <div class="or-divider">OR</div>
+          <div class="img-url-input">
+            <input id="np-icon" type="text" placeholder="Paste image URL here (https://...)" style="width:100%;border:1px solid #e2e8f0;border-radius:8px;padding:9px 14px;font-size:14px;background:#f8fafc"/>
+          </div>
+        </div>
+
         <button class="btn-green" onclick="addProduct()">Add Product ✓</button>
       </div>
     </div>
@@ -156,34 +192,34 @@
   </div>
 </div>
 
-<!-- Firebase Compat SDKs -->
+<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+
 <script>
 firebase.initializeApp({
-  apiKey: "AIzaSyCqHbfHBUNubIQjQxuhIrN021wF_ZyNHp4",
-  authDomain: "aaa-stores-f5a3a.firebaseapp.com",
-  projectId: "aaa-stores-f5a3a",
-  storageBucket: "aaa-stores-f5a3a.firebasestorage.app",
-  messagingSenderId: "231664650482",
-  appId: "1:231664650482:web:702e25ef9b411bcf40286b"
+  apiKey:"AIzaSyCqHbfHBUNubIQjQxuhIrN021wF_ZyNHp4",
+  authDomain:"aaa-stores-f5a3a.firebaseapp.com",
+  projectId:"aaa-stores-f5a3a",
+  storageBucket:"aaa-stores-f5a3a.firebasestorage.app",
+  messagingSenderId:"231664650482",
+  appId:"1:231664650482:web:702e25ef9b411bcf40286b"
 });
-const db = firebase.firestore();
-const auth = firebase.auth();
+const db=firebase.firestore();
+const auth=firebase.auth();
 
-let allOrders=[], allProducts=[];
-const fmt = p => "Rs. " + p.toLocaleString();
-const notif = msg => { const el=document.getElementById('notif'); el.textContent="✓ "+msg; el.style.display="block"; setTimeout(()=>el.style.display="none",2500); };
-const statusColors = {
-  Pending:['#fef3c7','#92400e'],
-  Processing:['#dbeafe','#1e40af'],
-  Delivered:['#d1fae5','#065f46'],
-  Cancelled:['#fee2e2','#991b1b']
-};
+// Cloudinary config
+const CLOUD_NAME="nfmniwjz";
+const UPLOAD_PRESET="nfmniwjz";
+
+let allOrders=[],allProducts=[],uploadedImageUrl="";
+const fmt=p=>"Rs. "+p.toLocaleString();
+const notif=msg=>{const el=document.getElementById('notif');el.textContent="✓ "+msg;el.style.display="block";setTimeout(()=>el.style.display="none",3000);};
+const statusColors={Pending:['#fef3c7','#92400e'],Processing:['#dbeafe','#1e40af'],Delivered:['#d1fae5','#065f46'],Cancelled:['#fee2e2','#991b1b']};
 
 // AUTH
-auth.onAuthStateChanged(user => {
+auth.onAuthStateChanged(user=>{
   if(user){
     document.getElementById('login-screen').style.display='none';
     document.getElementById('admin-screen').style.display='block';
@@ -195,62 +231,78 @@ auth.onAuthStateChanged(user => {
 });
 
 function doLogin(){
-  const email = document.getElementById('login-email').value.trim();
-  const pass = document.getElementById('login-pass').value;
-  auth.signInWithEmailAndPassword(email, pass)
-    .then(() => { document.getElementById('login-error').style.display='none'; })
-    .catch(() => { document.getElementById('login-error').style.display='block'; });
+  const email=document.getElementById('login-email').value.trim();
+  const pass=document.getElementById('login-pass').value;
+  auth.signInWithEmailAndPassword(email,pass)
+    .then(()=>{document.getElementById('login-error').style.display='none';})
+    .catch(()=>{document.getElementById('login-error').style.display='block';});
 }
+function doLogout(){auth.signOut();}
 
-function doLogout(){
-  auth.signOut();
+// CLOUDINARY UPLOAD
+async function handleFileSelect(input){
+  const file=input.files[0];
+  if(!file) return;
+  const preview=document.getElementById('img-preview');
+  const progress=document.getElementById('upload-progress');
+  preview.src=URL.createObjectURL(file);
+  preview.style.display='block';
+  progress.style.display='block';
+  progress.textContent='⏳ Uploading...';
+  try{
+    const formData=new FormData();
+    formData.append('file',file);
+    formData.append('upload_preset',UPLOAD_PRESET);
+    const res=await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,{method:'POST',body:formData});
+    const data=await res.json();
+    uploadedImageUrl=data.secure_url;
+    document.getElementById('np-icon').value=uploadedImageUrl;
+    progress.textContent='✅ Uploaded!';
+    progress.style.background='#d1fae5';
+    progress.style.color='#065f46';
+    notif('Image uploaded successfully!');
+  }catch(e){
+    progress.textContent='❌ Upload failed. Use URL instead.';
+    progress.style.background='#fee2e2';
+    progress.style.color='#dc2626';
+  }
 }
 
 // LOAD DATA
 function loadData(){
-  notif('Loading data...');
-  Promise.all([
-    db.collection("orders").get(),
-    db.collection("products").get()
-  ]).then(([oSnap, pSnap]) => {
-    allOrders = oSnap.docs.map(d=>({firestoreId:d.id,...d.data()}));
+  Promise.all([db.collection("orders").get(),db.collection("products").get()])
+  .then(([oSnap,pSnap])=>{
+    allOrders=oSnap.docs.map(d=>({firestoreId:d.id,...d.data()}));
     allOrders.sort((a,b)=>new Date(b.createdAt||0)-new Date(a.createdAt||0));
-    allProducts = pSnap.docs.map(d=>({firestoreId:d.id,...d.data()}));
-    renderDashboard();
-    renderOrders();
-    renderProducts();
-    notif('Data loaded!');
-  }).catch(e => notif('Error: '+e.message));
+    allProducts=pSnap.docs.map(d=>({firestoreId:d.id,...d.data()}));
+    renderDashboard();renderOrders();renderProducts();
+  }).catch(e=>notif('Error: '+e.message));
 }
 
 // DASHBOARD
 function renderDashboard(){
-  const totalRev = allOrders.filter(o=>o.status!=='Cancelled').reduce((s,o)=>s+o.total,0);
-  const pending = allOrders.filter(o=>o.status==='Pending').length;
-  const delivered = allOrders.filter(o=>o.status==='Delivered').length;
+  const totalRev=allOrders.filter(o=>o.status!=='Cancelled').reduce((s,o)=>s+o.total,0);
+  const pending=allOrders.filter(o=>o.status==='Pending').length;
+  const delivered=allOrders.filter(o=>o.status==='Delivered').length;
   document.getElementById('stats-grid').innerHTML=`
     <div class="stat-card"><div class="stat-label">Total Orders</div><div class="stat-val" style="color:#0ea5e9">${allOrders.length}</div></div>
     <div class="stat-card"><div class="stat-label">Pending</div><div class="stat-val" style="color:#f59e0b">${pending}</div></div>
     <div class="stat-card"><div class="stat-label">Delivered</div><div class="stat-val" style="color:#059669">${delivered}</div></div>
-    <div class="stat-card"><div class="stat-label">Revenue</div><div class="stat-val" style="color:#7c3aed;font-size:20px">${fmt(totalRev)}</div></div>
+    <div class="stat-card"><div class="stat-label">Revenue</div><div class="stat-val" style="color:#7c3aed;font-size:18px">${fmt(totalRev)}</div></div>
     <div class="stat-card"><div class="stat-label">Products</div><div class="stat-val">${allProducts.length}</div></div>`;
-  const recent = allOrders.slice(0,5);
-  document.getElementById('recent-orders').innerHTML = recent.length===0
-    ? '<div class="empty">No orders yet. Customer orders will appear here.</div>'
-    : recent.map(o=>orderCard(o)).join('');
+  const recent=allOrders.slice(0,5);
+  document.getElementById('recent-orders').innerHTML=recent.length===0
+    ?'<div class="empty">No orders yet.</div>'
+    :recent.map(o=>orderCard(o)).join('');
 }
 
-// ORDER CARD
 function orderCard(o){
-  const [bg,tc] = statusColors[o.status]||['#f3f4f6','#374151'];
-  const fid = o.firestoreId;
+  const [bg,tc]=statusColors[o.status]||['#f3f4f6','#374151'];
+  const fid=o.firestoreId;
   return `<div class="order-card">
     <div class="order-header">
-      <div>
-        <div class="order-id">${o.orderId||fid}</div>
-        <div class="order-meta">📅 ${o.date||''}</div>
-      </div>
-      <div style="display:flex;align-items:center;gap:8px">
+      <div><div class="order-id">${o.orderId||fid}</div><div class="order-meta">📅 ${o.date||''}</div></div>
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
         <span class="status-pill" style="background:${bg};color:${tc}">${o.status}</span>
         <select class="status-select" onchange="updateStatus('${fid}',this.value)">
           ${['Pending','Processing','Delivered','Cancelled'].map(s=>`<option${s===o.status?' selected':''}>${s}</option>`).join('')}
@@ -258,7 +310,7 @@ function orderCard(o){
       </div>
     </div>
     <div class="order-customer">
-      👤 <strong>${o.customer?.name||''}</strong> &nbsp;|&nbsp; 📞 ${o.customer?.phone||''}${o.customer?.email?` &nbsp;|&nbsp; 📧 ${o.customer.email}`:''}<br>
+      👤 <strong>${o.customer?.name||''}</strong> | 📞 ${o.customer?.phone||''}${o.customer?.email?` | 📧 ${o.customer.email}`:''}<br>
       📍 ${o.customer?.address||''}
     </div>
     <div class="order-items">${(o.items||[]).map(i=>`<div class="order-item-row"><img src="${i.image}" alt=""/> ${i.name} × ${i.qty} (${fmt(i.price*i.qty)})</div>`).join('')}</div>
@@ -266,94 +318,90 @@ function orderCard(o){
   </div>`;
 }
 
-// ORDERS
 function renderOrders(){
-  const filter = document.getElementById('order-filter')?.value||'All';
-  const orders = filter==='All' ? allOrders : allOrders.filter(o=>o.status===filter);
-  document.getElementById('orders-list').innerHTML = orders.length===0
-    ? '<div class="empty">No orders found.</div>'
-    : orders.map(o=>orderCard(o)).join('');
+  const filter=document.getElementById('order-filter')?.value||'All';
+  const orders=filter==='All'?allOrders:allOrders.filter(o=>o.status===filter);
+  document.getElementById('orders-list').innerHTML=orders.length===0
+    ?'<div class="empty">No orders found.</div>'
+    :orders.map(o=>orderCard(o)).join('');
 }
 
-function updateStatus(fid, status){
+function updateStatus(fid,status){
   db.collection("orders").doc(fid).update({status})
-    .then(()=>{
-      const o = allOrders.find(x=>x.firestoreId===fid);
-      if(o) o.status=status;
-      notif('Order updated → '+status);
-      renderDashboard();
-      renderOrders();
-    }).catch(e=>notif('Error: '+e.message));
+  .then(()=>{
+    const o=allOrders.find(x=>x.firestoreId===fid);
+    if(o) o.status=status;
+    notif('Order updated → '+status);
+    renderDashboard();renderOrders();
+  }).catch(e=>notif('Error: '+e.message));
 }
 
-// PRODUCTS
 function renderProducts(){
-  const s = (document.getElementById('prod-search')?.value||'').toLowerCase();
-  const prods = allProducts.filter(p=>p.name.toLowerCase().includes(s)||p.category.toLowerCase().includes(s));
-  document.getElementById('prod-table').innerHTML = prods.map(p=>`<tr>
-    <td style="display:flex;align-items:center;gap:8px"><img src="${p.image}" alt="" style="width:32px;height:32px;border-radius:6px;object-fit:cover"/> ${p.name}</td>
+  const s=(document.getElementById('prod-search')?.value||'').toLowerCase();
+  const prods=allProducts.filter(p=>p.name.toLowerCase().includes(s)||p.category.toLowerCase().includes(s));
+  document.getElementById('prod-table').innerHTML=prods.map(p=>`<tr>
+    <td style="display:flex;align-items:center;gap:8px"><img src="${p.image}" alt="" style="width:32px;height:32px;border-radius:6px;object-fit:cover;flex-shrink:0"/> <span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px">${p.name}</span></td>
     <td><span class="badge badge-blue">${p.category}</span></td>
-    <td style="color:#0ea5e9;font-weight:600">${fmt(p.price)}</td>
+    <td style="color:#0ea5e9;font-weight:600;white-space:nowrap">${fmt(p.price)}</td>
     <td style="color:${p.stock>20?'#059669':'#dc2626'};font-weight:500">${p.stock}</td>
-    <td>
-      <button class="btn-edit" onclick="editStock('${p.firestoreId}','${p.name.replace(/'/g,"\\'")}',${p.stock})">Edit Stock</button>
+    <td style="white-space:nowrap">
+      <button class="btn-edit" onclick="editStock('${p.firestoreId}','${p.name.replace(/'/g,"\\'")}',${p.stock})">Edit</button>
       <button class="btn-delete" onclick="deleteProduct('${p.firestoreId}')">Delete</button>
     </td>
   </tr>`).join('');
 }
 
-function editStock(fid, name, currentStock){
-  const val = prompt(`Update stock for "${name}" (current: ${currentStock})`);
+function editStock(fid,name,currentStock){
+  const val=prompt(`Update stock for "${name}" (current: ${currentStock})`);
   if(val===null) return;
-  const n = parseInt(val);
+  const n=parseInt(val);
   if(isNaN(n)||n<0){notif('Invalid stock value');return;}
   db.collection("products").doc(fid).update({stock:n})
-    .then(()=>{
-      const p = allProducts.find(x=>x.firestoreId===fid);
-      if(p) p.stock=n;
-      renderProducts();
-      notif('Stock updated!');
-    }).catch(e=>notif('Error: '+e.message));
+  .then(()=>{
+    const p=allProducts.find(x=>x.firestoreId===fid);
+    if(p) p.stock=n;
+    renderProducts();notif('Stock updated!');
+  }).catch(e=>notif('Error: '+e.message));
 }
 
 function deleteProduct(fid){
   if(!confirm('Delete this product?')) return;
   db.collection("products").doc(fid).delete()
-    .then(()=>{
-      allProducts = allProducts.filter(p=>p.firestoreId!==fid);
-      renderProducts();
-      renderDashboard();
-      notif('Product deleted.');
-    }).catch(e=>notif('Error: '+e.message));
+  .then(()=>{
+    allProducts=allProducts.filter(p=>p.firestoreId!==fid);
+    renderProducts();renderDashboard();notif('Product deleted.');
+  }).catch(e=>notif('Error: '+e.message));
 }
 
 function addProduct(){
-  const name = document.getElementById('np-name').value.trim();
-  const price = Number(document.getElementById('np-price').value);
-  const imageUrl = document.getElementById('np-icon').value.trim();
+  const name=document.getElementById('np-name').value.trim();
+  const price=Number(document.getElementById('np-price').value);
+  const imageUrl=document.getElementById('np-icon').value.trim();
   if(!name||!price){notif('Name and price are required.');return;}
-  const newProd = {
-    id: Date.now(),
-    name, price,
-    stock: Number(document.getElementById('np-stock').value)||0,
-    image: imageUrl||'https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop',
-    category: document.getElementById('np-cat').value,
-    desc: document.getElementById('np-desc').value
+  if(!imageUrl){notif('Please upload an image or paste an image URL.');return;}
+  const newProd={
+    id:Date.now(),name,price,
+    stock:Number(document.getElementById('np-stock').value)||0,
+    image:imageUrl,
+    category:document.getElementById('np-cat').value,
+    desc:document.getElementById('np-desc').value
   };
   db.collection("products").add(newProd)
-    .then(ref=>{
-      allProducts.push({firestoreId:ref.id,...newProd});
-      ['np-name','np-price','np-stock','np-desc','np-icon'].forEach(id=>document.getElementById(id).value='');
-      renderProducts();
-      renderDashboard();
-      notif('Product added!');
-    }).catch(e=>notif('Error: '+e.message));
+  .then(ref=>{
+    allProducts.push({firestoreId:ref.id,...newProd});
+    ['np-name','np-price','np-stock','np-desc','np-icon'].forEach(id=>document.getElementById(id).value='');
+    document.getElementById('np-file').value='';
+    document.getElementById('img-preview').style.display='none';
+    document.getElementById('upload-progress').style.display='none';
+    uploadedImageUrl='';
+    renderProducts();renderDashboard();
+    notif('Product added successfully!');
+  }).catch(e=>notif('Error: '+e.message));
 }
 
-// TABS
-function switchTab(tab, btn){
+function switchTab(tab,btn){
   ['dashboard','orders','products','add'].forEach(t=>{
-    document.getElementById('tab-'+t).style.display = t===tab?'block':'none';
+    document.getElementById('tab-'+t).style.display=t===tab?'block':'none';
   });
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
