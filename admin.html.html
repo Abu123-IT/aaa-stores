@@ -112,9 +112,10 @@
     <!-- DASHBOARD -->
     <div id="tab-dashboard">
       <div class="stats-grid" id="stats-grid"></div>
-      <div style="display:flex;align-items:center;margin-bottom:12px">
+      <div style="display:flex;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px">
         <h3 style="font-size:15px;font-weight:600">Recent Orders</h3>
         <button class="refresh-btn" onclick="loadData()">🔄 Refresh</button>
+        <button class="refresh-btn" style="background:#fef3c7;color:#92400e;" onclick="seedProducts()">🌱 Seed Default Products</button>
       </div>
       <div id="recent-orders"></div>
     </div>
@@ -210,7 +211,7 @@ const db=firebase.firestore();
 const auth=firebase.auth();
 
 // Cloudinary config
-const CLOUD_NAME="nfmniwjz";
+const CLOUD_NAME="jkavhhe4";
 const UPLOAD_PRESET="nfmniwjz";
 
 let allOrders=[],allProducts=[],uploadedImageUrl="";
@@ -245,26 +246,49 @@ async function handleFileSelect(input){
   if(!file) return;
   const preview=document.getElementById('img-preview');
   const progress=document.getElementById('upload-progress');
+
+  // Show local preview immediately
   preview.src=URL.createObjectURL(file);
   preview.style.display='block';
   progress.style.display='block';
-  progress.textContent='⏳ Uploading...';
+  progress.style.background='#e0f2fe';
+  progress.style.color='#0369a1';
+  progress.textContent='⏳ Uploading image...';
+
+  // Clear URL field while uploading
+  document.getElementById('np-icon').value='';
+  uploadedImageUrl='';
+
   try{
     const formData=new FormData();
-    formData.append('file',file);
-    formData.append('upload_preset',UPLOAD_PRESET);
-    const res=await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,{method:'POST',body:formData});
+    formData.append('file', file);
+    formData.append('upload_preset', UPLOAD_PRESET);
+
+    const res=await fetch('https://api.cloudinary.com/v1_1/'+CLOUD_NAME+'/image/upload',{
+      method:'POST',
+      body:formData
+    });
+
+    if(!res.ok) throw new Error('Upload failed: '+res.status);
     const data=await res.json();
-    uploadedImageUrl=data.secure_url;
-    document.getElementById('np-icon').value=uploadedImageUrl;
-    progress.textContent='✅ Uploaded!';
-    progress.style.background='#d1fae5';
-    progress.style.color='#065f46';
-    notif('Image uploaded successfully!');
+
+    if(data.secure_url){
+      uploadedImageUrl=data.secure_url;
+      document.getElementById('np-icon').value=uploadedImageUrl;
+      progress.style.background='#d1fae5';
+      progress.style.color='#065f46';
+      progress.textContent='✅ Image uploaded successfully!';
+      notif('Image uploaded!');
+    } else {
+      throw new Error('No URL returned');
+    }
   }catch(e){
-    progress.textContent='❌ Upload failed. Use URL instead.';
     progress.style.background='#fee2e2';
     progress.style.color='#dc2626';
+    progress.textContent='❌ Upload failed. Please paste image URL instead.';
+    preview.style.display='none';
+    uploadedImageUrl='';
+    document.getElementById('np-icon').value='';
   }
 }
 
