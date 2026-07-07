@@ -71,7 +71,8 @@
   .order-customer{font-size:13px;margin-bottom:8px;line-height:1.8}
   #notif{position:fixed;top:16px;right:16px;background:#1e293b;color:#fff;padding:10px 16px;border-radius:10px;z-index:9999;font-size:13px;display:none;max-width:300px}
   .empty{text-align:center;padding:40px 0;color:#64748b;font-size:14px}
-  .refresh-btn{background:#e0f2fe;color:#0369a1;border:none;padding:6px 12px;border-radius:8px;font-size:12px;cursor:pointer;margin-left:8px}
+  .refresh-btn{background:#e0f2fe;color:#0369a1;border:none;padding:6px 12px;border-radius:8px;font-size:12px;cursor:pointer;margin-left:8px;font-family:inherit}
+  .seed-btn{background:#fef3c7;color:#92400e;border:1px solid #fbbf24;padding:7px 14px;border-radius:8px;font-size:12px;cursor:pointer;margin-left:8px;font-family:inherit;font-weight:600}
 
   @media(max-width:600px){
     .stats-grid{grid-template-columns:repeat(2,1fr)}
@@ -115,7 +116,7 @@
       <div style="display:flex;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px">
         <h3 style="font-size:15px;font-weight:600">Recent Orders</h3>
         <button class="refresh-btn" onclick="loadData()">🔄 Refresh</button>
-        <button class="refresh-btn" style="background:#fef3c7;color:#92400e;" onclick="seedProducts()">🌱 Seed Default Products</button>
+        <button class="seed-btn" onclick="seedProducts()">🌱 Seed Default Products</button>
       </div>
       <div id="recent-orders"></div>
     </div>
