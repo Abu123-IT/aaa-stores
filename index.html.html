@@ -249,26 +249,60 @@ const db = firebase.firestore();
 
 const CATS=[["Electronics","📱"],["Clothing","👗"],["Home & Kitchen","🏠"],["Sports","⚽"],["Books","📚"],["Beauty","💄"],["Toys","🧸"],["Food & Grocery","🥑"],["Tools","🔨"]];
 const DEFAULT_PRODUCTS=[
+  // Electronics (5)
   {id:1,name:"Wireless Bluetooth Headphones",price:4500,category:"Electronics",stock:50,image:"https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Premium sound quality with noise cancellation."},
-  {id:2,name:"Men's Cotton T-Shirt",price:850,category:"Clothing",stock:200,image:"https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Comfortable everyday wear, multiple colors."},
-  {id:3,name:"Non-stick Frying Pan",price:2200,category:"Home & Kitchen",stock:75,image:"https://images.pexels.com/photos/2284166/pexels-photo-2284166.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Durable coating, easy to clean."},
-  {id:4,name:"Yoga Mat",price:1800,category:"Sports",stock:120,image:"https://images.pexels.com/photos/4056535/pexels-photo-4056535.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Anti-slip surface, 6mm thick."},
-  {id:5,name:"Python Programming Book",price:1200,category:"Books",stock:60,image:"https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Learn Python from scratch."},
-  {id:6,name:"Face Moisturizer SPF 30",price:950,category:"Beauty",stock:90,image:"https://images.pexels.com/photos/3321416/pexels-photo-3321416.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Daily moisturizer with sun protection."},
-  {id:7,name:"LEGO Classic Set",price:3500,category:"Toys",stock:40,image:"https://images.pexels.com/photos/1148998/pexels-photo-1148998.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Creative building set for ages 4+."},
-  {id:8,name:"Basmati Rice 5kg",price:1650,category:"Food & Grocery",stock:300,image:"https://images.pexels.com/photos/4110251/pexels-photo-4110251.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Premium long-grain basmati rice."},
-  {id:9,name:"Screwdriver Set (12pc)",price:2800,category:"Tools",stock:85,image:"https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Complete set with magnetic tips."},
-  {id:10,name:"Smart Watch",price:12500,category:"Electronics",stock:30,image:"https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Fitness tracking, heart rate, notifications."},
-  {id:11,name:"Women's Denim Jeans",price:3200,category:"Clothing",stock:150,image:"https://images.pexels.com/photos/1082529/pexels-photo-1082529.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Slim fit, stretch denim fabric."},
-  {id:12,name:"Electric Kettle 1.8L",price:3800,category:"Home & Kitchen",stock:55,image:"https://images.pexels.com/photos/5946623/pexels-photo-5946623.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Fast boiling, auto shut-off."},
-  {id:13,name:"Dumbbell Set 20kg",price:8500,category:"Sports",stock:25,image:"https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Adjustable weights, rubber coated."},
-  {id:14,name:"Business English Book",price:900,category:"Books",stock:70,image:"https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Improve professional communication."},
-  {id:15,name:"Shampoo 400ml",price:480,category:"Beauty",stock:250,image:"https://images.pexels.com/photos/3737586/pexels-photo-3737586.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Sulfate-free, for all hair types."},
-  {id:16,name:"Remote Control Car",price:2900,category:"Toys",stock:45,image:"https://images.pexels.com/photos/1637859/pexels-photo-1637859.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"High speed RC car, 4WD, rechargeable."},
-  {id:17,name:"Green Tea 100 bags",price:750,category:"Food & Grocery",stock:400,image:"https://images.pexels.com/photos/1638280/pexels-photo-1638280.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Pure Ceylon green tea."},
-  {id:18,name:"Cordless Drill",price:9800,category:"Tools",stock:20,image:"https://images.pexels.com/photos/1249611/pexels-photo-1249611.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"18V lithium battery, variable speed."},
-  {id:19,name:"Laptop Stand",price:3100,category:"Electronics",stock:65,image:"https://images.pexels.com/photos/4526414/pexels-photo-4526414.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Adjustable aluminum stand."},
-  {id:20,name:"Kids School Backpack",price:1900,category:"Clothing",stock:110,image:"https://images.pexels.com/photos/1374913/pexels-photo-1374913.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Waterproof, multiple compartments."}
+  {id:2,name:"Smart Watch",price:12500,category:"Electronics",stock:30,image:"https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Fitness tracking, heart rate monitor, notifications."},
+  {id:3,name:"Laptop Stand",price:3100,category:"Electronics",stock:65,image:"https://images.pexels.com/photos/4526414/pexels-photo-4526414.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Adjustable aluminum stand, ergonomic design."},
+  {id:4,name:"USB-C Hub 7-in-1",price:5800,category:"Electronics",stock:40,image:"https://images.pexels.com/photos/4158/apple-iphone-smartphone-desk.jpg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"7 ports including HDMI, USB 3.0, SD card reader."},
+  {id:5,name:"Portable Power Bank 20000mAh",price:3900,category:"Electronics",stock:55,image:"https://images.pexels.com/photos/4526407/pexels-photo-4526407.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Fast charging, dual USB ports, LED indicator."},
+  // Clothing (5)
+  {id:6,name:"Men's Cotton T-Shirt",price:850,category:"Clothing",stock:200,image:"https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Comfortable everyday wear, available in multiple colors."},
+  {id:7,name:"Women's Denim Jeans",price:3200,category:"Clothing",stock:150,image:"https://images.pexels.com/photos/1082529/pexels-photo-1082529.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Slim fit, stretch denim fabric, comfortable all day."},
+  {id:8,name:"Kids School Backpack",price:1900,category:"Clothing",stock:110,image:"https://images.pexels.com/photos/1374913/pexels-photo-1374913.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Waterproof, multiple compartments, ergonomic straps."},
+  {id:9,name:"Men's Formal Shirt",price:2200,category:"Clothing",stock:120,image:"https://images.pexels.com/photos/297933/pexels-photo-297933.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"100% cotton, slim fit, ideal for office wear."},
+  {id:10,name:"Women's Casual Dress",price:2800,category:"Clothing",stock:90,image:"https://images.pexels.com/photos/291759/pexels-photo-291759.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Lightweight fabric, floral print, perfect for summer."},
+  // Home & Kitchen (5)
+  {id:11,name:"Non-stick Frying Pan",price:2200,category:"Home & Kitchen",stock:75,image:"https://images.pexels.com/photos/2284166/pexels-photo-2284166.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Durable non-stick coating, easy to clean, induction safe."},
+  {id:12,name:"Electric Kettle 1.8L",price:3800,category:"Home & Kitchen",stock:55,image:"https://images.pexels.com/photos/5946623/pexels-photo-5946623.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Fast boiling, auto shut-off, 360° swivel base."},
+  {id:13,name:"Ceramic Dinner Set 12pc",price:5500,category:"Home & Kitchen",stock:40,image:"https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"12 piece ceramic dinner set, microwave and dishwasher safe."},
+  {id:14,name:"Stainless Steel Water Bottle",price:1200,category:"Home & Kitchen",stock:180,image:"https://images.pexels.com/photos/1000084/pexels-photo-1000084.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"1L double wall insulated, keeps cold 24hrs, hot 12hrs."},
+  {id:15,name:"Blender 600W",price:6500,category:"Home & Kitchen",stock:35,image:"https://images.pexels.com/photos/3737586/pexels-photo-3737586.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"600W powerful motor, 6 stainless steel blades, 1.5L jar."},
+  // Sports (5)
+  {id:16,name:"Yoga Mat",price:1800,category:"Sports",stock:120,image:"https://images.pexels.com/photos/4056535/pexels-photo-4056535.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Anti-slip surface, 6mm thick, includes carry strap."},
+  {id:17,name:"Dumbbell Set 20kg",price:8500,category:"Sports",stock:25,image:"https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Adjustable rubber coated weights, chrome handle."},
+  {id:18,name:"Sports Running Shoes",price:7200,category:"Sports",stock:60,image:"https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Lightweight breathable mesh, cushioned sole, unisex."},
+  {id:19,name:"Resistance Bands Set",price:1500,category:"Sports",stock:100,image:"https://images.pexels.com/photos/4162449/pexels-photo-4162449.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"5 resistance levels, latex free, includes carry bag."},
+  {id:20,name:"Skipping Rope",price:650,category:"Sports",stock:200,image:"https://images.pexels.com/photos/3764011/pexels-photo-3764011.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Adjustable length, foam handles, ball bearing joints."},
+  // Books (5)
+  {id:21,name:"Python Programming Book",price:1200,category:"Books",stock:60,image:"https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Learn Python from scratch, beginner friendly with exercises."},
+  {id:22,name:"Business English Book",price:900,category:"Books",stock:70,image:"https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Improve professional communication and business writing."},
+  {id:23,name:"Self Development Book",price:750,category:"Books",stock:85,image:"https://images.pexels.com/photos/256431/pexels-photo-256431.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Transform your mindset and achieve your goals."},
+  {id:24,name:"Cooking Recipe Book",price:1100,category:"Books",stock:50,image:"https://images.pexels.com/photos/1130372/pexels-photo-1130372.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"500+ easy recipes with step-by-step instructions."},
+  {id:25,name:"Children's Story Book Set",price:1800,category:"Books",stock:65,image:"https://images.pexels.com/photos/1741230/pexels-photo-1741230.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Set of 10 colorful story books for ages 3-8."},
+  // Beauty (5)
+  {id:26,name:"Face Moisturizer SPF 30",price:950,category:"Beauty",stock:90,image:"https://images.pexels.com/photos/3321416/pexels-photo-3321416.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Daily moisturizer with SPF 30 sun protection, all skin types."},
+  {id:27,name:"Shampoo 400ml",price:480,category:"Beauty",stock:250,image:"https://images.pexels.com/photos/3737586/pexels-photo-3737586.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Sulfate-free formula, strengthens hair, for all hair types."},
+  {id:28,name:"Perfume 50ml",price:2800,category:"Beauty",stock:60,image:"https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Long lasting fragrance, fresh floral scent, imported."},
+  {id:29,name:"Makeup Brush Set 12pc",price:1650,category:"Beauty",stock:75,image:"https://images.pexels.com/photos/2639947/pexels-photo-2639947.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"12 professional brushes with synthetic bristles and case."},
+  {id:30,name:"Lip Balm Set 6pc",price:550,category:"Beauty",stock:300,image:"https://images.pexels.com/photos/3373745/pexels-photo-3373745.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"6 flavored lip balms with SPF 15, moisturizing formula."},
+  // Toys (5)
+  {id:31,name:"LEGO Classic Set",price:3500,category:"Toys",stock:40,image:"https://images.pexels.com/photos/1148998/pexels-photo-1148998.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Creative building set for ages 4+, 500 pieces."},
+  {id:32,name:"Remote Control Car",price:2900,category:"Toys",stock:45,image:"https://images.pexels.com/photos/1637859/pexels-photo-1637859.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"High speed 4WD RC car, rechargeable battery, 30m range."},
+  {id:33,name:"Stuffed Teddy Bear",price:1200,category:"Toys",stock:80,image:"https://images.pexels.com/photos/3662667/pexels-photo-3662667.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Soft plush teddy bear 30cm, safe for all ages, washable."},
+  {id:34,name:"Board Game Family Pack",price:2200,category:"Toys",stock:35,image:"https://images.pexels.com/photos/1329645/pexels-photo-1329645.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Classic board game for 2-6 players, fun for all ages."},
+  {id:35,name:"Kids Drawing Set",price:850,category:"Toys",stock:120,image:"https://images.pexels.com/photos/1148998/pexels-photo-1148998.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"48 piece art set with crayons, markers, colored pencils."},
+  // Food & Grocery (5)
+  {id:36,name:"Basmati Rice 5kg",price:1650,category:"Food & Grocery",stock:300,image:"https://images.pexels.com/photos/4110251/pexels-photo-4110251.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Premium long-grain basmati rice, aromatic and fluffy."},
+  {id:37,name:"Green Tea 100 bags",price:750,category:"Food & Grocery",stock:400,image:"https://images.pexels.com/photos/1638280/pexels-photo-1638280.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Pure Ceylon green tea, rich in antioxidants."},
+  {id:38,name:"Organic Honey 500g",price:1850,category:"Food & Grocery",stock:150,image:"https://images.pexels.com/photos/302163/pexels-photo-302163.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"100% pure organic honey, no additives or preservatives."},
+  {id:39,name:"Mixed Nuts 500g",price:2200,category:"Food & Grocery",stock:120,image:"https://images.pexels.com/photos/1295572/pexels-photo-1295572.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Premium mix of cashews, almonds, walnuts and pistachios."},
+  {id:40,name:"Extra Virgin Olive Oil 500ml",price:1600,category:"Food & Grocery",stock:180,image:"https://images.pexels.com/photos/33783/olive-oil-salad-dressing-cooking-olive.jpg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Cold pressed, 100% pure extra virgin olive oil."},
+  // Tools (5)
+  {id:41,name:"Screwdriver Set 12pc",price:2800,category:"Tools",stock:85,image:"https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"12pc complete set with magnetic tips, ergonomic handles."},
+  {id:42,name:"Cordless Drill",price:9800,category:"Tools",stock:20,image:"https://images.pexels.com/photos/1249611/pexels-photo-1249611.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"18V lithium battery, variable speed, includes 15 bits."},
+  {id:43,name:"Measuring Tape 5m",price:450,category:"Tools",stock:200,image:"https://images.pexels.com/photos/175039/pexels-photo-175039.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Heavy duty steel tape, auto-lock, belt clip included."},
+  {id:44,name:"Hammer 500g",price:1100,category:"Tools",stock:90,image:"https://images.pexels.com/photos/209235/pexels-photo-209235.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Forged steel head, rubber grip handle, anti-vibration."},
+  {id:45,name:"Tool Box Set 40pc",price:4500,category:"Tools",stock:30,image:"https://images.pexels.com/photos/1249611/pexels-photo-1249611.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"40 piece home tool kit in carry case, all essentials included."}
 ];
 
 let products=[], cart=[], selProd=null, detQty=1;
@@ -281,7 +315,13 @@ async function initProducts(){
     if(!snap.empty){
       products=snap.docs.map(d=>({firestoreId:d.id,...d.data()}));
     } else {
-      for(const p of DEFAULT_PRODUCTS) await db.collection("products").add(p);
+      // Seed all default products
+      const batch=db.batch();
+      DEFAULT_PRODUCTS.forEach(p=>{
+        const ref=db.collection("products").doc();
+        batch.set(ref,p);
+      });
+      await batch.commit();
       const snap2=await db.collection("products").get();
       products=snap2.docs.map(d=>({firestoreId:d.id,...d.data()}));
     }
