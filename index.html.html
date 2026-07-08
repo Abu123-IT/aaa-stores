@@ -14,10 +14,11 @@
   .nav-links{display:flex;gap:4px}
   .nav-btn{background:transparent;border:none;padding:8px 14px;border-radius:8px;font-size:14px;color:#64748b}
   .nav-btn:hover,.nav-btn.active{background:#f1f5f9;color:#1e293b;font-weight:500}
-  .nav-right{display:flex;align-items:center;gap:12px}
-  .search-input{border:1px solid #e2e8f0;border-radius:8px;padding:7px 14px;font-size:13px;width:180px;background:#f8fafc}
+  .nav-right{display:flex;align-items:center;gap:8px}
+  .search-input{border:1px solid #e2e8f0;border-radius:8px;padding:7px 14px;font-size:13px;width:160px;background:#f8fafc}
   .cart-btn{background:#f1f5f9;border:1px solid #e2e8f0;border-radius:8px;padding:8px 14px;font-size:13px;display:flex;align-items:center;gap:6px}
   .cart-count{background:#ef4444;color:#fff;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:11px;display:none}
+  .user-btn{background:#6366f1;color:#fff;border:none;padding:7px 14px;border-radius:8px;font-size:13px;font-weight:500}
   .page{display:none}.page.active{display:block}
   .hero{position:relative;min-height:280px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:linear-gradient(135deg,#0f172a,#1e3a5f)}
   .hero-bg{position:absolute;inset:0;background-image:url('Logo.jpg');background-size:cover;background-position:center;transform:scale(1.05);animation:zoomBg 18s ease-in-out infinite alternate}
@@ -29,93 +30,156 @@
   .btn-primary{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border:none;padding:11px 28px;border-radius:50px;font-size:14px;font-weight:700;box-shadow:0 4px 20px rgba(245,158,11,.4)}
   .section{padding:20px 32px}
   .section h2{font-size:18px;font-weight:700;margin-bottom:14px}
-  .cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:14px}
+  .cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:12px}
   .cat-wrap{position:relative}
-  .cat-card{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:22px 12px;text-align:center;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
+  .cat-card{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:18px 10px;text-align:center;cursor:pointer;transition:all .2s;position:relative;overflow:hidden}
   .cat-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#3b82f6,#6366f1);opacity:0;transition:opacity .2s;border-radius:16px}
   .cat-card:hover::before{opacity:1}
   .cat-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(99,102,241,.3)}
   .cat-card:hover .cat-icon,.cat-card:hover .cat-label{color:#fff;position:relative;z-index:1}
-  .cat-icon{font-size:30px;margin-bottom:10px;display:block;transition:transform .2s;position:relative;z-index:1}
+  .cat-icon{font-size:28px;margin-bottom:8px;display:block;transition:transform .2s;position:relative;z-index:1}
   .cat-card:hover .cat-icon{transform:scale(1.2)}
-  .cat-label{font-size:13px;font-weight:600;color:#374151;transition:color .2s;position:relative;z-index:1}
-  .cat-popup{display:none;position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);background:#fff;border:1px solid #e2e8f0;border-radius:16px;width:260px;z-index:500;box-shadow:0 16px 48px rgba(0,0,0,.18);overflow:hidden}
+  .cat-label{font-size:12px;font-weight:600;color:#374151;transition:color .2s;position:relative;z-index:1}
+  .cat-popup{display:none;position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#fff;border:1px solid #e2e8f0;border-radius:14px;width:250px;z-index:500;box-shadow:0 16px 48px rgba(0,0,0,.18);overflow:hidden}
   .cat-wrap:hover .cat-popup{display:block}
-  .cat-popup-header{background:linear-gradient(135deg,#6366f1,#3b82f6);padding:12px 14px}
+  .cat-popup-header{background:linear-gradient(135deg,#6366f1,#3b82f6);padding:10px 14px}
   .cat-popup-header h4{font-size:12px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.6px;margin:0}
-  .cat-popup-body{max-height:220px;overflow-y:auto;padding:8px;scrollbar-width:thin}
-  .popup-item{display:flex;align-items:center;gap:10px;padding:8px;border-radius:10px;cursor:pointer;transition:background .12s}
+  .cat-popup-body{max-height:200px;overflow-y:auto;padding:6px}
+  .popup-item{display:flex;align-items:center;gap:8px;padding:7px;border-radius:8px;cursor:pointer;transition:background .12s}
   .popup-item:hover{background:#f1f5f9}
-  .popup-item-icon{width:32px;height:32px;border-radius:8px;flex-shrink:0;overflow:hidden}
+  .popup-item-icon{width:30px;height:30px;border-radius:6px;flex-shrink:0;overflow:hidden}
   .popup-item-icon img{width:100%;height:100%;object-fit:cover}
   .popup-item-info{flex:1;min-width:0}
   .popup-item-name{font-size:12px;font-weight:600;color:#1e293b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .popup-item-price{font-size:11px;color:#0ea5e9;font-weight:700}
-  .popup-more{display:block;font-size:12px;font-weight:700;color:#6366f1;text-align:center;padding:10px;border-top:1px solid #f1f5f9;cursor:pointer;background:#fafafe}
-  .prod-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}
+  .popup-more{display:block;font-size:12px;font-weight:700;color:#6366f1;text-align:center;padding:8px;border-top:1px solid #f1f5f9;cursor:pointer;background:#fafafe}
+  .prod-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
   .prod-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;overflow:hidden;transition:all .2s}
   .prod-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.1);transform:translateY(-2px)}
-  .prod-img{height:120px;overflow:hidden;cursor:pointer}
+  .prod-img{height:130px;overflow:hidden;cursor:pointer}
   .prod-img img{width:100%;height:100%;object-fit:cover}
-  .prod-body{padding:14px}
-  .prod-name{font-size:13px;font-weight:600;margin-bottom:5px;cursor:pointer}
+  .prod-body{padding:12px}
+  .prod-name{font-size:13px;font-weight:600;margin-bottom:4px;cursor:pointer}
   .prod-price{font-size:15px;font-weight:700;color:#0ea5e9}
   .stock-ok{color:#059669}.stock-no{color:#dc2626}
-  .btn-cart{width:100%;margin-top:10px;background:#1e293b;color:#fff;border:none;padding:9px;border-radius:8px;font-size:13px;font-weight:500}
+  .btn-cart{width:100%;margin-top:8px;background:#1e293b;color:#fff;border:none;padding:8px;border-radius:8px;font-size:13px;font-weight:500}
   .btn-cart:disabled{background:#e2e8f0;color:#94a3b8;cursor:not-allowed}
   .badge{background:#e0f2fe;color:#0369a1;font-size:11px;padding:2px 8px;border-radius:20px;font-weight:500;display:inline-block}
-  .stars{color:#f59e0b;font-size:13px}
-  .filters{display:flex;gap:12px;margin-bottom:20px;flex-wrap:wrap}
-  .filters input,.filters select{border:1px solid #e2e8f0;border-radius:8px;padding:9px 14px;font-size:14px;background:#fff}
-  .filters input{flex:1;min-width:200px}
-  .result-count{font-size:13px;color:#64748b;margin-bottom:16px}
-  .cart-container{padding:32px;max-width:700px;margin:0 auto}
-  .cart-item{display:flex;align-items:center;gap:16px;padding:16px;border-bottom:1px solid #f1f5f9}
-  .qty-ctrl{display:flex;align-items:center;gap:8px;border:1px solid #e2e8f0;border-radius:8px;padding:4px 12px}
+  .stars{color:#f59e0b;font-size:12px}
+  .filters{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap}
+  .filters input,.filters select{border:1px solid #e2e8f0;border-radius:8px;padding:8px 12px;font-size:13px;background:#fff}
+  .filters input{flex:1;min-width:180px}
+  .result-count{font-size:13px;color:#64748b;margin-bottom:14px}
+  .cart-container{padding:24px;max-width:700px;margin:0 auto}
+  .cart-item{display:flex;align-items:center;gap:12px;padding:14px;border-bottom:1px solid #f1f5f9}
+  .qty-ctrl{display:flex;align-items:center;gap:6px;border:1px solid #e2e8f0;border-radius:8px;padding:3px 10px}
   .qty-btn{background:none;border:none;font-size:18px;cursor:pointer}
-  .cart-summary{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px;margin-top:16px}
+  .cart-summary{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:18px;margin-top:14px}
   .summary-row{display:flex;justify-content:space-between;margin-bottom:8px;font-size:14px}
-  .summary-total{display:flex;justify-content:space-between;font-weight:700;font-size:18px;border-top:1px solid #e2e8f0;padding-top:12px;margin-top:4px}
-  .btn-checkout{width:100%;margin-top:16px;background:#1e293b;color:#fff;border:none;padding:14px;border-radius:10px;font-size:15px;font-weight:700}
-  .checkout-container{padding:32px;max-width:600px;margin:0 auto}
-  .form-group{margin-bottom:14px}
-  .form-group label{font-size:13px;color:#64748b;display:block;margin-bottom:5px}
+  .summary-total{display:flex;justify-content:space-between;font-weight:700;font-size:18px;border-top:1px solid #e2e8f0;padding-top:10px;margin-top:4px}
+  .btn-checkout{width:100%;margin-top:14px;background:#1e293b;color:#fff;border:none;padding:13px;border-radius:10px;font-size:15px;font-weight:700}
+  .checkout-container{padding:24px;max-width:600px;margin:0 auto}
+  .form-group{margin-bottom:12px}
+  .form-group label{font-size:13px;color:#64748b;display:block;margin-bottom:4px}
   .form-group input{width:100%;border:1px solid #e2e8f0;border-radius:8px;padding:9px 14px;font-size:14px;background:#f8fafc}
-  .cod-notice{background:#fef3c7;border:1px solid #fbbf24;border-radius:10px;padding:14px 18px;margin-bottom:16px;font-size:13px;color:#92400e}
-  .btn-green{background:linear-gradient(135deg,#059669,#047857);color:#fff;border:none;padding:14px;border-radius:10px;font-size:15px;font-weight:700;width:100%}
-  .detail-container{padding:32px;max-width:700px;margin:0 auto}
-  .back-btn{background:none;border:none;color:#64748b;font-size:14px;margin-bottom:20px;padding:0;cursor:pointer}
+  .cod-notice{background:#fef3c7;border:1px solid #fbbf24;border-radius:10px;padding:12px 16px;margin-bottom:14px;font-size:13px;color:#92400e}
+  .btn-green{background:linear-gradient(135deg,#059669,#047857);color:#fff;border:none;padding:13px;border-radius:10px;font-size:15px;font-weight:700;width:100%}
+  .detail-container{padding:24px;max-width:700px;margin:0 auto}
+  .back-btn{background:none;border:none;color:#64748b;font-size:14px;margin-bottom:16px;padding:0;cursor:pointer}
   .detail-card{background:#fff;border:1px solid #e2e8f0;border-radius:16px;overflow:hidden}
   .detail-img{height:220px;overflow:hidden}
   .detail-img img{width:100%;height:100%;object-fit:cover}
-  .detail-body{padding:24px}
-  .detail-price{font-size:26px;font-weight:700;color:#0ea5e9;margin:16px 0}
-  .qty-selector{display:flex;align-items:center;gap:16px;margin-bottom:20px}
-  .qty-box{display:flex;align-items:center;gap:12px;border:1px solid #e2e8f0;border-radius:8px;padding:4px 12px}
-  .confirm-container{padding:64px 32px;text-align:center;max-width:500px;margin:0 auto}
-  .confirm-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:20px;text-align:left;margin-bottom:24px}
+  .detail-body{padding:22px}
+  .detail-price{font-size:26px;font-weight:700;color:#0ea5e9;margin:14px 0}
+  .qty-selector{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+  .qty-box{display:flex;align-items:center;gap:10px;border:1px solid #e2e8f0;border-radius:8px;padding:4px 12px}
+  .confirm-container{padding:48px 24px;text-align:center;max-width:500px;margin:0 auto}
+  .confirm-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:18px;text-align:left;margin-bottom:20px}
   .confirm-row{display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px}
-  .store-info{background:#1e293b;padding:40px 32px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px}
-  .info-label{font-size:12px;font-weight:600;color:#94a3b8;margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
-  .info-val{font-size:14px;color:#e2e8f0}
-  #notif{position:fixed;top:16px;right:16px;background:#1e293b;color:#fff;padding:12px 20px;border-radius:10px;z-index:9999;font-size:14px;display:none}
-  .empty{text-align:center;padding:60px 0;color:#64748b}
-  .empty div{font-size:48px;margin-bottom:16px}
+  .store-info{background:#1e293b;padding:36px 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px}
+  .info-label{font-size:12px;font-weight:600;color:#94a3b8;margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+  .info-val{font-size:13px;color:#e2e8f0}
+  #notif{position:fixed;top:16px;right:16px;background:#1e293b;color:#fff;padding:10px 18px;border-radius:10px;z-index:9999;font-size:13px;display:none;max-width:280px}
+  .empty{text-align:center;padding:48px 0;color:#64748b}
+  .empty div{font-size:44px;margin-bottom:14px}
   .card-wrap{background:#fff;border:1px solid #e2e8f0;border-radius:12px;overflow:hidden}
-  .btn-dark{background:#1e293b;color:#fff;border:none;padding:10px 24px;border-radius:8px;font-size:14px}
+  .btn-dark{background:#1e293b;color:#fff;border:none;padding:9px 20px;border-radius:8px;font-size:13px;cursor:pointer}
+
+  /* AUTH MODAL */
+  .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px}
+  .modal-overlay.active{display:flex}
+  .modal{background:#fff;border-radius:16px;padding:32px;width:100%;max-width:400px}
+  .modal h2{font-size:20px;font-weight:700;margin-bottom:6px}
+  .modal p{color:#64748b;font-size:14px;margin-bottom:24px}
+  .modal input{width:100%;border:1px solid #e2e8f0;border-radius:8px;padding:10px 14px;font-size:14px;margin-bottom:10px;background:#f8fafc}
+  .modal-btn{width:100%;background:#6366f1;color:#fff;border:none;padding:12px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;margin-top:4px}
+  .modal-switch{text-align:center;margin-top:14px;font-size:13px;color:#64748b}
+  .modal-switch span{color:#6366f1;cursor:pointer;font-weight:600}
+  .modal-error{color:#dc2626;font-size:12px;margin-top:6px;display:none}
+  .modal-close{float:right;background:none;border:none;font-size:20px;cursor:pointer;color:#94a3b8;margin-top:-8px}
+
+  /* MY ORDERS */
+  .orders-container{padding:24px;max-width:700px;margin:0 auto}
+  .my-order-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:16px;margin-bottom:12px}
+  .my-order-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px}
+  .status-pill{font-size:12px;padding:4px 12px;border-radius:20px;font-weight:600}
+  .my-order-items{font-size:13px;color:#64748b;margin-bottom:8px}
+  .my-order-item-row{display:flex;align-items:center;gap:8px;padding:3px 0}
+  .my-order-item-row img{width:28px;height:28px;border-radius:6px;object-fit:cover;flex-shrink:0}
+  .my-order-total{font-weight:700;color:#0ea5e9;font-size:14px}
+  .status-tracker{display:flex;align-items:center;margin:12px 0;gap:0}
+  .status-step{flex:1;text-align:center;position:relative}
+  .status-step::before{content:'';position:absolute;top:14px;left:-50%;width:100%;height:2px;background:#e2e8f0;z-index:0}
+  .status-step:first-child::before{display:none}
+  .status-dot{width:28px;height:28px;border-radius:50%;background:#e2e8f0;display:flex;align-items:center;justify-content:center;font-size:12px;margin:0 auto;position:relative;z-index:1;border:2px solid #e2e8f0}
+  .status-dot.active{background:#6366f1;border-color:#6366f1;color:#fff}
+  .status-dot.done{background:#059669;border-color:#059669;color:#fff}
+  .status-dot.cancelled{background:#dc2626;border-color:#dc2626;color:#fff}
+  .status-label{font-size:10px;color:#64748b;margin-top:4px}
+  .status-label.active{color:#6366f1;font-weight:600}
+  .status-label.done{color:#059669;font-weight:600}
 </style>
 </head>
 <body>
 <div id="notif"></div>
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="auth-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeAuth()">✕</button>
+    <div id="login-form">
+      <h2>Welcome Back! 👋</h2>
+      <p>Login to track your orders</p>
+      <input type="email" id="auth-email" placeholder="Email address"/>
+      <input type="password" id="auth-pass" placeholder="Password"/>
+      <div class="modal-error" id="auth-error"></div>
+      <button class="modal-btn" onclick="doLogin()">Login →</button>
+      <div class="modal-switch">Don't have an account? <span onclick="showRegister()">Register</span></div>
+    </div>
+    <div id="register-form" style="display:none">
+      <h2>Create Account 🎉</h2>
+      <p>Register to start shopping</p>
+      <input type="text" id="reg-name" placeholder="Full Name"/>
+      <input type="email" id="reg-email" placeholder="Email address"/>
+      <input type="password" id="reg-pass" placeholder="Password (min 6 chars)"/>
+      <div class="modal-error" id="reg-error"></div>
+      <button class="modal-btn" onclick="doRegister()">Create Account →</button>
+      <div class="modal-switch">Already have an account? <span onclick="showLogin()">Login</span></div>
+    </div>
+  </div>
+</div>
+
 <nav>
   <div class="logo" onclick="goPage('home')">🏪 AAA Stores</div>
   <div class="nav-links">
     <button class="nav-btn active" id="nb-home" onclick="goPage('home')">🏠 Home</button>
     <button class="nav-btn" id="nb-shop" onclick="goPage('shop')">🛍️ Shop</button>
+    <button class="nav-btn" id="nb-myorders" onclick="goPage('myorders')" style="display:none">📦 My Orders</button>
   </div>
   <div class="nav-right">
-    <input class="search-input" id="nav-search" placeholder="Search products..." oninput="navSearch(this.value)"/>
-    <button class="cart-btn" onclick="goPage('cart')">🛒 Cart <span class="cart-count" id="cart-count">0</span></button>
+    <input class="search-input" id="nav-search" placeholder="Search..." oninput="navSearch(this.value)"/>
+    <button class="cart-btn" onclick="goPage('cart')">🛒 <span class="cart-count" id="cart-count">0</span></button>
+    <button class="user-btn" id="user-btn" onclick="openAuth()">Login</button>
   </div>
 </nav>
 
@@ -147,7 +211,7 @@
 </div>
 
 <div class="page" id="page-shop">
-  <div style="padding:24px 32px">
+  <div style="padding:20px 24px">
     <div class="filters">
       <input id="shop-search" placeholder="Search products..." oninput="renderShop()"/>
       <select id="shop-cat" onchange="renderShop()">
@@ -168,9 +232,9 @@
       <div class="detail-img" id="d-img"></div>
       <div class="detail-body">
         <span class="badge" id="d-cat"></span>
-        <h2 style="font-size:22px;font-weight:700;margin:12px 0 8px" id="d-name"></h2>
+        <h2 style="font-size:22px;font-weight:700;margin:10px 0 6px" id="d-name"></h2>
         <div class="stars">★★★★☆</div>
-        <p style="color:#64748b;margin-top:12px;line-height:1.6;font-size:14px" id="d-desc"></p>
+        <p style="color:#64748b;margin-top:10px;line-height:1.6;font-size:14px" id="d-desc"></p>
         <div class="detail-price" id="d-price"></div>
         <div class="qty-selector">
           <span style="font-size:14px;color:#64748b">Quantity:</span>
@@ -181,7 +245,7 @@
           </div>
           <span class="stock-ok" id="d-stock" style="font-size:13px"></span>
         </div>
-        <button class="btn-cart" style="padding:14px;border-radius:10px;font-size:15px;font-weight:700;width:100%" id="d-add-btn" onclick="addDetailToCart()"></button>
+        <button class="btn-cart" style="padding:13px;border-radius:10px;font-size:15px;font-weight:700;width:100%" id="d-add-btn" onclick="addDetailToCart()"></button>
       </div>
     </div>
   </div>
@@ -189,25 +253,25 @@
 
 <div class="page" id="page-cart">
   <div class="cart-container">
-    <h2 style="font-size:22px;font-weight:700;margin-bottom:24px" id="cart-title">Your Cart</h2>
+    <h2 style="font-size:20px;font-weight:700;margin-bottom:20px" id="cart-title">Your Cart</h2>
     <div id="cart-body"></div>
   </div>
 </div>
 
 <div class="page" id="page-checkout">
   <div class="checkout-container">
-    <h2 style="font-size:22px;font-weight:700;margin-bottom:24px">Checkout</h2>
-    <div class="card-wrap" style="padding:24px;margin-bottom:20px">
-      <h3 style="font-size:16px;font-weight:700;margin-bottom:16px">Delivery Details</h3>
+    <h2 style="font-size:20px;font-weight:700;margin-bottom:20px">Checkout</h2>
+    <div class="card-wrap" style="padding:20px;margin-bottom:16px">
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:14px">Delivery Details</h3>
       <div class="form-group"><label>Full Name *</label><input id="f-name" type="text"/></div>
       <div class="form-group"><label>Phone Number *</label><input id="f-phone" type="tel" placeholder="Numbers only"/></div>
       <div class="form-group"><label>Email Address *</label><input id="f-email" type="email" placeholder="example@gmail.com"/></div>
       <div class="form-group"><label>Delivery Address *</label><input id="f-address" type="text"/></div>
     </div>
-    <div class="card-wrap" style="padding:20px;margin-bottom:20px">
-      <h3 style="font-size:16px;font-weight:700;margin-bottom:14px">Order Summary</h3>
+    <div class="card-wrap" style="padding:18px;margin-bottom:16px">
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:12px">Order Summary</h3>
       <div id="checkout-items"></div>
-      <div style="border-top:1px solid #e2e8f0;padding-top:12px;margin-top:8px;display:flex;justify-content:space-between;font-weight:700;font-size:16px">
+      <div style="border-top:1px solid #e2e8f0;padding-top:10px;margin-top:8px;display:flex;justify-content:space-between;font-weight:700;font-size:16px">
         <span>Total</span><span style="color:#0ea5e9" id="checkout-total"></span>
       </div>
     </div>
@@ -218,11 +282,22 @@
 
 <div class="page" id="page-confirmation">
   <div class="confirm-container">
-    <div style="font-size:64px;margin-bottom:16px">🎉</div>
-    <h2 style="font-size:24px;font-weight:700;margin-bottom:8px">Order Placed!</h2>
-    <p style="color:#64748b;margin-bottom:24px" id="conf-msg"></p>
+    <div style="font-size:60px;margin-bottom:14px">🎉</div>
+    <h2 style="font-size:22px;font-weight:700;margin-bottom:8px">Order Placed!</h2>
+    <p style="color:#64748b;margin-bottom:20px" id="conf-msg"></p>
     <div class="confirm-card" id="conf-details"></div>
-    <button class="btn-dark" style="padding:12px 32px;border-radius:10px" onclick="goPage('home')">Continue Shopping</button>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="btn-dark" onclick="goPage('home')">Continue Shopping</button>
+      <button class="btn-dark" style="background:#6366f1" id="view-orders-btn" onclick="goPage('myorders')" style="display:none">View My Orders</button>
+    </div>
+  </div>
+</div>
+
+<!-- MY ORDERS PAGE -->
+<div class="page" id="page-myorders">
+  <div class="orders-container">
+    <h2 style="font-size:20px;font-weight:700;margin-bottom:20px">📦 My Orders</h2>
+    <div id="my-orders-list"><p style="color:#64748b">Loading...</p></div>
   </div>
 </div>
 
@@ -231,73 +306,65 @@
 <!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 
 <script>
-// EmailJS init
 emailjs.init("8A65B9t1eWUsgKExO");
 
-// Firebase init
 firebase.initializeApp({
-  apiKey: "AIzaSyCqHbfHBUNubIQjQxuhIrN021wF_ZyNHp4",
-  authDomain: "aaa-stores-f5a3a.firebaseapp.com",
-  projectId: "aaa-stores-f5a3a",
-  storageBucket: "aaa-stores-f5a3a.firebasestorage.app",
-  messagingSenderId: "231664650482",
-  appId: "1:231664650482:web:702e25ef9b411bcf40286b"
+  apiKey:"AIzaSyCqHbfHBUNubIQjQxuhIrN021wF_ZyNHp4",
+  authDomain:"aaa-stores-f5a3a.firebaseapp.com",
+  projectId:"aaa-stores-f5a3a",
+  storageBucket:"aaa-stores-f5a3a.firebasestorage.app",
+  messagingSenderId:"231664650482",
+  appId:"1:231664650482:web:702e25ef9b411bcf40286b"
 });
-const db = firebase.firestore();
+const db=firebase.firestore();
+const auth=firebase.auth();
 
 const CATS=[["Electronics","📱"],["Clothing","👗"],["Home & Kitchen","🏠"],["Sports","⚽"],["Books","📚"],["Beauty","💄"],["Toys","🧸"],["Food & Grocery","🥑"],["Tools","🔨"]];
+
 const DEFAULT_PRODUCTS=[
-  // Electronics (5)
   {id:1,name:"Wireless Bluetooth Headphones",price:4500,category:"Electronics",stock:50,image:"https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Premium sound quality with noise cancellation."},
   {id:2,name:"Smart Watch",price:12500,category:"Electronics",stock:30,image:"https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Fitness tracking, heart rate monitor, notifications."},
   {id:3,name:"Laptop Stand",price:3100,category:"Electronics",stock:65,image:"https://images.pexels.com/photos/4526414/pexels-photo-4526414.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Adjustable aluminum stand, ergonomic design."},
   {id:4,name:"USB-C Hub 7-in-1",price:5800,category:"Electronics",stock:40,image:"https://images.pexels.com/photos/4158/apple-iphone-smartphone-desk.jpg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"7 ports including HDMI, USB 3.0, SD card reader."},
   {id:5,name:"Portable Power Bank 20000mAh",price:3900,category:"Electronics",stock:55,image:"https://images.pexels.com/photos/4526407/pexels-photo-4526407.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Fast charging, dual USB ports, LED indicator."},
-  // Clothing (5)
   {id:6,name:"Men's Cotton T-Shirt",price:850,category:"Clothing",stock:200,image:"https://images.pexels.com/photos/428338/pexels-photo-428338.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Comfortable everyday wear, available in multiple colors."},
   {id:7,name:"Women's Denim Jeans",price:3200,category:"Clothing",stock:150,image:"https://images.pexels.com/photos/1082529/pexels-photo-1082529.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Slim fit, stretch denim fabric, comfortable all day."},
   {id:8,name:"Kids School Backpack",price:1900,category:"Clothing",stock:110,image:"https://images.pexels.com/photos/1374913/pexels-photo-1374913.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Waterproof, multiple compartments, ergonomic straps."},
   {id:9,name:"Men's Formal Shirt",price:2200,category:"Clothing",stock:120,image:"https://images.pexels.com/photos/297933/pexels-photo-297933.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"100% cotton, slim fit, ideal for office wear."},
   {id:10,name:"Women's Casual Dress",price:2800,category:"Clothing",stock:90,image:"https://images.pexels.com/photos/291759/pexels-photo-291759.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Lightweight fabric, floral print, perfect for summer."},
-  // Home & Kitchen (5)
   {id:11,name:"Non-stick Frying Pan",price:2200,category:"Home & Kitchen",stock:75,image:"https://images.pexels.com/photos/2284166/pexels-photo-2284166.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Durable non-stick coating, easy to clean, induction safe."},
   {id:12,name:"Electric Kettle 1.8L",price:3800,category:"Home & Kitchen",stock:55,image:"https://images.pexels.com/photos/5946623/pexels-photo-5946623.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Fast boiling, auto shut-off, 360° swivel base."},
   {id:13,name:"Ceramic Dinner Set 12pc",price:5500,category:"Home & Kitchen",stock:40,image:"https://images.pexels.com/photos/1395967/pexels-photo-1395967.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"12 piece ceramic dinner set, microwave and dishwasher safe."},
   {id:14,name:"Stainless Steel Water Bottle",price:1200,category:"Home & Kitchen",stock:180,image:"https://images.pexels.com/photos/1000084/pexels-photo-1000084.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"1L double wall insulated, keeps cold 24hrs, hot 12hrs."},
   {id:15,name:"Blender 600W",price:6500,category:"Home & Kitchen",stock:35,image:"https://images.pexels.com/photos/3737586/pexels-photo-3737586.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"600W powerful motor, 6 stainless steel blades, 1.5L jar."},
-  // Sports (5)
   {id:16,name:"Yoga Mat",price:1800,category:"Sports",stock:120,image:"https://images.pexels.com/photos/4056535/pexels-photo-4056535.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Anti-slip surface, 6mm thick, includes carry strap."},
   {id:17,name:"Dumbbell Set 20kg",price:8500,category:"Sports",stock:25,image:"https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Adjustable rubber coated weights, chrome handle."},
   {id:18,name:"Sports Running Shoes",price:7200,category:"Sports",stock:60,image:"https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Lightweight breathable mesh, cushioned sole, unisex."},
   {id:19,name:"Resistance Bands Set",price:1500,category:"Sports",stock:100,image:"https://images.pexels.com/photos/4162449/pexels-photo-4162449.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"5 resistance levels, latex free, includes carry bag."},
   {id:20,name:"Skipping Rope",price:650,category:"Sports",stock:200,image:"https://images.pexels.com/photos/3764011/pexels-photo-3764011.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Adjustable length, foam handles, ball bearing joints."},
-  // Books (5)
   {id:21,name:"Python Programming Book",price:1200,category:"Books",stock:60,image:"https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Learn Python from scratch, beginner friendly with exercises."},
   {id:22,name:"Business English Book",price:900,category:"Books",stock:70,image:"https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Improve professional communication and business writing."},
   {id:23,name:"Self Development Book",price:750,category:"Books",stock:85,image:"https://images.pexels.com/photos/256431/pexels-photo-256431.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Transform your mindset and achieve your goals."},
   {id:24,name:"Cooking Recipe Book",price:1100,category:"Books",stock:50,image:"https://images.pexels.com/photos/1130372/pexels-photo-1130372.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"500+ easy recipes with step-by-step instructions."},
   {id:25,name:"Children's Story Book Set",price:1800,category:"Books",stock:65,image:"https://images.pexels.com/photos/1741230/pexels-photo-1741230.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Set of 10 colorful story books for ages 3-8."},
-  // Beauty (5)
   {id:26,name:"Face Moisturizer SPF 30",price:950,category:"Beauty",stock:90,image:"https://images.pexels.com/photos/3321416/pexels-photo-3321416.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Daily moisturizer with SPF 30 sun protection, all skin types."},
   {id:27,name:"Shampoo 400ml",price:480,category:"Beauty",stock:250,image:"https://images.pexels.com/photos/3737586/pexels-photo-3737586.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Sulfate-free formula, strengthens hair, for all hair types."},
   {id:28,name:"Perfume 50ml",price:2800,category:"Beauty",stock:60,image:"https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Long lasting fragrance, fresh floral scent, imported."},
   {id:29,name:"Makeup Brush Set 12pc",price:1650,category:"Beauty",stock:75,image:"https://images.pexels.com/photos/2639947/pexels-photo-2639947.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"12 professional brushes with synthetic bristles and case."},
   {id:30,name:"Lip Balm Set 6pc",price:550,category:"Beauty",stock:300,image:"https://images.pexels.com/photos/3373745/pexels-photo-3373745.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"6 flavored lip balms with SPF 15, moisturizing formula."},
-  // Toys (5)
   {id:31,name:"LEGO Classic Set",price:3500,category:"Toys",stock:40,image:"https://images.pexels.com/photos/1148998/pexels-photo-1148998.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Creative building set for ages 4+, 500 pieces."},
   {id:32,name:"Remote Control Car",price:2900,category:"Toys",stock:45,image:"https://images.pexels.com/photos/1637859/pexels-photo-1637859.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"High speed 4WD RC car, rechargeable battery, 30m range."},
   {id:33,name:"Stuffed Teddy Bear",price:1200,category:"Toys",stock:80,image:"https://images.pexels.com/photos/3662667/pexels-photo-3662667.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Soft plush teddy bear 30cm, safe for all ages, washable."},
   {id:34,name:"Board Game Family Pack",price:2200,category:"Toys",stock:35,image:"https://images.pexels.com/photos/1329645/pexels-photo-1329645.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Classic board game for 2-6 players, fun for all ages."},
   {id:35,name:"Kids Drawing Set",price:850,category:"Toys",stock:120,image:"https://images.pexels.com/photos/1148998/pexels-photo-1148998.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"48 piece art set with crayons, markers, colored pencils."},
-  // Food & Grocery (5)
   {id:36,name:"Basmati Rice 5kg",price:1650,category:"Food & Grocery",stock:300,image:"https://images.pexels.com/photos/4110251/pexels-photo-4110251.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Premium long-grain basmati rice, aromatic and fluffy."},
   {id:37,name:"Green Tea 100 bags",price:750,category:"Food & Grocery",stock:400,image:"https://images.pexels.com/photos/1638280/pexels-photo-1638280.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Pure Ceylon green tea, rich in antioxidants."},
   {id:38,name:"Organic Honey 500g",price:1850,category:"Food & Grocery",stock:150,image:"https://images.pexels.com/photos/302163/pexels-photo-302163.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"100% pure organic honey, no additives or preservatives."},
   {id:39,name:"Mixed Nuts 500g",price:2200,category:"Food & Grocery",stock:120,image:"https://images.pexels.com/photos/1295572/pexels-photo-1295572.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Premium mix of cashews, almonds, walnuts and pistachios."},
   {id:40,name:"Extra Virgin Olive Oil 500ml",price:1600,category:"Food & Grocery",stock:180,image:"https://images.pexels.com/photos/33783/olive-oil-salad-dressing-cooking-olive.jpg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Cold pressed, 100% pure extra virgin olive oil."},
-  // Tools (5)
   {id:41,name:"Screwdriver Set 12pc",price:2800,category:"Tools",stock:85,image:"https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"12pc complete set with magnetic tips, ergonomic handles."},
   {id:42,name:"Cordless Drill",price:9800,category:"Tools",stock:20,image:"https://images.pexels.com/photos/1249611/pexels-photo-1249611.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"18V lithium battery, variable speed, includes 15 bits."},
   {id:43,name:"Measuring Tape 5m",price:450,category:"Tools",stock:200,image:"https://images.pexels.com/photos/175039/pexels-photo-175039.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"Heavy duty steel tape, auto-lock, belt clip included."},
@@ -305,22 +372,69 @@ const DEFAULT_PRODUCTS=[
   {id:45,name:"Tool Box Set 40pc",price:4500,category:"Tools",stock:30,image:"https://images.pexels.com/photos/1249611/pexels-photo-1249611.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop",desc:"40 piece home tool kit in carry case, all essentials included."}
 ];
 
-let products=[], cart=[], selProd=null, detQty=1;
+let products=[],cart=[],selProd=null,detQty=1,currentUser=null;
 const fmt=p=>"Rs. "+p.toLocaleString();
 const notif=msg=>{const el=document.getElementById('notif');el.textContent="✓ "+msg;el.style.display="block";setTimeout(()=>el.style.display="none",3000);};
+const statusColors={Pending:['#fef3c7','#92400e'],Processing:['#dbeafe','#1e40af'],Delivered:['#d1fae5','#065f46'],Cancelled:['#fee2e2','#991b1b']};
 
+// AUTH STATE
+auth.onAuthStateChanged(function(user){
+  currentUser=user;
+  if(user){
+    document.getElementById('user-btn').textContent='👤 '+user.displayName||user.email.split('@')[0];
+    document.getElementById('user-btn').onclick=doLogout;
+    document.getElementById('nb-myorders').style.display='flex';
+    document.getElementById('view-orders-btn').style.display='inline-block';
+    // Auto-fill checkout
+    document.getElementById('f-email').value=user.email||'';
+    if(user.displayName) document.getElementById('f-name').value=user.displayName;
+  } else {
+    document.getElementById('user-btn').textContent='Login';
+    document.getElementById('user-btn').onclick=openAuth;
+    document.getElementById('nb-myorders').style.display='none';
+  }
+});
+
+// AUTH FUNCTIONS
+function openAuth(){document.getElementById('auth-modal').classList.add('active');showLogin();}
+function closeAuth(){document.getElementById('auth-modal').classList.remove('active');}
+function showLogin(){document.getElementById('login-form').style.display='block';document.getElementById('register-form').style.display='none';}
+function showRegister(){document.getElementById('login-form').style.display='none';document.getElementById('register-form').style.display='block';}
+
+function doLogin(){
+  const email=document.getElementById('auth-email').value.trim();
+  const pass=document.getElementById('auth-pass').value;
+  const errEl=document.getElementById('auth-error');
+  auth.signInWithEmailAndPassword(email,pass)
+    .then(()=>{closeAuth();notif('Welcome back!');})
+    .catch(e=>{errEl.textContent=e.message;errEl.style.display='block';});
+}
+
+function doRegister(){
+  const name=document.getElementById('reg-name').value.trim();
+  const email=document.getElementById('reg-email').value.trim();
+  const pass=document.getElementById('reg-pass').value;
+  const errEl=document.getElementById('reg-error');
+  if(!name){errEl.textContent='Please enter your name.';errEl.style.display='block';return;}
+  auth.createUserWithEmailAndPassword(email,pass)
+    .then(cred=>cred.user.updateProfile({displayName:name}))
+    .then(()=>{closeAuth();notif('Account created! Welcome '+name+'!');})
+    .catch(e=>{errEl.textContent=e.message;errEl.style.display='block';});
+}
+
+function doLogout(){
+  auth.signOut().then(()=>{notif('Logged out.');});
+}
+
+// PRODUCTS
 async function initProducts(){
   try{
     const snap=await db.collection("products").get();
     if(!snap.empty){
       products=snap.docs.map(d=>({firestoreId:d.id,...d.data()}));
     } else {
-      // Seed all default products
       const batch=db.batch();
-      DEFAULT_PRODUCTS.forEach(p=>{
-        const ref=db.collection("products").doc();
-        batch.set(ref,p);
-      });
+      DEFAULT_PRODUCTS.forEach(p=>{const ref=db.collection("products").doc();batch.set(ref,p);});
       await batch.commit();
       const snap2=await db.collection("products").get();
       products=snap2.docs.map(d=>({firestoreId:d.id,...d.data()}));
@@ -339,6 +453,7 @@ function goPage(p){
   if(p==='cart') renderCart();
   if(p==='checkout') renderCheckout();
   if(p==='home') renderHome();
+  if(p==='myorders') renderMyOrders();
   window.scrollTo(0,0);
 }
 
@@ -353,13 +468,11 @@ function buildCatGrid(){
       <div class="popup-item-info"><div class="popup-item-name">${p.name}</div><div class="popup-item-price">${fmt(p.price)}</div></div>
     </div>`).join('');
     return `<div class="cat-wrap">
-      <div class="cat-card" onclick="filterCat('${cat}')">
-        <span class="cat-icon">${icon}</span><div class="cat-label">${cat}</div>
-      </div>
+      <div class="cat-card" onclick="filterCat('${cat}')"><span class="cat-icon">${icon}</span><div class="cat-label">${cat}</div></div>
       <div class="cat-popup">
         <div class="cat-popup-header"><h4>${icon} ${cat} (${items.length})</h4></div>
         <div class="cat-popup-body">${popupItems}</div>
-        <div class="popup-more" onclick="filterCat('${cat}')">View all ${items.length} items →</div>
+        <div class="popup-more" onclick="filterCat('${cat}')">View all ${items.length} →</div>
       </div>
     </div>`;
   }).join('');
@@ -392,8 +505,7 @@ function renderShop(){
 }
 
 function openProduct(id){
-  selProd=products.find(p=>p.id===id);
-  if(!selProd) return;
+  selProd=products.find(p=>p.id===id);if(!selProd) return;
   detQty=1;
   document.getElementById('d-img').innerHTML=`<img src="${selProd.image}" alt="${selProd.name}"/>`;
   document.getElementById('d-cat').textContent=selProd.category;
@@ -401,13 +513,12 @@ function openProduct(id){
   document.getElementById('d-desc').textContent=selProd.desc;
   document.getElementById('d-stock').textContent=selProd.stock+' in stock';
   document.getElementById('d-qty').textContent=1;
-  updateDetailBtn();
-  goPage('product');
+  updateDetailBtn();goPage('product');
 }
 
 function updateDetailBtn(){
   document.getElementById('d-price').textContent=fmt(selProd.price);
-  document.getElementById('d-add-btn').textContent=`Add ${detQty} to Cart — ${fmt(selProd.price*detQty)}`;
+  document.getElementById('d-add-btn').textContent='Add '+detQty+' to Cart — '+fmt(selProd.price*detQty);
 }
 
 function changeDetailQty(d){detQty=Math.max(1,Math.min(selProd.stock,detQty+d));document.getElementById('d-qty').textContent=detQty;updateDetailBtn();}
@@ -421,25 +532,25 @@ function addToCart(id,qty){
   const curQty=ex?ex.qty:0;
   if(curQty+qty>p.stock){notif('Only '+p.stock+' available.');return;}
   if(ex) ex.qty+=qty; else cart.push(Object.assign({},p,{qty:qty}));
-  updateCartCount();
-  notif(p.name+' added to cart!');
+  updateCartCount();notif(p.name+' added to cart!');
 }
 
 function updateCartCount(){
   const total=cart.reduce(function(s,i){return s+i.qty;},0);
   const el=document.getElementById('cart-count');
-  el.textContent=total;
-  el.style.display=total>0?'flex':'none';
+  el.textContent=total;el.style.display=total>0?'flex':'none';
 }
 
 function renderCart(){
   const total=cart.reduce(function(s,i){return s+i.price*i.qty;},0);
   document.getElementById('cart-title').textContent='Your Cart ('+cart.reduce(function(s,i){return s+i.qty;},0)+' items)';
   if(cart.length===0){
-    document.getElementById('cart-body').innerHTML='<div class="empty"><div>🛒</div><p>Your cart is empty.</p><button class="btn-dark" style="margin-top:12px;padding:10px 24px;border-radius:8px" onclick="goPage(\'shop\')">Start Shopping</button></div>';
+    document.getElementById('cart-body').innerHTML='<div class="empty"><div>🛒</div><p>Your cart is empty.</p><button class="btn-dark" onclick="goPage(\'shop\')">Start Shopping</button></div>';
     return;
   }
-  var items=cart.map(function(item){return '<div class="cart-item"><div style="width:48px;height:48px;border-radius:8px;overflow:hidden;flex-shrink:0"><img src="'+item.image+'" alt="" style="width:100%;height:100%;object-fit:cover"/></div><div style="flex:1"><div style="font-size:14px;font-weight:600">'+item.name+'</div><div style="font-size:13px;color:#64748b">'+fmt(item.price)+' each</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="updateQty('+item.id+',-1)">−</button><span style="font-size:15px;font-weight:600;min-width:20px;text-align:center">'+item.qty+'</span><button class="qty-btn" onclick="updateQty('+item.id+',1)">+</button></div><div style="min-width:80px;text-align:right;font-weight:600;color:#0ea5e9;font-size:14px">'+fmt(item.price*item.qty)+'</div><button onclick="removeFromCart('+item.id+')" style="background:none;border:none;color:#ef4444;font-size:16px;cursor:pointer">✕</button></div>';}).join('');
+  var items=cart.map(function(item){
+    return '<div class="cart-item"><div style="width:44px;height:44px;border-radius:8px;overflow:hidden;flex-shrink:0"><img src="'+item.image+'" alt="" style="width:100%;height:100%;object-fit:cover"/></div><div style="flex:1"><div style="font-size:14px;font-weight:600">'+item.name+'</div><div style="font-size:12px;color:#64748b">'+fmt(item.price)+' each</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="updateQty('+item.id+',-1)">−</button><span style="font-size:14px;font-weight:600;min-width:18px;text-align:center">'+item.qty+'</span><button class="qty-btn" onclick="updateQty('+item.id+',1)">+</button></div><div style="min-width:75px;text-align:right;font-weight:600;color:#0ea5e9;font-size:13px">'+fmt(item.price*item.qty)+'</div><button onclick="removeFromCart('+item.id+')" style="background:none;border:none;color:#ef4444;font-size:16px;cursor:pointer">✕</button></div>';
+  }).join('');
   document.getElementById('cart-body').innerHTML='<div class="card-wrap">'+items+'</div><div class="cart-summary"><div class="summary-row"><span>Subtotal</span><span>'+fmt(total)+'</span></div><div class="summary-row"><span>Delivery</span><span style="color:#059669">Free</span></div><div class="summary-total"><span>Total</span><span style="color:#0ea5e9">'+fmt(total)+'</span></div><button class="btn-checkout" onclick="goPage(\'checkout\')">Proceed to Checkout →</button></div>';
 }
 
@@ -459,6 +570,11 @@ function renderCheckout(){
   var total=cart.reduce(function(s,i){return s+i.price*i.qty;},0);
   document.getElementById('checkout-total').textContent=fmt(total);
   document.getElementById('checkout-items').innerHTML=cart.map(function(i){return '<div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px"><span>'+i.name+' × '+i.qty+'</span><span>'+fmt(i.price*i.qty)+'</span></div>';}).join('');
+  // Auto-fill if logged in
+  if(currentUser){
+    document.getElementById('f-email').value=currentUser.email||'';
+    if(currentUser.displayName) document.getElementById('f-name').value=currentUser.displayName;
+  }
 }
 
 async function placeOrder(){
@@ -466,7 +582,6 @@ async function placeOrder(){
   var phone=document.getElementById('f-phone').value.trim();
   var address=document.getElementById('f-address').value.trim();
   var email=document.getElementById('f-email').value.trim();
-
   if(!name||!phone||!address||!email){notif('Please fill all required fields.');return;}
   if(!/^\d+$/.test(phone)){notif('Phone number must contain numbers only!');return;}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){notif('Please enter a valid email address!');return;}
@@ -482,24 +597,26 @@ async function placeOrder(){
       else prodRefs.push(null);
     }
 
+    var cartSnapshot=cart.slice();
     await db.runTransaction(async function(tx){
-      var snaps=await Promise.all(prodRefs.map(function(ref){return ref?tx.get(ref):null;}));
-      for(var i=0;i<cart.length;i++){
+      var snaps=await Promise.all(prodRefs.map(function(ref){return ref?tx.get(ref):Promise.resolve(null);}));
+      for(var i=0;i<cartSnapshot.length;i++){
         if(!snaps[i]) continue;
         var curStock=snaps[i].data().stock;
-        if(curStock<cart[i].qty) throw new Error('Only '+curStock+' left for "'+cart[i].name+'"');
+        if(curStock<cartSnapshot[i].qty) throw new Error('Only '+curStock+' left for "'+cartSnapshot[i].name+'"');
       }
-      for(var j=0;j<cart.length;j++){
+      for(var j=0;j<cartSnapshot.length;j++){
         if(!snaps[j]||!prodRefs[j]) continue;
-        var st=snaps[j].data().stock;
-        tx.update(prodRefs[j],{stock:st-cart[j].qty});
+        tx.update(prodRefs[j],{stock:snaps[j].data().stock-cartSnapshot[j].qty});
       }
       var orderRef=db.collection("orders").doc();
-      var cartTotal=cart.reduce(function(s,i){return s+i.price*i.qty;},0);
+      var cartTotal=cartSnapshot.reduce(function(s,i){return s+i.price*i.qty;},0);
       tx.set(orderRef,{
         orderId:'ORD'+Date.now(),
+        userId:currentUser?currentUser.uid:null,
+        userEmail:email,
         customer:{name:name,phone:phone,address:address,email:email},
-        items:cart.map(function(i){return {id:i.id,name:i.name,price:i.price,qty:i.qty,image:i.image};}),
+        items:cartSnapshot.map(function(i){return {id:i.id,name:i.name,price:i.price,qty:i.qty,image:i.image};}),
         total:cartTotal,
         status:'Pending',
         date:new Date().toLocaleDateString(),
@@ -508,15 +625,11 @@ async function placeOrder(){
     });
 
     var finalTotal=cart.reduce(function(s,i){return s+i.price*i.qty;},0);
-    var itemsList=cart.map(function(i){return i.name+' x'+i.qty+' - Rs. '+( i.price*i.qty).toLocaleString();}).join('\n');
+    var itemsList=cart.map(function(i){return i.name+' x'+i.qty+' - Rs. '+(i.price*i.qty).toLocaleString();}).join('\n');
 
-    // Send email
     emailjs.send("service_jvfi5di","template_2kyy8ga",{
-      customer_name:name,
-      customer_email:email,
-      order_items:itemsList,
-      total:finalTotal.toLocaleString(),
-      address:address
+      customer_name:name,customer_email:email,
+      order_items:itemsList,total:finalTotal.toLocaleString(),address:address
     }).catch(function(e){console.log('Email error:',e);});
 
     cart.forEach(function(ci){var p=products.find(function(x){return x.id===ci.id;});if(p) p.stock=Math.max(0,p.stock-ci.qty);});
@@ -526,11 +639,66 @@ async function placeOrder(){
       '<div class="confirm-row"><span style="color:#64748b">Name</span><span style="font-weight:700">'+name+'</span></div>'+
       '<div class="confirm-row"><span style="color:#64748b">Total</span><span style="font-weight:700;color:#0ea5e9">'+fmt(finalTotal)+'</span></div>'+
       '<div class="confirm-row"><span style="color:#64748b">Address</span><span>'+address+'</span></div>'+
-      '<div class="confirm-row"><span style="color:#64748b">Email</span><span>'+email+'</span></div>'+
       '<div class="confirm-row"><span style="color:#64748b">Status</span><span class="badge" style="background:#d1fae5;color:#065f46">Pending</span></div>';
+
+    if(currentUser){
+      document.getElementById('view-orders-btn').style.display='inline-block';
+    }
     cart=[];updateCartCount();goPage('confirmation');
   }catch(e){notif('Error: '+e.message);}
   finally{btn.textContent='Place Order ✓';btn.disabled=false;}
+}
+
+// MY ORDERS with real-time listener
+var myOrdersUnsubscribe=null;
+function renderMyOrders(){
+  if(!currentUser){
+    document.getElementById('my-orders-list').innerHTML='<div class="empty"><div>🔐</div><p>Please login to view your orders.</p><button class="btn-dark" onclick="openAuth()">Login</button></div>';
+    return;
+  }
+  document.getElementById('my-orders-list').innerHTML='<p style="color:#64748b">Loading your orders...</p>';
+  if(myOrdersUnsubscribe) myOrdersUnsubscribe();
+  myOrdersUnsubscribe=db.collection("orders")
+    .where("userId","==",currentUser.uid)
+    .orderBy("createdAt","desc")
+    .onSnapshot(function(snap){
+      if(snap.empty){
+        document.getElementById('my-orders-list').innerHTML='<div class="empty"><div>📦</div><p>No orders yet.</p><button class="btn-dark" onclick="goPage(\'shop\')">Start Shopping</button></div>';
+        return;
+      }
+      var orders=snap.docs.map(function(d){return d.data();});
+      document.getElementById('my-orders-list').innerHTML=orders.map(function(o){
+        return myOrderCard(o);
+      }).join('');
+    });
+}
+
+function myOrderCard(o){
+  var statuses=['Pending','Processing','Delivered'];
+  var isCancelled=o.status==='Cancelled';
+  var currentIdx=statuses.indexOf(o.status);
+  var [bg,tc]=statusColors[o.status]||['#f3f4f6','#374151'];
+
+  var tracker=isCancelled
+    ?'<div style="background:#fee2e2;color:#991b1b;padding:8px 14px;border-radius:8px;font-size:13px;font-weight:600;text-align:center;margin:10px 0">❌ Order Cancelled</div>'
+    :`<div class="status-tracker">
+      ${statuses.map(function(s,i){
+        var cls=i<currentIdx?'done':i===currentIdx?'active':'';
+        var icons=['🕐','📦','✅'];
+        return '<div class="status-step"><div class="status-dot '+cls+'">'+(cls==='done'?'✓':icons[i])+'</div><div class="status-label '+cls+'">'+s+'</div></div>';
+      }).join('')}
+    </div>`;
+
+  return '<div class="my-order-card">'+
+    '<div class="my-order-header">'+
+      '<div><div style="font-weight:700;font-size:14px">'+o.orderId+'</div><div style="font-size:12px;color:#64748b">📅 '+o.date+'</div></div>'+
+      '<span class="status-pill" style="background:'+bg+';color:'+tc+'">'+o.status+'</span>'+
+    '</div>'+
+    tracker+
+    '<div class="my-order-items">'+(o.items||[]).map(function(i){return '<div class="my-order-item-row"><img src="'+i.image+'" alt=""/> '+i.name+' × '+i.qty+' ('+fmt(i.price*i.qty)+')</div>';}).join('')+'</div>'+
+    '<div class="my-order-total">Total: '+fmt(o.total)+'</div>'+
+    '<div style="font-size:12px;color:#64748b;margin-top:6px">📍 '+o.customer.address+'</div>'+
+  '</div>';
 }
 
 initProducts();
