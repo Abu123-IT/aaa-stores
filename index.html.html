@@ -380,18 +380,20 @@ const statusColors={Pending:['#fef3c7','#92400e'],Processing:['#dbeafe','#1e40af
 // AUTH STATE
 auth.onAuthStateChanged(function(user){
   currentUser=user;
+  const btn=document.getElementById('user-btn');
+  const myOrdersNav=document.getElementById('nb-myorders');
   if(user){
-    document.getElementById('user-btn').textContent='👤 '+user.displayName||user.email.split('@')[0];
-    document.getElementById('user-btn').onclick=doLogout;
-    document.getElementById('nb-myorders').style.display='flex';
+    const displayName=user.displayName||user.email.split('@')[0];
+    btn.textContent='👤 '+displayName;
+    btn.onclick=doLogout;
+    myOrdersNav.style.display='flex';
     document.getElementById('view-orders-btn').style.display='inline-block';
-    // Auto-fill checkout
     document.getElementById('f-email').value=user.email||'';
     if(user.displayName) document.getElementById('f-name').value=user.displayName;
   } else {
-    document.getElementById('user-btn').textContent='Login';
-    document.getElementById('user-btn').onclick=openAuth;
-    document.getElementById('nb-myorders').style.display='none';
+    btn.textContent='Login';
+    btn.onclick=openAuth;
+    myOrdersNav.style.display='none';
   }
 });
 
@@ -660,16 +662,16 @@ function renderMyOrders(){
   if(myOrdersUnsubscribe) myOrdersUnsubscribe();
   myOrdersUnsubscribe=db.collection("orders")
     .where("userId","==",currentUser.uid)
-    .orderBy("createdAt","desc")
     .onSnapshot(function(snap){
       if(snap.empty){
         document.getElementById('my-orders-list').innerHTML='<div class="empty"><div>📦</div><p>No orders yet.</p><button class="btn-dark" onclick="goPage(\'shop\')">Start Shopping</button></div>';
         return;
       }
       var orders=snap.docs.map(function(d){return d.data();});
-      document.getElementById('my-orders-list').innerHTML=orders.map(function(o){
-        return myOrderCard(o);
-      }).join('');
+      orders.sort(function(a,b){return new Date(b.createdAt||0)-new Date(a.createdAt||0);});
+      document.getElementById('my-orders-list').innerHTML=orders.map(function(o){return myOrderCard(o);}).join('');
+    },function(err){
+      document.getElementById('my-orders-list').innerHTML='<div class="empty"><div>⚠️</div><p>Error loading orders: '+err.message+'</p></div>';
     });
 }
 
