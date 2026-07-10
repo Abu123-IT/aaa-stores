@@ -31,6 +31,10 @@ nav{background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1p
 /* PAGES */
 .page{display:none}.page.active{display:block}
 
+/* SCROLL ANIMATIONS */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
 /* SALE BANNER */
 .sale-banner{background:linear-gradient(135deg,#7c3aed,#6366f1,#3b82f6);color:#fff;text-align:center;padding:10px 24px;position:relative;overflow:hidden}
 .sale-banner::before{content:'🎉 ';font-size:16px}
@@ -39,25 +43,26 @@ nav{background:rgba(255,255,255,.95);backdrop-filter:blur(12px);border-bottom:1p
 .sale-close{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer;line-height:1}
 
 /* HERO */
-.hero{position:relative;min-height:520px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hero{position:relative;min-height:380px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
 .hero-bg{position:absolute;inset:0;background-image:url('https://images.pexels.com/photos/3962285/pexels-photo-3962285.jpeg?auto=compress&cs=tinysrgb&w=1600');background-size:cover;background-position:center;animation:zoomBg 20s ease-in-out infinite alternate}
 @keyframes zoomBg{from{transform:scale(1)}to{transform:scale(1.08)}}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(15,23,42,.85) 0%,rgba(99,102,241,.4) 50%,rgba(15,23,42,.8) 100%)}
-.hero-content{position:relative;z-index:1;padding:60px 32px;max-width:800px}
-.hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,.3);border:1px solid rgba(99,102,241,.5);color:#a5b4fc;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600;letter-spacing:.5px;margin-bottom:20px;backdrop-filter:blur(8px)}
-.hero-content h1{font-size:52px;font-weight:900;color:#fff;margin-bottom:16px;letter-spacing:-2px;line-height:1.1;text-shadow:0 4px 24px rgba(0,0,0,.3)}
+.hero-content{position:relative;z-index:1;padding:36px 32px;max-width:800px;animation:fadeUp .8s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,.3);border:1px solid rgba(99,102,241,.5);color:#a5b4fc;padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600;letter-spacing:.5px;margin-bottom:14px;backdrop-filter:blur(8px);animation:fadeUp .6s ease .1s both}
+.hero-content h1{font-size:42px;font-weight:900;color:#fff;margin-bottom:10px;letter-spacing:-1.5px;line-height:1.1;text-shadow:0 4px 24px rgba(0,0,0,.3);animation:fadeUp .6s ease .2s both}
 .hero-content h1 span{background:linear-gradient(135deg,#f59e0b,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero-content p{font-size:18px;color:#cbd5e1;margin-bottom:36px;line-height:1.6;max-width:500px;margin-left:auto;margin-right:auto}
-.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+.hero-content p{font-size:15px;color:#cbd5e1;margin-bottom:24px;line-height:1.6;max-width:480px;margin-left:auto;margin-right:auto;animation:fadeUp .6s ease .3s both}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;animation:fadeUp .6s ease .4s both}
 .btn-primary{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border:none;padding:15px 36px;border-radius:50px;font-size:15px;font-weight:700;box-shadow:0 6px 24px rgba(245,158,11,.5);transition:all .25s;cursor:pointer}
 .btn-primary:hover{transform:translateY(-3px);box-shadow:0 10px 32px rgba(245,158,11,.6)}
 .btn-outline{background:rgba(255,255,255,.08);color:#fff;border:2px solid rgba(255,255,255,.4);padding:13px 30px;border-radius:50px;font-size:15px;font-weight:600;cursor:pointer;transition:all .25s;backdrop-filter:blur(8px)}
 .btn-outline:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.7);transform:translateY(-2px)}
-.hero-stats{display:flex;gap:0;justify-content:center}
-.hero-stat{padding:20px 32px;border-right:1px solid rgba(255,255,255,.12);text-align:center}
+.hero-stats{display:flex;gap:0;justify-content:center;animation:fadeUp .6s ease .5s both}
+.hero-stat{padding:14px 24px;border-right:1px solid rgba(255,255,255,.12);text-align:center}
 .hero-stat:last-child{border-right:none}
-.hero-stat-num{font-size:28px;font-weight:900;color:#f59e0b;line-height:1}
-.hero-stat-label{font-size:12px;color:#94a3b8;margin-top:4px;font-weight:500}
+.hero-stat-num{font-size:22px;font-weight:900;color:#f59e0b;line-height:1}
+.hero-stat-label{font-size:11px;color:#94a3b8;margin-top:3px;font-weight:500}
 
 /* FEATURES BAR */
 .features-bar{background:#fff;border-bottom:1px solid #e2e8f0;padding:16px 32px}
@@ -721,7 +726,7 @@ function prodCard(p,idx){
   </div>`;
 }
 
-function renderHome(){buildCatGrid();document.getElementById('featured-grid').innerHTML=products.slice(0,5).map((p,i)=>prodCard(p,i)).join('');}
+function renderHome(){buildCatGrid();document.getElementById('featured-grid').innerHTML=products.slice(0,5).map((p,i)=>prodCard(p,i)).join('');setTimeout(initReveal,100);}
 
 function renderShop(){
   const s=document.getElementById('shop-search').value.toLowerCase();
@@ -855,6 +860,18 @@ function myOrderCard(o){
     ?'<div style="background:#fee2e2;color:#991b1b;padding:10px 16px;border-radius:10px;font-size:13px;font-weight:700;text-align:center;margin:12px 0">❌ Order Cancelled</div>'
     :'<div class="status-tracker"><div class="status-track-line"></div><div class="status-track-fill" style="width:'+fillPct+'%"></div>'+statuses.map((s,i)=>{const cls=i<idx?'done':i===idx?'active':'';const icons=['🕐','📦','✅'];return '<div class="status-step"><div class="status-dot '+cls+'">'+(cls==='done'?'✓':icons[i])+'</div><div class="status-label '+cls+'">'+s+'</div></div>';}).join('')+'</div>';
   return '<div class="my-order-card"><div class="my-order-header"><div><div style="font-weight:800;font-size:15px">'+o.orderId+'</div><div style="font-size:12px;color:#94a3b8;margin-top:2px">📅 '+o.date+'</div></div><span class="status-pill" style="background:'+bg+';color:'+tc+'">'+o.status+'</span></div>'+tracker+'<div class="my-order-items">'+(o.items||[]).map(i=>'<div class="my-order-item-row"><img src="'+i.image+'" alt=""/> <span>'+i.name+' × '+i.qty+'</span><span style="margin-left:auto;font-weight:600;color:#6366f1">'+fmt(i.price*i.qty)+'</span></div>').join('')+'</div><div style="border-top:1px solid #f1f5f9;padding-top:10px;margin-top:8px;display:flex;justify-content:space-between;align-items:center"><div class="my-order-total">Total: '+fmt(o.total)+'</div><div style="font-size:12px;color:#94a3b8">📍 '+o.customer.address+'</div></div></div>';
+}
+
+// SCROLL REVEAL
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+},{threshold:0.1});
+function initReveal(){
+  document.querySelectorAll('.cat-card,.prod-card,.review-card,.feature-item,.footer-col,.footer-brand').forEach((el,i)=>{
+    el.classList.add('reveal');
+    el.style.transitionDelay=(i%4)*0.08+'s';
+    observer.observe(el);
+  });
 }
 
 initProducts();
