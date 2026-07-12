@@ -155,6 +155,38 @@ td{padding:11px 14px;border-top:1px solid #f1f5f9;color:#1e293b;vertical-align:m
   </div>
 </div>
 
+<!-- EDIT PROMO MODAL -->
+<div class="edit-modal-overlay" id="edit-promo-modal">
+  <div class="edit-modal">
+    <button class="modal-close-btn" onclick="closeEditPromoModal()">✕</button>
+    <h3>✏️ Edit Promo Code</h3>
+    <input type="hidden" id="edit-promo-fid"/>
+    <div class="form-group"><label>Promo Code *</label><input id="edit-promo-code" type="text" oninput="this.value=this.value.toUpperCase()"/></div>
+    <div class="form-row">
+      <div class="form-group"><label>Discount Type</label>
+        <select id="edit-promo-type">
+          <option value="percent">Percentage (%)</option>
+          <option value="fixed">Fixed Amount (Rs.)</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Discount Value *</label><input id="edit-promo-value" type="number"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Min Order Amount (Rs.)</label><input id="edit-promo-min" type="number" placeholder="optional"/></div>
+      <div class="form-group"><label>Max Order Amount (Rs.)</label><input id="edit-promo-max-order" type="number" placeholder="optional"/></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Max Uses (blank = unlimited)</label><input id="edit-promo-max" type="number" placeholder="e.g. 100"/></div>
+      <div class="form-group"><label>Expiry Date (optional)</label><input id="edit-promo-expiry" type="date"/></div>
+    </div>
+    <div class="form-group"><label style="display:flex;align-items:center;gap:8px;text-transform:none;font-size:13px;cursor:pointer"><input type="checkbox" id="edit-promo-active" style="width:auto"/> Active (visible to customers)</label></div>
+    <div style="display:flex;gap:10px;margin-top:4px">
+      <button class="btn-primary" style="flex:1" onclick="saveEditPromo()">Save Changes ✓</button>
+      <button onclick="closeEditPromoModal()" style="padding:11px 20px;border-radius:10px;border:1.5px solid #e2e8f0;background:#fff;font-size:14px;font-weight:600;cursor:pointer">Cancel</button>
+    </div>
+  </div>
+</div>
+
 <!-- LOGIN -->
 <div id="login-screen">
   <div class="login-box">
@@ -598,7 +630,8 @@ function renderPromos(){
         <span class="promo-detail-tag">📅 ${expiryText}</span>
       </div>
       ${p.maxUses?`<div class="promo-usage-bar"><div class="promo-usage-fill" style="width:${usagePct}%"></div></div>`:''}
-      <div style="display:flex;justify-content:flex-end;margin-top:10px">
+      <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:10px">
+        <button class="btn-sm btn-edit" onclick="openEditPromoModal('${p.firestoreId}')">✏️ Edit</button>
         <button class="btn-sm btn-delete" onclick="deletePromo('${p.firestoreId}')">🗑️ Delete</button>
       </div>
     </div>`;
@@ -628,6 +661,42 @@ async function deletePromo(fid){
   await db.collection("promoCodes").doc(fid).delete();
   allPromos=allPromos.filter(p=>p.firestoreId!==fid);
   renderPromos();notif('Promo code deleted.');
+}
+
+// EDIT PROMO
+function openEditPromoModal(fid){
+  const p=allPromos.find(x=>x.firestoreId===fid);if(!p) return;
+  document.getElementById('edit-promo-fid').value=fid;
+  document.getElementById('edit-promo-code').value=p.code||'';
+  document.getElementById('edit-promo-type').value=p.type||'percent';
+  document.getElementById('edit-promo-value').value=p.value||'';
+  document.getElementById('edit-promo-min').value=p.min||'';
+  document.getElementById('edit-promo-max-order').value=p.maxOrder||'';
+  document.getElementById('edit-promo-max').value=p.maxUses||'';
+  document.getElementById('edit-promo-expiry').value=p.expiry||'';
+  document.getElementById('edit-promo-active').checked=p.active!==false;
+  document.getElementById('edit-promo-modal').classList.add('active');
+}
+function closeEditPromoModal(){document.getElementById('edit-promo-modal').classList.remove('active');}
+
+async function saveEditPromo(){
+  const fid=document.getElementById('edit-promo-fid').value;
+  const code=document.getElementById('edit-promo-code').value.trim().toUpperCase();
+  const type=document.getElementById('edit-promo-type').value;
+  const value=Number(document.getElementById('edit-promo-value').value);
+  const min=Number(document.getElementById('edit-promo-min').value)||0;
+  const maxOrder=Number(document.getElementById('edit-promo-max-order').value)||0;
+  const maxUses=Number(document.getElementById('edit-promo-max').value)||0;
+  const expiry=document.getElementById('edit-promo-expiry').value||'';
+  const active=document.getElementById('edit-promo-active').checked;
+  if(!code||!value){notif('Code and discount value required.');return;}
+  const updated={code,type,value,min,maxOrder,maxUses,expiry,active};
+  try{
+    await db.collection("promoCodes").doc(fid).update(updated);
+    const idx=allPromos.findIndex(p=>p.firestoreId===fid);
+    if(idx>-1) allPromos[idx]={...allPromos[idx],...updated};
+    closeEditPromoModal();renderPromos();notif('Promo code updated!');
+  }catch(e){notif('Error: '+e.message);}
 }
 
 // TABS
