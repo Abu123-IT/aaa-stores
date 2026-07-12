@@ -32,6 +32,8 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
 .sale-banner-inner{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;font-size:13px;font-weight:600}
 .sale-timer-box{background:rgba(0,0,0,.2);padding:3px 12px;border-radius:20px;font-family:monospace;font-size:13px;letter-spacing:1px}
 .sale-close{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:rgba(255,255,255,.7);font-size:18px;cursor:pointer}
+.sale-code-chip{cursor:pointer;text-decoration:underline dashed rgba(255,255,255,.6);text-underline-offset:3px;transition:opacity .15s}
+.sale-code-chip:hover{opacity:.75}
 
 /* HERO */
 .hero{position:relative;min-height:210px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
@@ -340,7 +342,7 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
     <div class="sale-banner-inner">
       <span>🔥 MEGA SALE — Up to 50% OFF!</span>
       <span class="sale-timer-box" id="sale-timer">00:00:00</span>
-      <span>Use code: <strong>SAVE50</strong></span>
+      <span id="sale-banner-code">Use code: <strong>SAVE50</strong></span>
     </div>
     <button class="sale-close" onclick="document.getElementById('sale-banner').style.display='none'">✕</button>
   </div>
@@ -371,12 +373,6 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
       <div class="feature-item reveal"><span>💬</span><span>24/7 Support</span></div>
       <div class="feature-item reveal"><span>✅</span><span>100% Genuine</span></div>
     </div>
-  </div>
-  <div class="section promo-codes-section" id="promo-codes-section" style="display:none;padding-bottom:8px">
-    <div class="section-header">
-      <h2 class="section-title">🎟️ Active <span>Promo Codes</span></h2>
-    </div>
-    <div class="promo-codes-grid" id="promo-codes-grid"></div>
   </div>
   <div class="section">
     <div class="section-header">
@@ -644,16 +640,14 @@ function loadHomePromos(){
 }
 
 function renderHomePromos(){
-  const wrap=document.getElementById('promo-codes-section');
-  if(!wrap) return;
-  if(!homePromos.length){wrap.style.display='none';return;}
-  wrap.style.display='block';
-  document.getElementById('promo-codes-grid').innerHTML=homePromos.map(function(p){
+  const el=document.getElementById('sale-banner-code');
+  if(!el) return;
+  if(!homePromos.length){el.innerHTML='Use code: <strong>SAVE50</strong>';return;}
+  const codesHtml=homePromos.map(function(p){
     const discText=p.type==='percent'?p.value+'% OFF':fmt(p.value)+' OFF';
-    const subText=p.min?'On orders over '+fmt(p.min):'No minimum order';
-    return '<div class="promo-chip reveal"><div><div class="promo-chip-disc">'+discText+'</div><div class="promo-chip-sub">'+subText+'</div></div><div class="promo-chip-right"><span class="promo-chip-code">'+p.code+'</span><button class="promo-chip-copy" onclick="copyPromoCode(\''+p.code+'\',this)">📋 Copy</button></div></div>';
-  }).join('');
-  setTimeout(initReveal,100);
+    return '<strong class="sale-code-chip" onclick="copyPromoCode(\''+p.code+'\',this)" title="'+discText+' — Tap to copy">'+p.code+'</strong>';
+  }).join(' &nbsp;|&nbsp; ');
+  el.innerHTML='Use code: '+codesHtml;
 }
 
 function copyPromoCode(code,btn){
