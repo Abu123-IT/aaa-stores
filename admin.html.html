@@ -9,43 +9,33 @@
 body{font-family:system-ui,sans-serif;background:#f1f5f9;color:#1e293b;min-height:100vh}
 input,select,textarea{font-family:inherit;outline:none}
 button{font-family:inherit;cursor:pointer}
-
-/* LOGIN */
 #login-screen{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0f172a,#1e1b4b);padding:20px}
 .login-box{background:#fff;border-radius:20px;padding:44px;width:100%;max-width:380px;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,.3)}
 .login-logo{font-size:40px;margin-bottom:12px}
-.login-box h2{font-size:24px;font-weight:800;margin-bottom:6px;color:#1e293b}
+.login-box h2{font-size:24px;font-weight:800;margin-bottom:6px}
 .login-box p{color:#64748b;font-size:14px;margin-bottom:28px}
 .login-box input{width:100%;border:1.5px solid #e2e8f0;border-radius:12px;padding:12px 14px;font-size:14px;margin-bottom:12px;background:#f8fafc;transition:border-color .2s}
-.login-box input:focus{border-color:#6366f1;background:#fff}
-.login-btn{width:100%;background:linear-gradient(135deg,#6366f1,#4f46e5);color:#fff;border:none;padding:13px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s}
-.login-btn:hover{opacity:.9;transform:translateY(-1px)}
-.login-error{color:#dc2626;font-size:12px;margin-top:10px;display:none;background:#fee2e2;padding:8px 12px;border-radius:8px}
-
-/* ADMIN LAYOUT */
-#admin-screen{display:none;min-height:100vh;display:flex;flex-direction:column}
+.login-box input:focus{border-color:#6366f1}
+.login-btn{width:100%;background:linear-gradient(135deg,#6366f1,#4f46e5);color:#fff;border:none;padding:13px;border-radius:12px;font-size:15px;font-weight:700;cursor:pointer}
+.login-error{color:#92400e;font-size:13px;margin-top:10px;display:none;background:#fef3c7;padding:10px 14px;border-radius:10px;border:1px solid #fbbf24}
+#admin-screen{display:none;min-height:100vh;flex-direction:column}
 nav{background:linear-gradient(135deg,#1e293b,#0f172a);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px;flex-shrink:0}
 .logo{color:#fff;font-size:17px;font-weight:800;display:flex;align-items:center;gap:8px}
 .admin-badge{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;font-size:10px;padding:2px 8px;border-radius:20px;font-weight:700}
 .nav-right{display:flex;align-items:center;gap:10px}
 .nav-user{color:#94a3b8;font-size:13px}
-.logout-btn{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.12);padding:6px 14px;border-radius:8px;font-size:12px;cursor:pointer;transition:all .2s}
-.logout-btn:hover{background:rgba(255,255,255,.15)}
+.logout-btn{background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.12);padding:6px 14px;border-radius:8px;font-size:12px;cursor:pointer}
 .admin-tabs{display:flex;overflow-x:auto;padding:0 20px;border-bottom:1px solid #e2e8f0;background:#fff;flex-shrink:0;scrollbar-width:none}
 .admin-tabs::-webkit-scrollbar{display:none}
 .tab-btn{padding:14px 18px;border:none;background:transparent;font-size:13px;color:#64748b;border-bottom:2px solid transparent;white-space:nowrap;cursor:pointer;font-weight:500;transition:all .2s;flex-shrink:0}
 .tab-btn.active{color:#6366f1;font-weight:700;border-bottom-color:#6366f1}
-.admin-body{padding:24px;flex:1;overflow-y:auto}
-
-/* STATS */
+.admin-body{padding:24px;flex:1}
 .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:24px}
 .stat-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:18px;transition:all .2s}
 .stat-card:hover{box-shadow:0 4px 16px rgba(99,102,241,.1);transform:translateY(-2px)}
 .stat-label{font-size:12px;color:#64748b;margin-bottom:8px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
 .stat-val{font-size:26px;font-weight:800}
 .stat-icon{font-size:20px;margin-bottom:4px}
-
-/* TABLE */
 .table-wrap{background:#fff;border:1px solid #e2e8f0;border-radius:14px;overflow:auto}
 table{width:100%;border-collapse:collapse;font-size:13px;min-width:600px}
 th{padding:12px 14px;text-align:left;color:#64748b;font-weight:600;background:#f8fafc;white-space:nowrap;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
@@ -57,30 +47,32 @@ td{padding:11px 14px;border-top:1px solid #f1f5f9;color:#1e293b;vertical-align:m
 .btn-edit:hover{background:#6366f1;color:#fff}
 .btn-delete{background:#fee2e2;color:#dc2626}
 .btn-delete:hover{background:#dc2626;color:#fff}
-
-/* FORMS */
-.form-section{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:24px;max-width:580px}
-.form-section h3{font-size:16px;font-weight:700;margin-bottom:20px;color:#1e293b}
+.form-section{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:24px;max-width:620px}
+.form-section h3{font-size:16px;font-weight:700;margin-bottom:20px}
 .form-group{margin-bottom:14px}
 .form-group label{font-size:12px;color:#64748b;display:block;margin-bottom:5px;font-weight:600;text-transform:uppercase;letter-spacing:.3px}
-.form-group input,.form-group select,.form-group textarea{width:100%;border:1.5px solid #e2e8f0;border-radius:10px;padding:10px 14px;font-size:14px;background:#f8fafc;transition:border-color .2s}
+.form-group input,.form-group select{width:100%;border:1.5px solid #e2e8f0;border-radius:10px;padding:10px 14px;font-size:14px;background:#f8fafc;transition:border-color .2s}
 .form-group input:focus,.form-group select:focus{border-color:#6366f1;background:#fff}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 .btn-primary{background:linear-gradient(135deg,#6366f1,#4f46e5);color:#fff;border:none;padding:11px 24px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s}
 .btn-primary:hover{opacity:.9;transform:translateY(-1px)}
-.btn-green{background:linear-gradient(135deg,#059669,#047857);color:#fff;border:none;padding:11px 24px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s}
-.btn-green:hover{opacity:.9}
-.btn-danger{background:linear-gradient(135deg,#dc2626,#b91c1c);color:#fff;border:none;padding:11px 24px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
+.btn-green{background:linear-gradient(135deg,#059669,#047857);color:#fff;border:none;padding:11px 24px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer}
 
-/* IMAGE UPLOAD */
-.img-upload-wrap{border:2px dashed #c7d2fe;border-radius:12px;padding:20px;text-align:center;cursor:pointer;transition:all .2s;position:relative;background:#fafafe}
-.img-upload-wrap:hover{border-color:#6366f1;background:#ede9fe}
-.img-upload-wrap input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
-.img-preview{width:80px;height:80px;border-radius:10px;object-fit:cover;margin:8px auto;display:none;border:2px solid #e2e8f0}
+/* IMAGE MULTI-UPLOAD */
+.img-slots{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:10px}
+.img-slot{border:2px dashed #c7d2fe;border-radius:12px;aspect-ratio:1;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;position:relative;background:#fafafe;overflow:hidden}
+.img-slot:hover{border-color:#6366f1;background:#ede9fe}
+.img-slot input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.img-slot img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.img-slot-label{font-size:11px;color:#94a3b8;text-align:center;z-index:1;pointer-events:none}
+.img-slot.filled{border-style:solid;border-color:#6366f1}
+.img-slot .remove-img{position:absolute;top:4px;right:4px;background:#ef4444;color:#fff;border:none;border-radius:50%;width:20px;height:20px;font-size:12px;cursor:pointer;z-index:2;display:flex;align-items:center;justify-content:center;line-height:1}
+.img-slot-num{font-size:18px;z-index:1;pointer-events:none}
 .upload-status{padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600;display:none;margin-top:8px}
-.upload-status.loading{background:#e0f2fe;color:#0369a1}
-.upload-status.success{background:#d1fae5;color:#065f46}
-.upload-status.error{background:#fee2e2;color:#dc2626}
+.upload-status.loading{background:#e0f2fe;color:#0369a1;display:block}
+.upload-status.success{background:#d1fae5;color:#065f46;display:block}
+.upload-status.error{background:#fee2e2;color:#dc2626;display:block}
 .or-divider{text-align:center;color:#94a3b8;font-size:12px;margin:10px 0;position:relative}
 .or-divider::before,.or-divider::after{content:'';position:absolute;top:50%;width:44%;height:1px;background:#e2e8f0}
 .or-divider::before{left:0}.or-divider::after{right:0}
@@ -89,7 +81,7 @@ td{padding:11px 14px;border-top:1px solid #f1f5f9;color:#1e293b;vertical-align:m
 .order-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:18px;margin-bottom:12px;transition:all .2s}
 .order-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.06);transform:translateY(-1px)}
 .order-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;flex-wrap:wrap;gap:8px}
-.order-id{font-weight:800;font-size:14px;color:#1e293b}
+.order-id{font-weight:800;font-size:14px}
 .order-meta{font-size:12px;color:#94a3b8;margin-top:2px}
 .status-select{font-size:12px;padding:6px 10px;border-radius:8px;border:1.5px solid #e2e8f0;background:#f8fafc;cursor:pointer;font-weight:600}
 .status-pill{font-size:11px;padding:4px 12px;border-radius:20px;font-weight:700}
@@ -100,25 +92,29 @@ td{padding:11px 14px;border-top:1px solid #f1f5f9;color:#1e293b;vertical-align:m
 .order-total{font-weight:800;color:#6366f1;font-size:15px}
 
 /* PROMO */
-.promo-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:16px;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
-.promo-code{font-family:monospace;font-size:16px;font-weight:800;color:#1e293b;background:#f1f5f9;padding:6px 14px;border-radius:8px;letter-spacing:2px}
-.promo-info{font-size:13px;color:#64748b}
-.promo-badge{font-size:12px;padding:4px 12px;border-radius:20px;font-weight:700}
+.promo-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:960px}
+.promo-card{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:16px;margin-bottom:10px;transition:all .2s}
+.promo-card:hover{box-shadow:0 4px 16px rgba(99,102,241,.1);transform:translateY(-2px)}
+.promo-code-badge{font-family:monospace;font-size:15px;font-weight:800;color:#6366f1;background:#ede9fe;padding:6px 14px;border-radius:8px;letter-spacing:2px;display:inline-block;margin-bottom:8px}
+.promo-details{font-size:12px;color:#64748b;display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+.promo-detail-tag{background:#f1f5f9;padding:3px 8px;border-radius:6px;font-weight:600}
+.promo-usage-bar{background:#f1f5f9;border-radius:20px;height:6px;margin-top:8px;overflow:hidden}
+.promo-usage-fill{background:linear-gradient(135deg,#6366f1,#3b82f6);height:100%;border-radius:20px;transition:width .3s}
 
 /* EDIT MODAL */
 .edit-modal-overlay{position:fixed;inset:0;background:rgba(15,23,42,.6);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
 .edit-modal-overlay.active{display:flex}
-.edit-modal{background:#fff;border-radius:20px;padding:28px;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.2)}
-.edit-modal h3{font-size:18px;font-weight:800;margin-bottom:20px;color:#1e293b}
-.modal-close-btn{float:right;background:none;border:none;font-size:22px;cursor:pointer;color:#94a3b8;margin-top:-4px}
+.edit-modal{background:#fff;border-radius:20px;padding:28px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.2)}
+.edit-modal h3{font-size:18px;font-weight:800;margin-bottom:20px}
+.modal-close-btn{float:right;background:none;border:none;font-size:22px;cursor:pointer;color:#94a3b8}
 
-/* NOTIF */
-#notif{position:fixed;top:16px;right:16px;background:#1e293b;color:#fff;padding:10px 18px;border-radius:12px;z-index:9999;font-size:13px;display:none;box-shadow:0 8px 32px rgba(0,0,0,.25);font-weight:500;max-width:280px}
+#notif{position:fixed;top:16px;right:16px;background:#1e293b;color:#fff;padding:10px 18px;border-radius:12px;z-index:9999;font-size:13px;display:none;box-shadow:0 8px 32px rgba(0,0,0,.25);font-weight:500;max-width:300px}
 .empty{text-align:center;padding:40px 0;color:#64748b;font-size:14px}
+.section-header{display:flex;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.section-header h3{font-size:15px;font-weight:700}
 .refresh-btn{background:#ede9fe;color:#6366f1;border:none;padding:6px 14px;border-radius:8px;font-size:12px;cursor:pointer;font-weight:600;margin-left:8px;transition:all .15s}
 .refresh-btn:hover{background:#6366f1;color:#fff}
-.section-header{display:flex;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px}
-.section-header h3{font-size:15px;font-weight:700;color:#1e293b}
+@media(max-width:600px){.form-row,.form-row-3{grid-template-columns:1fr}.promo-grid{grid-template-columns:1fr}.img-slots{grid-template-columns:repeat(3,1fr)}}
 </style>
 </head>
 <body>
@@ -146,15 +142,10 @@ td{padding:11px 14px;border-top:1px solid #f1f5f9;color:#1e293b;vertical-align:m
     </div>
     <div class="form-group"><label>Description</label><input id="edit-desc" type="text"/></div>
     <div class="form-group">
-      <label>Product Image</label>
-      <div class="img-upload-wrap" id="edit-upload-wrap">
-        <input type="file" id="edit-file" accept="image/*" onchange="handleEditFileSelect(this)"/>
-        <div style="font-size:24px;margin-bottom:6px">📁</div>
-        <div style="font-size:13px;color:#64748b">Click to upload new image</div>
-        <img id="edit-img-preview" class="img-preview"/>
-        <div id="edit-upload-status" class="upload-status"></div>
-      </div>
-      <div class="or-divider">OR paste URL</div>
+      <label>Product Images (up to 7)</label>
+      <div class="img-slots" id="edit-img-slots"></div>
+      <div id="edit-upload-status" class="upload-status"></div>
+      <div class="or-divider">OR paste main image URL</div>
       <input id="edit-image" type="text" placeholder="https://..." style="width:100%;border:1.5px solid #e2e8f0;border-radius:10px;padding:10px 14px;font-size:13px;background:#f8fafc"/>
     </div>
     <div style="display:flex;gap:10px;margin-top:4px">
@@ -173,12 +164,12 @@ td{padding:11px 14px;border-top:1px solid #f1f5f9;color:#1e293b;vertical-align:m
     <input type="email" id="login-email" placeholder="Email address" onkeydown="if(event.key==='Enter')doLogin()"/>
     <input type="password" id="login-pass" placeholder="Password" onkeydown="if(event.key==='Enter')doLogin()"/>
     <button class="login-btn" onclick="doLogin()">Login to Admin →</button>
-    <div class="login-error" id="login-error">❌ Incorrect email or password</div>
+    <div class="login-error" id="login-error">⚠️ Your password or username is incorrect. Please try again.</div>
   </div>
 </div>
 
 <!-- ADMIN -->
-<div id="admin-screen" style="display:none">
+<div id="admin-screen">
   <nav>
     <div class="logo">🏪 AAA Stores <span class="admin-badge">ADMIN</span></div>
     <div class="nav-right">
@@ -253,15 +244,10 @@ td{padding:11px 14px;border-top:1px solid #f1f5f9;color:#1e293b;vertical-align:m
         </div>
         <div class="form-group"><label>Description</label><input id="np-desc" type="text" placeholder="Short product description"/></div>
         <div class="form-group">
-          <label>Product Image</label>
-          <div class="img-upload-wrap">
-            <input type="file" id="np-file" accept="image/*" onchange="handleFileSelect(this)"/>
-            <div style="font-size:28px;margin-bottom:6px">📁</div>
-            <div style="font-size:13px;color:#64748b">Click or drag to upload image</div>
-            <img id="img-preview" class="img-preview"/>
-            <div id="upload-status" class="upload-status"></div>
-          </div>
-          <div class="or-divider">OR paste image URL</div>
+          <label>Product Images (up to 7 — first image = main)</label>
+          <div class="img-slots" id="add-img-slots"></div>
+          <div id="add-upload-status" class="upload-status"></div>
+          <div class="or-divider">OR paste image URL (main image)</div>
           <input id="np-icon" type="text" placeholder="https://images.pexels.com/..." style="width:100%;border:1.5px solid #e2e8f0;border-radius:10px;padding:10px 14px;font-size:13px;background:#f8fafc"/>
         </div>
         <button class="btn-green" onclick="addProduct()">Add Product ✓</button>
@@ -270,10 +256,10 @@ td{padding:11px 14px;border-top:1px solid #f1f5f9;color:#1e293b;vertical-align:m
 
     <!-- PROMO CODES -->
     <div id="tab-promo" style="display:none">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:900px">
+      <div class="promo-grid">
         <div class="form-section">
           <h3>🎟️ Create Promo Code</h3>
-          <div class="form-group"><label>Promo Code *</label><input id="promo-code" type="text" placeholder="e.g. SAVE50" style="text-transform:uppercase"/></div>
+          <div class="form-group"><label>Promo Code *</label><input id="promo-code" type="text" placeholder="E.G. SAVE50" oninput="this.value=this.value.toUpperCase()"/></div>
           <div class="form-row">
             <div class="form-group"><label>Discount Type</label>
               <select id="promo-type">
@@ -283,13 +269,20 @@ td{padding:11px 14px;border-top:1px solid #f1f5f9;color:#1e293b;vertical-align:m
             </div>
             <div class="form-group"><label>Discount Value *</label><input id="promo-value" type="number" placeholder="e.g. 10"/></div>
           </div>
-          <div class="form-group"><label>Min Order Amount (Rs.)</label><input id="promo-min" type="number" placeholder="e.g. 1000 (optional)"/></div>
-          <div class="form-group"><label>Max Uses (leave blank = unlimited)</label><input id="promo-max" type="number" placeholder="e.g. 100"/></div>
-          <button class="btn-primary" onclick="createPromo()">Create Promo Code</button>
+          <div class="form-row">
+            <div class="form-group"><label>Min Order Amount (Rs.)</label><input id="promo-min" type="number" placeholder="e.g. 1000 (optional)"/></div>
+            <div class="form-group"><label>Max Order Amount (Rs.)</label><input id="promo-max-order" type="number" placeholder="e.g. 5000 (optional)"/></div>
+          </div>
+          <div class="form-group"><label>Max Uses (blank = unlimited)</label><input id="promo-max" type="number" placeholder="e.g. 100"/></div>
+          <div class="form-group"><label>Expiry Date (optional)</label><input id="promo-expiry" type="date"/></div>
+          <button class="btn-primary" style="width:100%" onclick="createPromo()">Create Promo Code ✓</button>
         </div>
         <div>
-          <div class="section-header"><h3>Active Promo Codes</h3><button class="refresh-btn" onclick="loadPromos()">🔄</button></div>
-          <div id="promo-list"></div>
+          <div class="section-header">
+            <h3>Active Promo Codes</h3>
+            <button class="refresh-btn" onclick="loadPromos()">🔄</button>
+          </div>
+          <div id="promo-list"><div class="empty">Loading...</div></div>
         </div>
       </div>
     </div>
@@ -297,7 +290,6 @@ td{padding:11px 14px;border-top:1px solid #f1f5f9;color:#1e293b;vertical-align:m
   </div>
 </div>
 
-<!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
@@ -316,6 +308,7 @@ const CLOUD_NAME="jkavhhe4";
 const UPLOAD_PRESET="nfmniwjz";
 
 let allOrders=[],allProducts=[],allPromos=[];
+let addImages=[],editImages=[];
 const fmt=p=>"Rs. "+p.toLocaleString();
 const notif=msg=>{const el=document.getElementById('notif');el.textContent="✓ "+msg;el.style.display="block";setTimeout(()=>el.style.display="none",3000);};
 const statusColors={Pending:['#fef3c7','#92400e'],Processing:['#dbeafe','#1e40af'],Delivered:['#d1fae5','#065f46'],Cancelled:['#fee2e2','#991b1b']};
@@ -324,9 +317,9 @@ const statusColors={Pending:['#fef3c7','#92400e'],Processing:['#dbeafe','#1e40af
 auth.onAuthStateChanged(user=>{
   if(user){
     document.getElementById('login-screen').style.display='none';
-    document.getElementById('admin-screen').style.display='flex';
+    const as=document.getElementById('admin-screen');as.style.display='flex';as.style.flexDirection='column';
     document.getElementById('nav-user-name').textContent=user.email;
-    loadData();loadPromos();
+    loadData();loadPromos();initImgSlots('add-img-slots',addImages,'add-upload-status');
   } else {
     document.getElementById('login-screen').style.display='flex';
     document.getElementById('admin-screen').style.display='none';
@@ -341,35 +334,70 @@ function doLogin(){
 }
 function doLogout(){auth.signOut();}
 
-// CLOUDINARY UPLOAD
-async function uploadImage(file,previewId,statusId){
-  const preview=document.getElementById(previewId);
-  const status=document.getElementById(statusId);
-  preview.src=URL.createObjectURL(file);preview.style.display='block';
-  status.className='upload-status loading';status.style.display='block';status.textContent='⏳ Uploading...';
+// IMAGE SLOTS (up to 7)
+function initImgSlots(containerId,imagesArr,statusId){
+  const container=document.getElementById(containerId);
+  if(!container) return;
+  container.innerHTML='';
+  imagesArr.length=0;
+  for(let i=0;i<7;i++){
+    const slot=document.createElement('div');
+    slot.className='img-slot';
+    slot.dataset.idx=i;
+    slot.innerHTML=`<input type="file" accept="image/*" onchange="handleSlotUpload(this,'${containerId}','${statusId}',${i})"/>
+      <span class="img-slot-num">${i===0?'🖼️':'+'}</span>
+      <span class="img-slot-label">${i===0?'Main':'Image '+(i+1)}</span>`;
+    container.appendChild(slot);
+    imagesArr.push('');
+  }
+}
+
+async function handleSlotUpload(input,containerId,statusId,idx){
+  const file=input.files[0];if(!file) return;
+  const statusEl=document.getElementById(statusId);
+  statusEl.className='upload-status loading';statusEl.textContent='⏳ Uploading image '+(idx+1)+'...';
   try{
     const fd=new FormData();fd.append('file',file);fd.append('upload_preset',UPLOAD_PRESET);
     const res=await fetch('https://api.cloudinary.com/v1_1/'+CLOUD_NAME+'/image/upload',{method:'POST',body:fd});
     if(!res.ok) throw new Error('Upload failed');
     const data=await res.json();
-    status.className='upload-status success';status.textContent='✅ Uploaded!';
-    return data.secure_url;
+    const url=data.secure_url;
+    const imagesArr=containerId.includes('add')?addImages:editImages;
+    imagesArr[idx]=url;
+    // Update slot UI
+    const slot=document.getElementById(containerId).children[idx];
+    slot.classList.add('filled');
+    slot.innerHTML=`<img src="${url}" alt=""/><button class="remove-img" onclick="removeSlotImg(event,'${containerId}','${statusId}',${idx})">✕</button>`;
+    // Auto-fill URL field if main image
+    if(idx===0){
+      const urlField=document.getElementById(containerId.includes('add')?'np-icon':'edit-image');
+      if(urlField) urlField.value=url;
+    }
+    statusEl.className='upload-status success';statusEl.textContent='✅ Image '+(idx+1)+' uploaded!';
+    setTimeout(()=>statusEl.style.display='none',2000);
   }catch(e){
-    status.className='upload-status error';status.textContent='❌ Failed. Use URL instead.';
-    return null;
+    statusEl.className='upload-status error';statusEl.textContent='❌ Upload failed. Try again.';
   }
 }
 
-let uploadedImageUrl='';
-async function handleFileSelect(input){
-  const url=await uploadImage(input.files[0],'img-preview','upload-status');
-  if(url){uploadedImageUrl=url;document.getElementById('np-icon').value=url;}
+function removeSlotImg(e,containerId,statusId,idx){
+  e.stopPropagation();
+  const imagesArr=containerId.includes('add')?addImages:editImages;
+  imagesArr[idx]='';
+  const slot=document.getElementById(containerId).children[idx];
+  slot.classList.remove('filled');
+  slot.innerHTML=`<input type="file" accept="image/*" onchange="handleSlotUpload(this,'${containerId}','${statusId}',${idx})"/>
+    <span class="img-slot-num">${idx===0?'🖼️':'+'}</span>
+    <span class="img-slot-label">${idx===0?'Main':'Image '+(idx+1)}</span>`;
+  if(idx===0){const urlField=document.getElementById(containerId.includes('add')?'np-icon':'edit-image');if(urlField) urlField.value='';}
 }
 
-let editUploadedUrl='';
-async function handleEditFileSelect(input){
-  const url=await uploadImage(input.files[0],'edit-img-preview','edit-upload-status');
-  if(url){editUploadedUrl=url;document.getElementById('edit-image').value=url;}
+// CLOUDINARY single upload (for URL fallback)
+async function uploadSingle(file,previewId,statusId){
+  const fd=new FormData();fd.append('file',file);fd.append('upload_preset',UPLOAD_PRESET);
+  const res=await fetch('https://api.cloudinary.com/v1_1/'+CLOUD_NAME+'/image/upload',{method:'POST',body:fd});
+  if(!res.ok) throw new Error('Upload failed');
+  return (await res.json()).secure_url;
 }
 
 // LOAD DATA
@@ -403,21 +431,19 @@ function renderDashboard(){
 function orderCard(o){
   const[bg,tc]=statusColors[o.status]||['#f3f4f6','#374151'];
   const fid=o.firestoreId;
-  const discount=o.discount?`<div style="font-size:12px;color:#059669;margin-top:4px">🎟️ Promo: ${o.promoCode} (-${fmt(o.discount)})</div>`:'';
+  const discount=o.discount?`<div style="font-size:12px;color:#059669;margin-top:4px">🎟️ ${o.promoCode} (-${fmt(o.discount)})</div>`:'';
+  const itemsJson=JSON.stringify(o.items||[]).replace(/"/g,'&quot;');
   return `<div class="order-card">
     <div class="order-header">
       <div><div class="order-id">${o.orderId||fid}</div><div class="order-meta">📅 ${o.date||''}</div></div>
       <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
         <span class="status-pill" style="background:${bg};color:${tc}">${o.status}</span>
-        <select class="status-select" onchange="updateStatus('${fid}','${o.userId||''}',this.value,${JSON.stringify(o.items).replace(/"/g,'&quot;')})">
+        <select class="status-select" onchange="updateStatus('${fid}',this.value,'${itemsJson}')">
           ${['Pending','Processing','Delivered','Cancelled'].map(s=>`<option${s===o.status?' selected':''}>${s}</option>`).join('')}
         </select>
       </div>
     </div>
-    <div class="order-customer">
-      👤 <strong>${o.customer?.name||''}</strong> | 📞 ${o.customer?.phone||''} ${o.customer?.email?'| 📧 '+o.customer.email:''}<br>
-      📍 ${o.customer?.address||''}
-    </div>
+    <div class="order-customer">👤 <strong>${o.customer?.name||''}</strong> | 📞 ${o.customer?.phone||''} ${o.customer?.email?'| 📧 '+o.customer.email:''}<br>📍 ${o.customer?.address||''}</div>
     <div class="order-items">${(o.items||[]).map(i=>`<div class="order-item-row"><img src="${i.image}" alt=""/> ${i.name} × ${i.qty} (${fmt(i.price*i.qty)})</div>`).join('')}</div>
     ${discount}
     <div class="order-total" style="margin-top:8px">Total: ${fmt(o.total)}</div>
@@ -430,15 +456,13 @@ function renderOrders(){
   document.getElementById('orders-list').innerHTML=orders.length?orders.map(o=>orderCard(o)).join(''):'<div class="empty">No orders found.</div>';
 }
 
-// UPDATE STATUS + STOCK RESTORE ON CANCEL
-async function updateStatus(fid,userId,status,items){
+async function updateStatus(fid,status,itemsJson){
   try{
+    const items=JSON.parse(itemsJson.replace(/&quot;/g,'"'));
     const oldOrder=allOrders.find(x=>x.firestoreId===fid);
     const wasNotCancelled=oldOrder&&oldOrder.status!=='Cancelled';
-    const nowCancelled=status==='Cancelled';
     await db.collection("orders").doc(fid).update({status});
-    // Restore stock if cancelled
-    if(nowCancelled&&wasNotCancelled&&items&&items.length){
+    if(status==='Cancelled'&&wasNotCancelled&&items.length){
       const batch=db.batch();
       for(const item of items){
         const prod=allProducts.find(p=>p.id===item.id);
@@ -449,11 +473,8 @@ async function updateStatus(fid,userId,status,items){
       }
       await batch.commit();
       notif('Order cancelled — stock restored ✅');
-    } else {
-      notif('Order updated → '+status);
-    }
-    const o=allOrders.find(x=>x.firestoreId===fid);
-    if(o) o.status=status;
+    } else notif('Order updated → '+status);
+    const o=allOrders.find(x=>x.firestoreId===fid);if(o) o.status=status;
     renderDashboard();renderOrders();
   }catch(e){notif('Error: '+e.message);}
 }
@@ -463,32 +484,37 @@ function renderProducts(){
   const s=(document.getElementById('prod-search')?.value||'').toLowerCase();
   const prods=allProducts.filter(p=>p.name.toLowerCase().includes(s)||p.category.toLowerCase().includes(s));
   document.getElementById('prod-table').innerHTML=prods.map(p=>`<tr>
-    <td style="display:flex;align-items:center;gap:10px"><img src="${p.image}" alt="" style="width:36px;height:36px;border-radius:8px;object-fit:cover;flex-shrink:0"/> <span style="font-weight:600">${p.name}</span></td>
+    <td style="display:flex;align-items:center;gap:10px"><img src="${p.image||p.images?.[0]||''}" alt="" style="width:36px;height:36px;border-radius:8px;object-fit:cover;flex-shrink:0"/> <span style="font-weight:600">${p.name}</span></td>
     <td><span class="badge badge-blue">${p.category}</span></td>
     <td style="color:#6366f1;font-weight:700">${fmt(p.price)}</td>
     <td style="color:${p.stock>20?'#059669':p.stock>5?'#f59e0b':'#dc2626'};font-weight:700">${p.stock}</td>
-    <td style="display:flex;gap:6px">
-      <button class="btn-sm btn-edit" onclick="openEditModal('${p.firestoreId}')">✏️ Edit</button>
-      <button class="btn-sm btn-delete" onclick="deleteProduct('${p.firestoreId}')">🗑️ Delete</button>
-    </td>
+    <td><button class="btn-sm btn-edit" onclick="openEditModal('${p.firestoreId}')">✏️ Edit</button> <button class="btn-sm btn-delete" onclick="deleteProduct('${p.firestoreId}')">🗑️</button></td>
   </tr>`).join('');
 }
 
 // EDIT MODAL
 function openEditModal(fid){
-  const p=allProducts.find(x=>x.firestoreId===fid);
-  if(!p) return;
+  const p=allProducts.find(x=>x.firestoreId===fid);if(!p) return;
   document.getElementById('edit-fid').value=fid;
   document.getElementById('edit-name').value=p.name||'';
   document.getElementById('edit-cat').value=p.category||'Electronics';
   document.getElementById('edit-price').value=p.price||'';
   document.getElementById('edit-stock').value=p.stock||'';
   document.getElementById('edit-desc').value=p.desc||'';
-  document.getElementById('edit-image').value=p.image||'';
-  const prev=document.getElementById('edit-img-preview');
-  prev.src=p.image||'';prev.style.display=p.image?'block':'none';
-  document.getElementById('edit-upload-status').style.display='none';
-  editUploadedUrl='';
+  document.getElementById('edit-image').value=p.image||p.images?.[0]||'';
+  // Init image slots
+  editImages=[];
+  initImgSlots('edit-img-slots',editImages,'edit-upload-status');
+  const existingImgs=p.images||(p.image?[p.image]:[]);
+  existingImgs.slice(0,7).forEach((url,i)=>{
+    if(!url) return;
+    editImages[i]=url;
+    const slot=document.getElementById('edit-img-slots').children[i];
+    if(slot){
+      slot.classList.add('filled');
+      slot.innerHTML=`<img src="${url}" alt=""/><button class="remove-img" onclick="removeSlotImg(event,'edit-img-slots','edit-upload-status',${i})">✕</button>`;
+    }
+  });
   document.getElementById('edit-modal').classList.add('active');
 }
 function closeEditModal(){document.getElementById('edit-modal').classList.remove('active');}
@@ -498,20 +524,16 @@ async function saveEditProduct(){
   const name=document.getElementById('edit-name').value.trim();
   const price=Number(document.getElementById('edit-price').value);
   if(!name||!price){notif('Name and price required.');return;}
-  const imageUrl=document.getElementById('edit-image').value.trim();
-  const updated={
-    name,price,
-    category:document.getElementById('edit-cat').value,
-    stock:Number(document.getElementById('edit-stock').value)||0,
-    desc:document.getElementById('edit-desc').value,
-    image:imageUrl||''
-  };
+  const urlInput=document.getElementById('edit-image').value.trim();
+  const allImgs=editImages.filter(u=>u);
+  if(urlInput&&!allImgs.includes(urlInput)) allImgs.unshift(urlInput);
+  const mainImage=allImgs[0]||'';
+  const updated={name,price,category:document.getElementById('edit-cat').value,stock:Number(document.getElementById('edit-stock').value)||0,desc:document.getElementById('edit-desc').value,image:mainImage,images:allImgs};
   try{
     await db.collection("products").doc(fid).update(updated);
     const idx=allProducts.findIndex(p=>p.firestoreId===fid);
     if(idx>-1) allProducts[idx]={...allProducts[idx],...updated};
-    closeEditModal();renderProducts();renderDashboard();
-    notif('Product updated!');
+    closeEditModal();renderProducts();renderDashboard();notif('Product updated!');
   }catch(e){notif('Error: '+e.message);}
 }
 
@@ -527,18 +549,19 @@ async function deleteProduct(fid){
 async function addProduct(){
   const name=document.getElementById('np-name').value.trim();
   const price=Number(document.getElementById('np-price').value);
-  const imageUrl=document.getElementById('np-icon').value.trim();
+  const urlInput=document.getElementById('np-icon').value.trim();
   if(!name||!price){notif('Name and price are required.');return;}
-  if(!imageUrl){notif('Please upload an image or paste a URL.');return;}
-  const newProd={id:Date.now(),name,price,stock:Number(document.getElementById('np-stock').value)||0,image:imageUrl,category:document.getElementById('np-cat').value,desc:document.getElementById('np-desc').value};
+  const allImgs=addImages.filter(u=>u);
+  if(urlInput&&!allImgs.includes(urlInput)) allImgs.unshift(urlInput);
+  if(!allImgs.length){notif('Please upload at least one image or paste a URL.');return;}
+  const mainImage=allImgs[0];
+  const newProd={id:Date.now(),name,price,stock:Number(document.getElementById('np-stock').value)||0,image:mainImage,images:allImgs,category:document.getElementById('np-cat').value,desc:document.getElementById('np-desc').value};
   try{
     const ref=await db.collection("products").add(newProd);
     allProducts.push({firestoreId:ref.id,...newProd});
     ['np-name','np-price','np-stock','np-desc','np-icon'].forEach(id=>document.getElementById(id).value='');
-    document.getElementById('np-file').value='';
-    document.getElementById('img-preview').style.display='none';
-    document.getElementById('upload-status').style.display='none';
-    uploadedImageUrl='';
+    document.getElementById('add-upload-status').style.display='none';
+    initImgSlots('add-img-slots',addImages,'add-upload-status');
     renderProducts();renderDashboard();notif('Product added!');
   }catch(e){notif('Error: '+e.message);}
 }
@@ -549,23 +572,35 @@ async function loadPromos(){
     const snap=await db.collection("promoCodes").get();
     allPromos=snap.docs.map(d=>({firestoreId:d.id,...d.data()}));
     renderPromos();
-  }catch(e){}
+  }catch(e){
+    const el=document.getElementById('promo-list');
+    if(el) el.innerHTML='<div class="empty">Error loading promo codes.<br>Check Firestore rules.</div>';
+  }
 }
 
 function renderPromos(){
-  const el=document.getElementById('promo-list');
-  if(!el) return;
-  if(!allPromos.length){el.innerHTML='<div class="empty">No promo codes yet.</div>';return;}
+  const el=document.getElementById('promo-list');if(!el) return;
+  if(!allPromos.length){el.innerHTML='<div class="empty">No promo codes yet.<br>Create one!</div>';return;}
   el.innerHTML=allPromos.map(p=>{
-    const disc=p.type==='percent'?p.value+'% OFF':'Rs. '+p.value+' OFF';
-    const minText=p.min?'Min: '+fmt(p.min):'No minimum';
+    const disc=p.type==='percent'?p.value+'% OFF':'Rs. '+p.value.toLocaleString()+' OFF';
+    const minText=p.min?'Min: '+fmt(p.min):'No min';
+    const maxOrderText=p.maxOrder?'Max: '+fmt(p.maxOrder):'';
     const usageText=p.maxUses?p.usedCount+'/'+p.maxUses+' used':'Unlimited';
+    const expiryText=p.expiry?'Expires: '+p.expiry:'No expiry';
+    const usagePct=p.maxUses?Math.round((p.usedCount/p.maxUses)*100):0;
     return `<div class="promo-card">
-      <div>
-        <span class="promo-code">${p.code}</span>
-        <div class="promo-info" style="margin-top:4px">${disc} • ${minText} • ${usageText}</div>
+      <div class="promo-code-badge">${p.code}</div>
+      <div style="font-size:14px;font-weight:700;color:#1e293b;margin-bottom:6px">${disc}</div>
+      <div class="promo-details">
+        <span class="promo-detail-tag">${minText}</span>
+        ${maxOrderText?`<span class="promo-detail-tag">${maxOrderText}</span>`:''}
+        <span class="promo-detail-tag">${usageText}</span>
+        <span class="promo-detail-tag">📅 ${expiryText}</span>
       </div>
-      <button class="btn-sm btn-delete" onclick="deletePromo('${p.firestoreId}')">Delete</button>
+      ${p.maxUses?`<div class="promo-usage-bar"><div class="promo-usage-fill" style="width:${usagePct}%"></div></div>`:''}
+      <div style="display:flex;justify-content:flex-end;margin-top:10px">
+        <button class="btn-sm btn-delete" onclick="deletePromo('${p.firestoreId}')">🗑️ Delete</button>
+      </div>
     </div>`;
   }).join('');
 }
@@ -575,13 +610,16 @@ async function createPromo(){
   const type=document.getElementById('promo-type').value;
   const value=Number(document.getElementById('promo-value').value);
   const min=Number(document.getElementById('promo-min').value)||0;
+  const maxOrder=Number(document.getElementById('promo-max-order').value)||0;
   const maxUses=Number(document.getElementById('promo-max').value)||0;
+  const expiry=document.getElementById('promo-expiry').value||'';
   if(!code||!value){notif('Code and discount value required.');return;}
+  const promoData={code,type,value,min,maxOrder,maxUses,usedCount:0,active:true,expiry,createdAt:new Date().toISOString()};
   try{
-    const ref=await db.collection("promoCodes").add({code,type,value,min,maxUses,usedCount:0,active:true,createdAt:new Date().toISOString()});
-    allPromos.push({firestoreId:ref.id,code,type,value,min,maxUses,usedCount:0});
-    ['promo-code','promo-value','promo-min','promo-max'].forEach(id=>document.getElementById(id).value='');
-    renderPromos();notif('Promo code created!');
+    const ref=await db.collection("promoCodes").add(promoData);
+    allPromos.push({firestoreId:ref.id,...promoData});
+    ['promo-code','promo-value','promo-min','promo-max-order','promo-max','promo-expiry'].forEach(id=>document.getElementById(id).value='');
+    renderPromos();notif('Promo code "'+code+'" created!');
   }catch(e){notif('Error: '+e.message);}
 }
 
