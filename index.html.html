@@ -535,17 +535,53 @@ firebase.initializeApp({
 const db=firebase.firestore();
 const auth=firebase.auth();
 
-// SALE TIMER
+// SALE TIMER — counts down to the nearest active promo's expiry date (set from Admin).
+// Falls back to a daily midnight countdown if no active promo has an expiry set.
+let saleTimerEnd=null; // Date object when a real promo expiry exists, else null
 (function(){
-  var end=new Date();end.setHours(23,59,59,0);
+  var dailyEnd=new Date();dailyEnd.setHours(23,59,59,0);
   setInterval(function(){
-    var now=new Date();var diff=end-now;
-    if(diff<=0){end=new Date();end.setDate(end.getDate()+1);end.setHours(23,59,59,0);return;}
-    var h=Math.floor(diff/3600000);var m=Math.floor((diff%3600000)/60000);var s=Math.floor((diff%60000)/1000);
+    var now=new Date();
     var el=document.getElementById('sale-timer');
-    if(el) el.textContent=(h<10?'0':'')+h+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+    if(!el) return;
+    if(saleTimerEnd){
+      var diff=saleTimerEnd-now;
+      if(diff<=0){
+        el.textContent='EXPIRED';
+        var banner=document.getElementById('sale-banner');
+        if(banner) banner.style.display='none';
+        return;
+      }
+      var d=Math.floor(diff/86400000);
+      var h=Math.floor((diff%86400000)/3600000);
+      var m=Math.floor((diff%3600000)/60000);
+      var s=Math.floor((diff%60000)/1000);
+      var hStr=(d>0?d+'d ':'')+(h<10?'0':'')+h;
+      el.textContent=hStr+':'+(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+    } else {
+      var diff2=dailyEnd-now;
+      if(diff2<=0){dailyEnd=new Date();dailyEnd.setDate(dailyEnd.getDate()+1);dailyEnd.setHours(23,59,59,0);return;}
+      var h2=Math.floor(diff2/3600000);var m2=Math.floor((diff2%3600000)/60000);var s2=Math.floor((diff2%60000)/1000);
+      el.textContent=(h2<10?'0':'')+h2+':'+(m2<10?'0':'')+m2+':'+(s2<10?'0':'')+s2;
+    }
   },1000);
 })();
+
+// Picks the soonest expiry date among active promos (23:59:59 of that day) as the countdown target
+function computeSaleTimerTarget(){
+  var withExpiry=homePromos
+    .filter(function(p){return p.expiry;})
+    .map(function(p){var d=new Date(p.expiry+'T23:59:59');return d;})
+    .filter(function(d){return !isNaN(d.getTime());});
+  if(withExpiry.length){
+    withExpiry.sort(function(a,b){return a-b;});
+    saleTimerEnd=withExpiry[0];
+    var banner=document.getElementById('sale-banner');
+    if(banner) banner.style.display='';
+  } else {
+    saleTimerEnd=null;
+  }
+}
 
 // SCROLL REVEAL
 var revealObserver=new IntersectionObserver(function(entries){
@@ -634,6 +670,7 @@ function loadHomePromos(){
         if(p.maxUses&&p.usedCount>=p.maxUses) return false;
         return true;
       });
+      computeSaleTimerTarget();
       renderHomePromos();
     })
     .catch(function(){homePromos=[];renderHomePromos();});
