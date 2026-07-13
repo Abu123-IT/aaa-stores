@@ -425,9 +425,9 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
     <div class="filters">
       <input id="shop-search" data-i18n-ph="search_ph" placeholder="Search products..." oninput="renderShop()"/>
       <select id="shop-cat" onchange="renderShop()">
-        <option value="All" data-i18n="cat_all">All</option><option>Electronics</option><option>Clothing</option><option>Home & Kitchen</option>
-        <option>Sports</option><option>Books</option><option>Beauty</option>
-        <option>Toys</option><option>Food & Grocery</option><option>Tools</option>
+        <option value="All" data-i18n="cat_all">All</option><option value="Electronics" data-cat="Electronics">Electronics</option><option value="Clothing" data-cat="Clothing">Clothing</option><option value="Home & Kitchen" data-cat="Home & Kitchen">Home & Kitchen</option>
+        <option value="Sports" data-cat="Sports">Sports</option><option value="Books" data-cat="Books">Books</option><option value="Beauty" data-cat="Beauty">Beauty</option>
+        <option value="Toys" data-cat="Toys">Toys</option><option value="Food & Grocery" data-cat="Food & Grocery">Food & Grocery</option><option value="Tools" data-cat="Tools">Tools</option>
       </select>
     </div>
     <div class="result-count" id="result-count"></div>
@@ -791,6 +791,7 @@ function setLang(l){
 function applyLanguage(){
   document.querySelectorAll('[data-i18n]').forEach(function(el){el.textContent=t(el.getAttribute('data-i18n'));});
   document.querySelectorAll('[data-i18n-ph]').forEach(function(el){el.placeholder=t(el.getAttribute('data-i18n-ph'));});
+  document.querySelectorAll('#shop-cat option[data-cat]').forEach(function(el){el.textContent=tp(el.getAttribute('data-cat'));});
   document.documentElement.lang=currentLang;
   // Re-render dynamic sections so JS-generated text (cards, cart, checkout, etc.) reflects the new language
   if(typeof products!=='undefined'&&products.length){renderHome();}
