@@ -17,6 +17,8 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
 .nav-btn:hover,.nav-btn.active{background:#f1f5f9;color:#1e293b}
 .nav-right{display:flex;align-items:center;gap:10px}
 .search-wrap{position:relative}
+.lang-select{border:1.5px solid #e2e8f0;border-radius:10px;padding:8px 10px;font-size:13px;font-weight:600;background:#fff;cursor:pointer;color:#334155;outline:none;transition:border-color .15s}
+.lang-select:hover,.lang-select:focus{border-color:#6366f1}
 .search-input{border:1.5px solid #e2e8f0;border-radius:12px;padding:8px 16px 8px 38px;font-size:13px;width:200px;background:#f8fafc;transition:all .2s}
 .search-input:focus{border-color:#6366f1;background:#fff;width:240px}
 .search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:14px;pointer-events:none}
@@ -44,7 +46,7 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
 @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(99,102,241,.3);border:1px solid rgba(99,102,241,.5);color:#a5b4fc;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.5px;margin-bottom:10px;backdrop-filter:blur(8px)}
 .hero-content h1{font-size:28px;font-weight:900;color:#fff;margin-bottom:7px;letter-spacing:-1px;line-height:1.15;text-shadow:0 4px 24px rgba(0,0,0,.3)}
-.hero-content h1 span{background:linear-gradient(135deg,#f59e0b,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-content h1 .hero-love{background:linear-gradient(135deg,#f59e0b,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .hero-content p{font-size:13px;color:#cbd5e1;margin-bottom:14px;line-height:1.55;max-width:460px;margin-left:auto;margin-right:auto}
 .hero-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
 .btn-primary{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;border:none;padding:10px 26px;border-radius:50px;font-size:13px;font-weight:700;box-shadow:0 6px 24px rgba(245,158,11,.5);transition:all .25s;cursor:pointer}
@@ -67,7 +69,7 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
 .section{padding:40px 32px}
 .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
 .section-title{font-size:22px;font-weight:900;color:#1e293b;letter-spacing:-0.5px}
-.section-title span{color:#6366f1}
+.section-title .accent{color:#6366f1}
 .section-link{font-size:13px;color:#6366f1;font-weight:700;cursor:pointer;text-decoration:none}
 .section-link:hover{text-decoration:underline}
 
@@ -280,7 +282,8 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
 
 @media(max-width:768px){
   nav{padding:0 16px;height:56px}
-  .search-input{width:120px}.search-input:focus{width:150px}
+  .search-input{width:110px}.search-input:focus{width:140px}
+  .lang-select{padding:6px 4px;font-size:11px;max-width:64px}
   .hero-content h1{font-size:22px}
   .hero-stats{flex-wrap:wrap}
   .hero-stat{padding:6px 12px}
@@ -298,23 +301,23 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
   <div class="modal">
     <button class="modal-close" onclick="closeAuth()">✕</button>
     <div id="login-form">
-      <h2>Welcome Back! 👋</h2>
-      <p>Login to track your orders and get exclusive deals</p>
-      <input type="email" id="auth-email" placeholder="Email address"/>
-      <input type="password" id="auth-pass" placeholder="Password"/>
+      <h2 data-i18n="auth_welcome">Welcome Back! 👋</h2>
+      <p data-i18n="auth_login_sub">Login to track your orders and get exclusive deals</p>
+      <input type="email" id="auth-email" data-i18n-ph="auth_email_ph" placeholder="Email address"/>
+      <input type="password" id="auth-pass" data-i18n-ph="auth_pass_ph" placeholder="Password"/>
       <div class="modal-error" id="auth-error"></div>
-      <button class="modal-btn" onclick="doLogin()">Login →</button>
-      <div class="modal-switch">Don't have an account? <span onclick="showRegister()">Sign Up Free</span></div>
+      <button class="modal-btn" onclick="doLogin()" data-i18n="auth_login_btn">Login →</button>
+      <div class="modal-switch"><span data-i18n="auth_noaccount">Don't have an account?</span> <span onclick="showRegister()" data-i18n="auth_signup">Sign Up Free</span></div>
     </div>
     <div id="register-form" style="display:none">
-      <h2>Join AAA Stores! 🎉</h2>
-      <p>Create your account and start shopping</p>
-      <input type="text" id="reg-name" placeholder="Full Name"/>
-      <input type="email" id="reg-email" placeholder="Email address"/>
-      <input type="password" id="reg-pass" placeholder="Password (min 6 chars)"/>
+      <h2 data-i18n="auth_register_title">Join AAA Stores! 🎉</h2>
+      <p data-i18n="auth_register_sub">Create your account and start shopping</p>
+      <input type="text" id="reg-name" data-i18n-ph="auth_name_ph" placeholder="Full Name"/>
+      <input type="email" id="reg-email" data-i18n-ph="auth_email_ph" placeholder="Email address"/>
+      <input type="password" id="reg-pass" data-i18n-ph="auth_pass_hint_ph" placeholder="Password (min 6 chars)"/>
       <div class="modal-error" id="reg-error"></div>
-      <button class="modal-btn" onclick="doRegister()">Create Account →</button>
-      <div class="modal-switch">Already registered? <span onclick="showLogin()">Login</span></div>
+      <button class="modal-btn" onclick="doRegister()" data-i18n="auth_create_btn">Create Account →</button>
+      <div class="modal-switch"><span data-i18n="auth_already">Already registered?</span> <span onclick="showLogin()" data-i18n="auth_login_link">Login</span></div>
     </div>
   </div>
 </div>
@@ -322,17 +325,23 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
 <nav>
   <div class="logo" onclick="goPage('home')">🏪 AAA<span>Stores</span></div>
   <div class="nav-links">
-    <button class="nav-btn active" id="nb-home" onclick="goPage('home')">🏠 Home</button>
-    <button class="nav-btn" id="nb-shop" onclick="goPage('shop')">🛍️ Shop</button>
-    <button class="nav-btn" id="nb-myorders" onclick="goPage('myorders')" style="display:none">📦 My Orders</button>
+    <button class="nav-btn active" id="nb-home" onclick="goPage('home')" data-i18n="nav_home">🏠 Home</button>
+    <button class="nav-btn" id="nb-shop" onclick="goPage('shop')" data-i18n="nav_shop">🛍️ Shop</button>
+    <button class="nav-btn" id="nb-myorders" onclick="goPage('myorders')" style="display:none" data-i18n="nav_myorders">📦 My Orders</button>
   </div>
   <div class="nav-right">
+    <select class="lang-select" id="lang-select" onchange="setLang(this.value)" title="Select language / භාෂාව / மொழி / 语言">
+      <option value="en">🇬🇧 English</option>
+      <option value="si">🇱🇰 සිංහල</option>
+      <option value="ta">🇮🇳 தமிழ்</option>
+      <option value="zh">🇨🇳 中文</option>
+    </select>
     <div class="search-wrap">
       <span class="search-icon">🔍</span>
-      <input class="search-input" id="nav-search" placeholder="Search products..." oninput="navSearch(this.value)"/>
+      <input class="search-input" id="nav-search" data-i18n-ph="search_ph" placeholder="Search products..." oninput="navSearch(this.value)"/>
     </div>
     <button class="cart-btn" onclick="goPage('cart')">🛒 <span class="cart-count" id="cart-count">0</span></button>
-    <button class="user-btn" id="user-btn" onclick="openAuth()">Login</button>
+    <button class="user-btn" id="user-btn" onclick="openAuth()" data-i18n="nav_login">Login</button>
   </div>
 </nav>
 
@@ -340,7 +349,7 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
 <div class="page active" id="page-home">
   <div class="sale-banner" id="sale-banner">
     <div class="sale-banner-inner">
-      <span>🔥 MEGA SALE — Up to 50% OFF!</span>
+      <span data-i18n="sale_banner_text">🔥 MEGA SALE — Up to 50% OFF!</span>
       <span class="sale-timer-box" id="sale-timer">00:00:00</span>
       <span id="sale-banner-code">Use code: <strong>SAVE50</strong></span>
     </div>
@@ -350,48 +359,48 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="hero-tag">✨ Sri Lanka's Favourite Online Store</div>
-      <h1>Shop Everything<br/>You <span>Love</span></h1>
-      <p>Discover thousands of products at unbeatable prices. Fast delivery, easy returns, and amazing deals every day!</p>
+      <div class="hero-tag" data-i18n="hero_tag">✨ Sri Lanka's Favourite Online Store</div>
+      <h1><span data-i18n="hero_h1_line1">Shop Everything</span><br/><span data-i18n="hero_h1_line2">You</span> <span class="hero-love" data-i18n="hero_h1_love">Love</span></h1>
+      <p data-i18n="hero_desc">Discover thousands of products at unbeatable prices. Fast delivery, easy returns, and amazing deals every day!</p>
       <div class="hero-btns">
-        <button class="btn-primary" onclick="goPage('shop')">Shop Now →</button>
-        <button class="btn-outline" onclick="openAuth()">Join & Save 🎁</button>
+        <button class="btn-primary" onclick="goPage('shop')" data-i18n="hero_shopnow">Shop Now →</button>
+        <button class="btn-outline" onclick="openAuth()" data-i18n="hero_join">Join & Save 🎁</button>
       </div>
       <div class="hero-stats">
-        <div class="hero-stat"><div class="hero-stat-num">1000+</div><div class="hero-stat-label">Products</div></div>
-        <div class="hero-stat"><div class="hero-stat-num">5000+</div><div class="hero-stat-label">Customers</div></div>
-        <div class="hero-stat"><div class="hero-stat-num">24/7</div><div class="hero-stat-label">Support</div></div>
-        <div class="hero-stat"><div class="hero-stat-num">Free</div><div class="hero-stat-label">Delivery</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">1000+</div><div class="hero-stat-label" data-i18n="hero_stat_products">Products</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">5000+</div><div class="hero-stat-label" data-i18n="hero_stat_customers">Customers</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">24/7</div><div class="hero-stat-label" data-i18n="hero_stat_support">Support</div></div>
+        <div class="hero-stat"><div class="hero-stat-num" data-i18n="hero_stat_free">Free</div><div class="hero-stat-label" data-i18n="hero_stat_delivery">Delivery</div></div>
       </div>
     </div>
   </div>
   <div class="features-bar">
     <div class="features-inner">
-      <div class="feature-item reveal"><span>🚚</span><span>Free Delivery</span></div>
-      <div class="feature-item reveal"><span>🔒</span><span>Secure Payment</span></div>
-      <div class="feature-item reveal"><span>↩️</span><span>Easy Returns</span></div>
-      <div class="feature-item reveal"><span>💬</span><span>24/7 Support</span></div>
-      <div class="feature-item reveal"><span>✅</span><span>100% Genuine</span></div>
+      <div class="feature-item reveal"><span>🚚</span><span data-i18n="feat_delivery">Free Delivery</span></div>
+      <div class="feature-item reveal"><span>🔒</span><span data-i18n="feat_secure">Secure Payment</span></div>
+      <div class="feature-item reveal"><span>↩️</span><span data-i18n="feat_returns">Easy Returns</span></div>
+      <div class="feature-item reveal"><span>💬</span><span data-i18n="feat_support">24/7 Support</span></div>
+      <div class="feature-item reveal"><span>✅</span><span data-i18n="feat_genuine">100% Genuine</span></div>
     </div>
   </div>
   <div class="section">
     <div class="section-header">
-      <h2 class="section-title">Shop by <span>Category</span></h2>
-      <a class="section-link" onclick="goPage('shop')">View All →</a>
+      <h2 class="section-title"><span data-i18n="cat_title_pre">Shop by</span> <span class="accent" data-i18n="cat_title_span">Category</span></h2>
+      <a class="section-link" onclick="goPage('shop')" data-i18n="cat_viewall">View All →</a>
     </div>
-    <div class="cat-grid" id="cat-grid"><p style="color:#94a3b8">Loading...</p></div>
+    <div class="cat-grid" id="cat-grid"><p style="color:#94a3b8" data-i18n="loading">Loading...</p></div>
   </div>
   <div class="section" style="padding-top:0;background:#fff">
     <div class="section-header">
-      <h2 class="section-title">⭐ Featured <span>Products</span></h2>
-      <a class="section-link" onclick="goPage('shop')">See All →</a>
+      <h2 class="section-title"><span data-i18n="featured_title_pre">⭐ Featured</span> <span class="accent" data-i18n="featured_title_span">Products</span></h2>
+      <a class="section-link" onclick="goPage('shop')" data-i18n="featured_seeall">See All →</a>
     </div>
-    <div class="prod-grid" id="featured-grid"><p style="color:#94a3b8">Loading...</p></div>
+    <div class="prod-grid" id="featured-grid"><p style="color:#94a3b8" data-i18n="loading">Loading...</p></div>
   </div>
   <div class="testimonials">
     <div class="testimonials-header">
-      <h2>What Our Customers Say 💬</h2>
-      <p>Join thousands of happy shoppers across Sri Lanka</p>
+      <h2 data-i18n="testimonials_title">What Our Customers Say 💬</h2>
+      <p data-i18n="testimonials_sub">Join thousands of happy shoppers across Sri Lanka</p>
     </div>
     <div class="reviews-grid">
       <div class="review-card reveal"><div class="review-stars">★★★★★</div><p class="review-text">"Amazing shopping experience! Products arrived in perfect condition and quality exceeded my expectations. Will definitely order again!"</p><div class="review-author"><div class="review-avatar" style="background:linear-gradient(135deg,#6366f1,#3b82f6)">N</div><div><div class="review-name">Nimal Perera</div><div class="review-meta">Colombo • Verified Buyer</div></div></div></div>
@@ -401,12 +410,12 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
   </div>
   <footer class="footer">
     <div class="footer-grid">
-      <div class="footer-brand reveal"><h3>🏪 AAA Stores</h3><p>Your one-stop destination for everything you need. Quality products, unbeatable prices, and fast delivery across Sri Lanka.</p><div class="social-links"><a class="social-btn">📘</a><a class="social-btn">📸</a><a class="social-btn">💬</a><a class="social-btn">🎵</a></div></div>
-      <div class="footer-col reveal"><h4>Quick Links</h4><ul><li><a onclick="goPage('home')">Home</a></li><li><a onclick="goPage('shop')">Shop All</a></li><li><a onclick="openAuth()">My Account</a></li><li><a onclick="goPage('myorders')">My Orders</a></li></ul></div>
-      <div class="footer-col reveal"><h4>Categories</h4><ul><li><a onclick="filterCat('Electronics')">Electronics</a></li><li><a onclick="filterCat('Clothing')">Clothing</a></li><li><a onclick="filterCat('Home & Kitchen')">Home & Kitchen</a></li><li><a onclick="filterCat('Beauty')">Beauty</a></li><li><a onclick="filterCat('Sports')">Sports</a></li></ul></div>
-      <div class="footer-col reveal"><h4>Contact Us</h4><div class="footer-info-item"><span>📍</span><span>123 Main Street, Colombo 03</span></div><div class="footer-info-item"><span>📞</span><span>+94 11 234 5678</span></div><div class="footer-info-item"><span>📧</span><span>info@aaastores.lk</span></div><div class="footer-info-item"><span>🕐</span><span>Mon–Sat: 8:00 AM – 9:00 PM</span></div></div>
+      <div class="footer-brand reveal"><h3>🏪 AAA Stores</h3><p data-i18n="footer_desc">Your one-stop destination for everything you need. Quality products, unbeatable prices, and fast delivery across Sri Lanka.</p><div class="social-links"><a class="social-btn">📘</a><a class="social-btn">📸</a><a class="social-btn">💬</a><a class="social-btn">🎵</a></div></div>
+      <div class="footer-col reveal"><h4 data-i18n="footer_quicklinks">Quick Links</h4><ul><li><a onclick="goPage('home')" data-i18n="footer_home">Home</a></li><li><a onclick="goPage('shop')" data-i18n="footer_shopall">Shop All</a></li><li><a onclick="openAuth()" data-i18n="footer_myaccount">My Account</a></li><li><a onclick="goPage('myorders')" data-i18n="footer_myorders">My Orders</a></li></ul></div>
+      <div class="footer-col reveal"><h4 data-i18n="footer_categories">Categories</h4><ul><li><a onclick="filterCat('Electronics')">Electronics</a></li><li><a onclick="filterCat('Clothing')">Clothing</a></li><li><a onclick="filterCat('Home & Kitchen')">Home & Kitchen</a></li><li><a onclick="filterCat('Beauty')">Beauty</a></li><li><a onclick="filterCat('Sports')">Sports</a></li></ul></div>
+      <div class="footer-col reveal"><h4 data-i18n="footer_contact">Contact Us</h4><div class="footer-info-item"><span>📍</span><span>123 Main Street, Colombo 03</span></div><div class="footer-info-item"><span>📞</span><span>+94 11 234 5678</span></div><div class="footer-info-item"><span>📧</span><span>info@aaastores.lk</span></div><div class="footer-info-item"><span>🕐</span><span data-i18n="footer_hours">Mon–Sat: 8:00 AM – 9:00 PM</span></div></div>
     </div>
-    <div class="footer-bottom"><p>© 2026 AAA Stores. All rights reserved. Made with ❤️ in Sri Lanka</p><div class="footer-badges"><span class="footer-badge">🔒 Secure</span><span class="footer-badge">✅ Verified</span><span class="footer-badge">🚚 Free Delivery</span></div></div>
+    <div class="footer-bottom"><p data-i18n="footer_copyright">© 2026 AAA Stores. All rights reserved. Made with ❤️ in Sri Lanka</p><div class="footer-badges"><span class="footer-badge" data-i18n="footer_badge_secure">🔒 Secure</span><span class="footer-badge" data-i18n="footer_badge_verified">✅ Verified</span><span class="footer-badge" data-i18n="footer_badge_delivery">🚚 Free Delivery</span></div></div>
   </footer>
 </div>
 
@@ -414,9 +423,9 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
 <div class="page" id="page-shop">
   <div style="padding:24px 32px">
     <div class="filters">
-      <input id="shop-search" placeholder="Search products..." oninput="renderShop()"/>
+      <input id="shop-search" data-i18n-ph="search_ph" placeholder="Search products..." oninput="renderShop()"/>
       <select id="shop-cat" onchange="renderShop()">
-        <option>All</option><option>Electronics</option><option>Clothing</option><option>Home & Kitchen</option>
+        <option data-i18n="cat_all">All</option><option>Electronics</option><option>Clothing</option><option>Home & Kitchen</option>
         <option>Sports</option><option>Books</option><option>Beauty</option>
         <option>Toys</option><option>Food & Grocery</option><option>Tools</option>
       </select>
@@ -429,17 +438,17 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
 <!-- PRODUCT DETAIL -->
 <div class="page" id="page-product">
   <div class="detail-container">
-    <button class="back-btn" onclick="goPage('shop')">← Back to Shop</button>
+    <button class="back-btn" onclick="goPage('shop')" data-i18n="detail_back">← Back to Shop</button>
     <div class="detail-card">
       <div class="detail-img" id="d-img"></div>
       <div class="detail-body">
         <span class="badge" id="d-cat"></span>
         <h2 style="font-size:24px;font-weight:800;margin:12px 0 8px;letter-spacing:-0.5px" id="d-name"></h2>
-        <div class="stars" style="font-size:14px">★★★★☆ <span style="color:#94a3b8;font-size:12px">(48 reviews)</span></div>
+        <div class="stars" style="font-size:14px">★★★★☆ <span style="color:#94a3b8;font-size:12px" data-i18n="detail_reviews">(48 reviews)</span></div>
         <p style="color:#64748b;margin-top:12px;line-height:1.7;font-size:14px" id="d-desc"></p>
         <div class="detail-price" id="d-price"></div>
         <div class="qty-selector">
-          <span style="font-size:14px;color:#64748b;font-weight:600">Quantity:</span>
+          <span style="font-size:14px;color:#64748b;font-weight:600" data-i18n="detail_qty">Quantity:</span>
           <div class="qty-box">
             <button class="qty-btn" onclick="changeDetailQty(-1)">−</button>
             <span id="d-qty" style="font-size:18px;font-weight:800;min-width:28px;text-align:center">1</span>
@@ -464,35 +473,35 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
 <!-- CHECKOUT -->
 <div class="page" id="page-checkout">
   <div class="checkout-container">
-    <h2 style="font-size:22px;font-weight:800;margin-bottom:20px">Checkout</h2>
+    <h2 style="font-size:22px;font-weight:800;margin-bottom:20px" data-i18n="checkout_title">Checkout</h2>
     <div class="card-wrap" style="padding:22px;margin-bottom:14px">
-      <h3 style="font-size:15px;font-weight:700;margin-bottom:14px">📦 Delivery Details</h3>
-      <div class="form-group"><label>Full Name *</label><input id="f-name" type="text" placeholder="Your full name"/></div>
-      <div class="form-group"><label>Phone Number *</label><input id="f-phone" type="tel" placeholder="07XXXXXXXX — numbers only"/></div>
-      <div class="form-group"><label>Email Address *</label><input id="f-email" type="email" placeholder="example@gmail.com"/></div>
-      <div class="form-group"><label>Delivery Address *</label><input id="f-address" type="text" placeholder="Full address with city"/></div>
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:14px" data-i18n="checkout_delivery_details">📦 Delivery Details</h3>
+      <div class="form-group"><label data-i18n="checkout_fullname">Full Name *</label><input id="f-name" type="text" data-i18n-ph="checkout_fullname_ph" placeholder="Your full name"/></div>
+      <div class="form-group"><label data-i18n="checkout_phone">Phone Number *</label><input id="f-phone" type="tel" data-i18n-ph="checkout_phone_ph" placeholder="07XXXXXXXX — numbers only"/></div>
+      <div class="form-group"><label data-i18n="checkout_email">Email Address *</label><input id="f-email" type="email" placeholder="example@gmail.com"/></div>
+      <div class="form-group"><label data-i18n="checkout_address">Delivery Address *</label><input id="f-address" type="text" data-i18n-ph="checkout_address_ph" placeholder="Full address with city"/></div>
     </div>
 
     <!-- PROMO CODE -->
     <div class="promo-wrap">
-      <label>🎟️ Promo Code</label>
+      <label data-i18n="promo_label">🎟️ Promo Code</label>
       <div class="promo-input-row">
-        <input class="promo-input" id="promo-input" placeholder="ENTER CODE" oninput="this.value=this.value.toUpperCase()"/>
-        <button class="btn-apply" onclick="applyPromo()">Apply</button>
+        <input class="promo-input" id="promo-input" data-i18n-ph="promo_ph" placeholder="ENTER CODE" oninput="this.value=this.value.toUpperCase()"/>
+        <button class="btn-apply" onclick="applyPromo()" data-i18n="promo_apply">Apply</button>
       </div>
       <div class="promo-result" id="promo-result"></div>
     </div>
 
     <div class="card-wrap" style="padding:18px;margin-bottom:14px">
-      <h3 style="font-size:15px;font-weight:700;margin-bottom:12px">🧾 Order Summary</h3>
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:12px" data-i18n="checkout_summary_title">🧾 Order Summary</h3>
       <div id="checkout-items"></div>
       <div id="checkout-discount-row" style="display:none;color:#059669;font-weight:700;font-size:14px;padding:8px 0;border-top:1px solid #f1f5f9;margin-top:6px"></div>
       <div style="border-top:1px solid #e2e8f0;padding-top:12px;margin-top:8px;display:flex;justify-content:space-between;font-weight:800;font-size:18px">
-        <span>Total</span><span style="color:#6366f1" id="checkout-total"></span>
+        <span data-i18n="checkout_total_label">Total</span><span style="color:#6366f1" id="checkout-total"></span>
       </div>
     </div>
-    <div class="cod-notice">💳 Cash on Delivery — Pay safely when your order arrives at your door.</div>
-    <button class="btn-green" id="place-order-btn" onclick="placeOrder()">Place Order ✓</button>
+    <div class="cod-notice" data-i18n="checkout_cod_notice">💳 Cash on Delivery — Pay safely when your order arrives at your door.</div>
+    <button class="btn-green" id="place-order-btn" onclick="placeOrder()" data-i18n="checkout_placeorder">Place Order ✓</button>
   </div>
 </div>
 
@@ -500,12 +509,12 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
 <div class="page" id="page-confirmation">
   <div class="confirm-container">
     <div class="confirm-icon">🎉</div>
-    <h2 style="font-size:26px;font-weight:900;margin-bottom:10px;letter-spacing:-0.5px">Order Placed!</h2>
+    <h2 style="font-size:26px;font-weight:900;margin-bottom:10px;letter-spacing:-0.5px" data-i18n="confirm_title">Order Placed!</h2>
     <p style="color:#64748b;margin-bottom:22px;font-size:15px" id="conf-msg"></p>
     <div class="confirm-card" id="conf-details"></div>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <button class="btn-dark" onclick="goPage('home')">Continue Shopping</button>
-      <button class="btn-dark" style="background:#6366f1" id="view-orders-btn" onclick="goPage('myorders')">View My Orders</button>
+      <button class="btn-dark" onclick="goPage('home')" data-i18n="confirm_continue">Continue Shopping</button>
+      <button class="btn-dark" style="background:#6366f1" id="view-orders-btn" onclick="goPage('myorders')" data-i18n="confirm_vieworders">View My Orders</button>
     </div>
   </div>
 </div>
@@ -513,8 +522,8 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
 <!-- MY ORDERS -->
 <div class="page" id="page-myorders">
   <div class="orders-container">
-    <h2 style="font-size:22px;font-weight:800;margin-bottom:20px">📦 My Orders</h2>
-    <div id="my-orders-list"><p style="color:#64748b">Loading your orders...</p></div>
+    <h2 style="font-size:22px;font-weight:800;margin-bottom:20px" data-i18n="myorders_title">📦 My Orders</h2>
+    <div id="my-orders-list"><p style="color:#64748b" data-i18n="loading_orders">Loading your orders...</p></div>
   </div>
 </div>
 
@@ -534,6 +543,261 @@ firebase.initializeApp({
 });
 const db=firebase.firestore();
 const auth=firebase.auth();
+
+// ============ MULTI-LANGUAGE (English / Sinhala / Tamil / Chinese) ============
+const LANG={
+  en:{
+    nav_home:"🏠 Home",nav_shop:"🛍️ Shop",nav_myorders:"📦 My Orders",nav_login:"Login",nav_logout:"Logout",
+    search_ph:"Search products...",
+    sale_banner_text:"🔥 MEGA SALE — Up to 50% OFF!",
+    hero_tag:"✨ Sri Lanka's Favourite Online Store",
+    hero_h1_line1:"Shop Everything",hero_h1_line2:"You",hero_h1_love:"Love",
+    hero_desc:"Discover thousands of products at unbeatable prices. Fast delivery, easy returns, and amazing deals every day!",
+    hero_shopnow:"Shop Now →",hero_join:"Join & Save 🎁",
+    hero_stat_products:"Products",hero_stat_customers:"Customers",hero_stat_support:"Support",hero_stat_free:"Free",hero_stat_delivery:"Delivery",
+    feat_delivery:"Free Delivery",feat_secure:"Secure Payment",feat_returns:"Easy Returns",feat_support:"24/7 Support",feat_genuine:"100% Genuine",
+    cat_title_pre:"Shop by",cat_title_span:"Category",cat_viewall:"View All →",cat_all:"All",
+    featured_title_pre:"⭐ Featured",featured_title_span:"Products",featured_seeall:"See All →",
+    loading:"Loading...",loading_orders:"Loading your orders...",
+    testimonials_title:"What Our Customers Say 💬",testimonials_sub:"Join thousands of happy shoppers across Sri Lanka",
+    footer_desc:"Your one-stop destination for everything you need. Quality products, unbeatable prices, and fast delivery across Sri Lanka.",
+    footer_quicklinks:"Quick Links",footer_home:"Home",footer_shopall:"Shop All",footer_myaccount:"My Account",footer_myorders:"My Orders",
+    footer_categories:"Categories",footer_contact:"Contact Us",footer_hours:"Mon–Sat: 8:00 AM – 9:00 PM",
+    footer_copyright:"© 2026 AAA Stores. All rights reserved. Made with ❤️ in Sri Lanka",
+    footer_badge_secure:"🔒 Secure",footer_badge_verified:"✅ Verified",footer_badge_delivery:"🚚 Free Delivery",
+    detail_back:"← Back to Shop",detail_reviews:"(48 reviews)",detail_qty:"Quantity:",detail_add_template:"🛒 Add {qty} to Cart — {price}",
+    checkout_title:"Checkout",checkout_delivery_details:"📦 Delivery Details",
+    checkout_fullname:"Full Name *",checkout_fullname_ph:"Your full name",
+    checkout_phone:"Phone Number *",checkout_phone_ph:"07XXXXXXXX — numbers only",
+    checkout_email:"Email Address *",checkout_address:"Delivery Address *",checkout_address_ph:"Full address with city",
+    promo_label:"🎟️ Promo Code",promo_ph:"ENTER CODE",promo_apply:"Apply",
+    checkout_summary_title:"🧾 Order Summary",checkout_total_label:"Total",
+    checkout_cod_notice:"💳 Cash on Delivery — Pay safely when your order arrives at your door.",
+    checkout_placeorder:"Place Order ✓",checkout_placing:"Placing Order...",
+    confirm_title:"Order Placed!",confirm_continue:"Continue Shopping",confirm_vieworders:"View My Orders",
+    myorders_title:"📦 My Orders",
+    auth_welcome:"Welcome Back! 👋",auth_login_sub:"Login to track your orders and get exclusive deals",
+    auth_email_ph:"Email address",auth_pass_ph:"Password",auth_login_btn:"Login →",
+    auth_noaccount:"Don't have an account?",auth_signup:"Sign Up Free",
+    auth_register_title:"Join AAA Stores! 🎉",auth_register_sub:"Create your account and start shopping",
+    auth_name_ph:"Full Name",auth_pass_hint_ph:"Password (min 6 chars)",auth_create_btn:"Create Account →",
+    auth_already:"Already registered?",auth_login_link:"Login",
+    auth_error_login:"The email or password you entered is incorrect. Please try again, or continue browsing as a guest.",
+    auth_error_name:"Please enter your name.",
+    // dynamic JS strings
+    cart_title:"Your Cart",cart_items_suffix:"items",cart_empty:"Your cart is empty.",cart_start_shopping:"Start Shopping",
+    cart_each:"each",cart_subtotal:"Subtotal",cart_delivery_free:"Free 🎉",cart_delivery:"Delivery",cart_total:"Total",cart_checkout_btn:"Proceed to Checkout →",
+    promo_prefix:"🎟️ Promo:",
+    badge_new:"NEW",badge_sale:"SALE",badge_hot:"🔥 HOT",
+    stock_in_stock:"in stock",stock_only_left:"Only",stock_left_suffix:"left!",stock_out:"Out of stock",
+    btn_add_cart:"🛒 Add to Cart",btn_out_of_stock:"Out of Stock",
+    notif_out_of_stock:"Sorry, out of stock.",notif_only_available:"Only",notif_available_suffix:"available.",
+    notif_added_cart:"added to cart! 🛒",
+    notif_fill_fields:"Please fill all required fields.",notif_phone_numbers:"Phone number must contain numbers only!",notif_valid_email:"Please enter a valid email address!",
+    promo_enter_code:"Please enter a promo code.",promo_add_items:"Add items to cart first.",
+    promo_invalid:"❌ Invalid or expired promo code.",promo_min_required:"❌ Minimum order of",promo_required_suffix:"required for this code.",
+    promo_max_uses:"❌ This promo code has reached its usage limit.",promo_applied:"✅ Promo applied! You save",promo_error:"Error checking code.",
+    myorders_login_prompt:"Please login to view your orders.",myorders_login_btn:"Login",
+    myorders_none:"No orders yet. Start shopping!",myorders_shopnow:"Shop Now",
+    myorders_total:"Total:",
+    confirm_thankyou:"Thank you,",confirm_thankyou_suffix:"! Your order has been received and will be delivered soon.",
+    confirm_name:"Name",confirm_total:"Total",confirm_discount:"Discount",confirm_address:"Address",confirm_status:"Status",confirm_status_pending:"Pending",
+    welcome_back:"Welcome back! 👋",welcome_to_store:"Welcome to AAA Stores,",logged_out:"Logged out. See you soon!",
+    order_error_prefix:"Error:"
+  },
+  si:{
+    nav_home:"🏠 මුල් පිටුව",nav_shop:"🛍️ සාප්පුව",nav_myorders:"📦 මගේ ඇණවුම්",nav_login:"පිවිසෙන්න",nav_logout:"ඉවත් වන්න",
+    search_ph:"නිෂ්පාදන සොයන්න...",
+    sale_banner_text:"🔥 මහා අලෙවිය — 50% දක්වා වට්ටම්!",
+    hero_tag:"✨ ශ්‍රී ලංකාවේ ප්‍රියතම මාර්ගගත සාප්පුව",
+    hero_h1_line1:"ඔබට ඕන සියල්ල",hero_h1_line2:"මිලදී ගන්න",hero_h1_love:"මෙතනින්",
+    hero_desc:"දහස් ගණන් නිෂ්පාදන අති අඩු මිලට. වේගවත් බෙදාහැරීම, පහසු ආපසු ගෙවීම්, සහ දිනපතා විශිෂ්ට වට්ටම්!",
+    hero_shopnow:"මිලදී ගන්න →",hero_join:"එකතු වී ඉතිරි කරන්න 🎁",
+    hero_stat_products:"නිෂ්පාදන",hero_stat_customers:"පාරිභෝගිකයින්",hero_stat_support:"සහාය",hero_stat_free:"නොමිලේ",hero_stat_delivery:"බෙදාහැරීම",
+    feat_delivery:"නොමිලේ බෙදාහැරීම",feat_secure:"ආරක්ෂිත ගෙවීම",feat_returns:"පහසු ආපසු දීම",feat_support:"24/7 සහාය",feat_genuine:"100% සැබෑ භාණ්ඩ",
+    cat_title_pre:"කාණ්ඩ අනුව",cat_title_span:"සාප්පු යන්න",cat_viewall:"සියල්ල බලන්න →",cat_all:"සියල්ල",
+    featured_title_pre:"⭐ විශේෂ",featured_title_span:"නිෂ්පාදන",featured_seeall:"සියල්ල බලන්න →",
+    loading:"පූරණය වෙමින්...",loading_orders:"ඔබේ ඇණවුම් පූරණය වෙමින්...",
+    testimonials_title:"අපගේ පාරිභෝගිකයින් පවසන දේ 💬",testimonials_sub:"ශ්‍රී ලංකාව පුරා සතුටින් සිටින දහස් ගණන් සාප්පු කරන්නන් සමඟ එකතු වන්න",
+    footer_desc:"ඔබට අවශ්‍ය සියල්ල එකම තැනකින්. උසස් තත්ත්වයේ නිෂ්පාදන, අති අඩු මිල, සහ ශ්‍රී ලංකාව පුරා වේගවත් බෙදාහැරීම.",
+    footer_quicklinks:"ඉක්මන් සබැඳි",footer_home:"මුල් පිටුව",footer_shopall:"සියල්ල බලන්න",footer_myaccount:"මගේ ගිණුම",footer_myorders:"මගේ ඇණවුම්",
+    footer_categories:"කාණ්ඩ",footer_contact:"අප අමතන්න",footer_hours:"සඳුදා–සෙනසුරාදා: උදේ 8.00 – රාත්‍රී 9.00",
+    footer_copyright:"© 2026 AAA Stores. සියලුම හිමිකම් ඇවිරිණි. ශ්‍රී ලංකාවේ ❤️ සමඟ නිර්මාණය කරන ලදී",
+    footer_badge_secure:"🔒 ආරක්ෂිත",footer_badge_verified:"✅ තහවුරු කළ",footer_badge_delivery:"🚚 නොමිලේ බෙදාහැරීම",
+    detail_back:"← සාප්පුවට ආපසු",detail_reviews:"(සමාලෝචන 48)",detail_qty:"ප්‍රමාණය:",detail_add_template:"🛒 {qty} ක් කරත්තයට එකතු කරන්න — {price}",
+    checkout_title:"ඇණවුම තහවුරු කරන්න",checkout_delivery_details:"📦 බෙදාහැරීමේ විස්තර",
+    checkout_fullname:"සම්පූර්ණ නම *",checkout_fullname_ph:"ඔබේ සම්පූර්ණ නම",
+    checkout_phone:"දුරකථන අංකය *",checkout_phone_ph:"07XXXXXXXX — අංක පමණයි",
+    checkout_email:"විද්‍යුත් තැපැල් ලිපිනය *",checkout_address:"බෙදාහැරීමේ ලිපිනය *",checkout_address_ph:"නගරය සමඟ සම්පූර්ණ ලිපිනය",
+    promo_label:"🎟️ වට්ටම් කේතය",promo_ph:"කේතය ඇතුළත් කරන්න",promo_apply:"යොදන්න",
+    checkout_summary_title:"🧾 ඇණවුම් සාරාංශය",checkout_total_label:"එකතුව",
+    checkout_cod_notice:"💳 භාණ්ඩ ලැබුනාට පසු ගෙවීම — ඔබේ ඇණවුම ලැබුනාට පසු ආරක්ෂිතව ගෙවන්න.",
+    checkout_placeorder:"ඇණවුම් කරන්න ✓",checkout_placing:"ඇණවුම් කරමින්...",
+    confirm_title:"ඇණවුම තැබුවා!",confirm_continue:"සාප්පු කිරීම දිගටම කරගෙන යන්න",confirm_vieworders:"මගේ ඇණවුම් බලන්න",
+    myorders_title:"📦 මගේ ඇණවුම්",
+    auth_welcome:"ආයුබෝවන්! 👋",auth_login_sub:"ඔබේ ඇණවුම් නිරීක්ෂණය කර විශේෂ වට්ටම් ලබාගන්න පිවිසෙන්න",
+    auth_email_ph:"විද්‍යුත් තැපැල් ලිපිනය",auth_pass_ph:"මුරපදය",auth_login_btn:"පිවිසෙන්න →",
+    auth_noaccount:"ගිණුමක් නැද්ද?",auth_signup:"නොමිලේ ලියාපදිංචි වන්න",
+    auth_register_title:"AAA Stores සමඟ එකතු වන්න! 🎉",auth_register_sub:"ඔබේ ගිණුම සාදා සාප්පු කිරීම ආරම්භ කරන්න",
+    auth_name_ph:"සම්පූර්ණ නම",auth_pass_hint_ph:"මුරපදය (අවම අක්ෂර 6)",auth_create_btn:"ගිණුම සාදන්න →",
+    auth_already:"දැනටමත් ලියාපදිංචිද?",auth_login_link:"පිවිසෙන්න",
+    auth_error_login:"ඔබ ඇතුළත් කළ විද්‍යුත් තැපෑල හෝ මුරපදය වැරදිය. නැවත උත්සාහ කරන්න, නැතහොත් ආගන්තුකයෙකු ලෙස සාප්පු කිරීම දිගටම කරගෙන යන්න.",
+    auth_error_name:"කරුණාකර ඔබේ නම ඇතුළත් කරන්න.",
+    cart_title:"ඔබේ කරත්තය",cart_items_suffix:"අයිතම",cart_empty:"ඔබේ කරත්තය හිස්ය.",cart_start_shopping:"සාප්පු කිරීම අරඹන්න",
+    cart_each:"එකකට",cart_subtotal:"උප එකතුව",cart_delivery_free:"නොමිලේ 🎉",cart_delivery:"බෙදාහැරීම",cart_total:"එකතුව",cart_checkout_btn:"ඇණවුම තහවුරු කිරීමට →",
+    promo_prefix:"🎟️ වට්ටම:",
+    badge_new:"අලුත්",badge_sale:"වට්ටම",badge_hot:"🔥 ජනප්‍රිය",
+    stock_in_stock:"තොගයේ ඇත",stock_only_left:"ඉතිරිව ඇත්තේ",stock_left_suffix:"පමණි!",stock_out:"තොගය අවසන්",
+    btn_add_cart:"🛒 කරත්තයට එකතු කරන්න",btn_out_of_stock:"තොගය අවසන්",
+    notif_out_of_stock:"සමාවන්න, තොගය අවසන්.",notif_only_available:"ඉතිරිව ඇත්තේ",notif_available_suffix:"ක් පමණි.",
+    notif_added_cart:"කරත්තයට එකතු කරන ලදී! 🛒",
+    notif_fill_fields:"කරුණාකර සියලුම අවශ්‍ය ක්ෂේත්‍ර පුරවන්න.",notif_phone_numbers:"දුරකථන අංකයේ අංක පමණක් තිබිය යුතුය!",notif_valid_email:"කරුණාකර වලංගු විද්‍යුත් තැපැල් ලිපිනයක් ඇතුළත් කරන්න!",
+    promo_enter_code:"කරුණාකර වට්ටම් කේතයක් ඇතුළත් කරන්න.",promo_add_items:"මුලින්ම භාණ්ඩ කරත්තයට එකතු කරන්න.",
+    promo_invalid:"❌ වලංගු නොවන හෝ කල් ඉකුත් වූ වට්ටම් කේතයකි.",promo_min_required:"❌ අවම ඇණවුමක්",promo_required_suffix:"මෙම කේතයට අවශ්‍යයි.",
+    promo_max_uses:"❌ මෙම වට්ටම් කේතයේ භාවිත සීමාව ඉකුත් වී ඇත.",promo_applied:"✅ වට්ටම යෙදුවා! ඔබ ඉතිරි කරන්නේ",promo_error:"කේතය පරීක්ෂා කිරීමේ දෝෂයක්.",
+    myorders_login_prompt:"ඔබේ ඇණවුම් බැලීමට කරුණාකර පිවිසෙන්න.",myorders_login_btn:"පිවිසෙන්න",
+    myorders_none:"තවම ඇණවුම් නැත. සාප්පු කිරීම ආරම්භ කරන්න!",myorders_shopnow:"දැන් සාප්පු කරන්න",
+    myorders_total:"එකතුව:",
+    confirm_thankyou:"ස්තූතියි,",confirm_thankyou_suffix:"! ඔබේ ඇණවුම ලැබී ඇති අතර ඉක්මනින් බෙදාහරිනු ලැබේ.",
+    confirm_name:"නම",confirm_total:"එකතුව",confirm_discount:"වට්ටම",confirm_address:"ලිපිනය",confirm_status:"තත්ත්වය",confirm_status_pending:"සකසමින්",
+    welcome_back:"ආයුබෝවන්! 👋",welcome_to_store:"AAA Stores වෙත සාදරයෙන් පිළිගනිමු,",logged_out:"ඉවත් විය. නැවත හමුවෙමු!",
+    order_error_prefix:"දෝෂයකි:"
+  },
+  ta:{
+    nav_home:"🏠 முகப்பு",nav_shop:"🛍️ கடை",nav_myorders:"📦 எனது ஆர்டர்கள்",nav_login:"உள்நுழைய",nav_logout:"வெளியேறு",
+    search_ph:"தயாரிப்புகளைத் தேடுங்கள்...",
+    sale_banner_text:"🔥 பெரும் தள்ளுபடி — 50% வரை!",
+    hero_tag:"✨ இலங்கையின் விருப்பமான ஆன்லைன் கடை",
+    hero_h1_line1:"நீங்கள் விரும்பும்",hero_h1_line2:"அனைத்தையும்",hero_h1_love:"வாங்குங்கள்",
+    hero_desc:"ஆயிரக்கணக்கான தயாரிப்புகளை குறைந்த விலையில் கண்டறியுங்கள். வேகமான டெலிவரி, எளிதான திரும்பப் பெறுதல், தினமும் சிறந்த சலுகைகள்!",
+    hero_shopnow:"இப்போது வாங்குங்கள் →",hero_join:"சேர்ந்து சேமிக்கவும் 🎁",
+    hero_stat_products:"தயாரிப்புகள்",hero_stat_customers:"வாடிக்கையாளர்கள்",hero_stat_support:"ஆதரவு",hero_stat_free:"இலவசம்",hero_stat_delivery:"டெலிவரி",
+    feat_delivery:"இலவச டெலிவரி",feat_secure:"பாதுகாப்பான கட்டணம்",feat_returns:"எளிதான திரும்பப் பெறுதல்",feat_support:"24/7 ஆதரவு",feat_genuine:"100% உண்மையானது",
+    cat_title_pre:"பிரிவு வாரியாக",cat_title_span:"வாங்குங்கள்",cat_viewall:"அனைத்தையும் காண →",cat_all:"அனைத்தும்",
+    featured_title_pre:"⭐ சிறப்பு",featured_title_span:"தயாரிப்புகள்",featured_seeall:"அனைத்தையும் காண →",
+    loading:"ஏற்றுகிறது...",loading_orders:"உங்கள் ஆர்டர்கள் ஏற்றப்படுகின்றன...",
+    testimonials_title:"எங்கள் வாடிக்கையாளர்கள் கூறுவது 💬",testimonials_sub:"இலங்கை முழுவதும் உள்ள ஆயிரக்கணக்கான மகிழ்ச்சியான வாடிக்கையாளர்களுடன் சேருங்கள்",
+    footer_desc:"உங்களுக்குத் தேவையான அனைத்திற்கும் ஒரே இடம். தரமான தயாரிப்புகள், குறைந்த விலைகள், இலங்கை முழுவதும் வேகமான டெலிவரி.",
+    footer_quicklinks:"விரைவு இணைப்புகள்",footer_home:"முகப்பு",footer_shopall:"அனைத்தையும் காண",footer_myaccount:"எனது கணக்கு",footer_myorders:"எனது ஆர்டர்கள்",
+    footer_categories:"பிரிவுகள்",footer_contact:"எங்களை தொடர்பு கொள்ள",footer_hours:"திங்கள்–சனி: காலை 8.00 – இரவு 9.00",
+    footer_copyright:"© 2026 AAA Stores. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை. இலங்கையில் ❤️ உடன் உருவாக்கப்பட்டது",
+    footer_badge_secure:"🔒 பாதுகாப்பானது",footer_badge_verified:"✅ சரிபார்க்கப்பட்டது",footer_badge_delivery:"🚚 இலவச டெலிவரி",
+    detail_back:"← கடைக்குத் திரும்பு",detail_reviews:"(48 மதிப்புரைகள்)",detail_qty:"அளவு:",detail_add_template:"🛒 {qty} கூடையில் சேர் — {price}",
+    checkout_title:"செக்அவுட்",checkout_delivery_details:"📦 டெலிவரி விவரங்கள்",
+    checkout_fullname:"முழு பெயர் *",checkout_fullname_ph:"உங்கள் முழு பெயர்",
+    checkout_phone:"தொலைபேசி எண் *",checkout_phone_ph:"07XXXXXXXX — எண்கள் மட்டும்",
+    checkout_email:"மின்னஞ்சல் முகவரி *",checkout_address:"டெலிவரி முகவரி *",checkout_address_ph:"நகருடன் முழு முகவரி",
+    promo_label:"🎟️ சலுகை குறியீடு",promo_ph:"குறியீட்டை உள்ளிடவும்",promo_apply:"பயன்படுத்து",
+    checkout_summary_title:"🧾 ஆர்டர் சுருக்கம்",checkout_total_label:"மொத்தம்",
+    checkout_cod_notice:"💳 டெலிவரியில் பணம் — உங்கள் ஆர்டர் வந்தவுடன் பாதுகாப்பாக பணம் செலுத்துங்கள்.",
+    checkout_placeorder:"ஆர்டர் செய்யவும் ✓",checkout_placing:"ஆர்டர் செய்யப்படுகிறது...",
+    confirm_title:"ஆர்டர் செய்யப்பட்டது!",confirm_continue:"தொடர்ந்து ஷாப்பிங் செய்யுங்கள்",confirm_vieworders:"எனது ஆர்டர்களைக் காண",
+    myorders_title:"📦 எனது ஆர்டர்கள்",
+    auth_welcome:"மீண்டும் வரவேற்கிறோம்! 👋",auth_login_sub:"உங்கள் ஆர்டர்களைக் கண்காணிக்கவும் சிறப்பு சலுகைகளைப் பெறவும் உள்நுழையவும்",
+    auth_email_ph:"மின்னஞ்சல் முகவரி",auth_pass_ph:"கடவுச்சொல்",auth_login_btn:"உள்நுழைய →",
+    auth_noaccount:"கணக்கு இல்லையா?",auth_signup:"இலவசமாக பதிவு செய்யுங்கள்",
+    auth_register_title:"AAA Stores இல் சேருங்கள்! 🎉",auth_register_sub:"உங்கள் கணக்கை உருவாக்கி ஷாப்பிங் தொடங்குங்கள்",
+    auth_name_ph:"முழு பெயர்",auth_pass_hint_ph:"கடவுச்சொல் (குறைந்தது 6 எழுத்துகள்)",auth_create_btn:"கணக்கை உருவாக்கு →",
+    auth_already:"ஏற்கனவே பதிவு செய்துள்ளீர்களா?",auth_login_link:"உள்நுழைய",
+    auth_error_login:"நீங்கள் உள்ளிட்ட மின்னஞ்சல் அல்லது கடவுச்சொல் தவறானது. மீண்டும் முயற்சிக்கவும் அல்லது விருந்தினராக தொடர்ந்து உலாவவும்.",
+    auth_error_name:"உங்கள் பெயரை உள்ளிடவும்.",
+    cart_title:"உங்கள் கூடை",cart_items_suffix:"பொருட்கள்",cart_empty:"உங்கள் கூடை காலியாக உள்ளது.",cart_start_shopping:"ஷாப்பிங் தொடங்குங்கள்",
+    cart_each:"ஒன்றுக்கு",cart_subtotal:"கூட்டுத்தொகை",cart_delivery_free:"இலவசம் 🎉",cart_delivery:"டெலிவரி",cart_total:"மொத்தம்",cart_checkout_btn:"செக்அவுட் செய்ய →",
+    promo_prefix:"🎟️ சலுகை:",
+    badge_new:"புதியது",badge_sale:"தள்ளுபடி",badge_hot:"🔥 பிரபலம்",
+    stock_in_stock:"கையிருப்பில் உள்ளது",stock_only_left:"மீதம் உள்ளது",stock_left_suffix:"மட்டுமே!",stock_out:"கையிருப்பு இல்லை",
+    btn_add_cart:"🛒 கூடையில் சேர்",btn_out_of_stock:"கையிருப்பு இல்லை",
+    notif_out_of_stock:"மன்னிக்கவும், கையிருப்பு இல்லை.",notif_only_available:"மீதம் உள்ளது",notif_available_suffix:"மட்டுமே.",
+    notif_added_cart:"கூடையில் சேர்க்கப்பட்டது! 🛒",
+    notif_fill_fields:"அனைத்து தேவையான புலங்களையும் நிரப்பவும்.",notif_phone_numbers:"தொலைபேசி எண்ணில் எண்கள் மட்டுமே இருக்க வேண்டும்!",notif_valid_email:"சரியான மின்னஞ்சல் முகவரியை உள்ளிடவும்!",
+    promo_enter_code:"சலுகை குறியீட்டை உள்ளிடவும்.",promo_add_items:"முதலில் கூடையில் பொருட்களைச் சேர்க்கவும்.",
+    promo_invalid:"❌ தவறான அல்லது காலாவதியான சலுகை குறியீடு.",promo_min_required:"❌ குறைந்தபட்ச ஆர்டர்",promo_required_suffix:"இந்த குறியீட்டிற்குத் தேவை.",
+    promo_max_uses:"❌ இந்த சலுகை குறியீடு பயன்பாட்டு வரம்பை எட்டிவிட்டது.",promo_applied:"✅ சலுகை பயன்படுத்தப்பட்டது! நீங்கள் சேமிப்பது",promo_error:"குறியீட்டைச் சரிபார்ப்பதில் பிழை.",
+    myorders_login_prompt:"உங்கள் ஆர்டர்களைக் காண உள்நுழையவும்.",myorders_login_btn:"உள்நுழைய",
+    myorders_none:"இதுவரை ஆர்டர்கள் இல்லை. ஷாப்பிங் தொடங்குங்கள்!",myorders_shopnow:"இப்போது வாங்குங்கள்",
+    myorders_total:"மொத்தம்:",
+    confirm_thankyou:"நன்றி,",confirm_thankyou_suffix:"! உங்கள் ஆர்டர் பெறப்பட்டது, விரைவில் டெலிவரி செய்யப்படும்.",
+    confirm_name:"பெயர்",confirm_total:"மொத்தம்",confirm_discount:"தள்ளுபடி",confirm_address:"முகவரி",confirm_status:"நிலை",confirm_status_pending:"நிலுவையில்",
+    welcome_back:"மீண்டும் வரவேற்கிறோம்! 👋",welcome_to_store:"AAA Stores க்கு வரவேற்கிறோம்,",logged_out:"வெளியேறியது. மீண்டும் சந்திப்போம்!",
+    order_error_prefix:"பிழை:"
+  },
+  zh:{
+    nav_home:"🏠 首页",nav_shop:"🛍️ 商店",nav_myorders:"📦 我的订单",nav_login:"登录",nav_logout:"退出登录",
+    search_ph:"搜索商品...",
+    sale_banner_text:"🔥 大促销 — 最高50%折扣！",
+    hero_tag:"✨ 斯里兰卡最受欢迎的网上商店",
+    hero_h1_line1:"购买您喜爱的",hero_h1_line2:"一切",hero_h1_love:"商品",
+    hero_desc:"以超值价格发现成千上万的商品。快速配送、轻松退货，每天都有惊喜优惠！",
+    hero_shopnow:"立即购买 →",hero_join:"加入并省钱 🎁",
+    hero_stat_products:"商品",hero_stat_customers:"顾客",hero_stat_support:"客服",hero_stat_free:"免费",hero_stat_delivery:"配送",
+    feat_delivery:"免费配送",feat_secure:"安全支付",feat_returns:"轻松退货",feat_support:"24/7客服",feat_genuine:"100%正品",
+    cat_title_pre:"按分类",cat_title_span:"购买",cat_viewall:"查看全部 →",cat_all:"全部",
+    featured_title_pre:"⭐ 精选",featured_title_span:"商品",featured_seeall:"查看全部 →",
+    loading:"加载中...",loading_orders:"正在加载您的订单...",
+    testimonials_title:"顾客怎么说 💬",testimonials_sub:"加入斯里兰卡数千名满意的顾客",
+    footer_desc:"您所需的一切，一站式购齐。优质商品、超值价格，斯里兰卡全境快速配送。",
+    footer_quicklinks:"快速链接",footer_home:"首页",footer_shopall:"全部商品",footer_myaccount:"我的账户",footer_myorders:"我的订单",
+    footer_categories:"分类",footer_contact:"联系我们",footer_hours:"周一至周六：上午8:00 – 晚上9:00",
+    footer_copyright:"© 2026 AAA Stores. 保留所有权利。用 ❤️ 在斯里兰卡制作",
+    footer_badge_secure:"🔒 安全",footer_badge_verified:"✅ 已验证",footer_badge_delivery:"🚚 免费配送",
+    detail_back:"← 返回商店",detail_reviews:"(48条评价)",detail_qty:"数量：",detail_add_template:"🛒 加入购物车 {qty}件 — {price}",
+    checkout_title:"结账",checkout_delivery_details:"📦 配送信息",
+    checkout_fullname:"姓名 *",checkout_fullname_ph:"您的姓名",
+    checkout_phone:"电话号码 *",checkout_phone_ph:"07XXXXXXXX — 仅限数字",
+    checkout_email:"电子邮箱 *",checkout_address:"配送地址 *",checkout_address_ph:"包含城市的完整地址",
+    promo_label:"🎟️ 优惠码",promo_ph:"输入代码",promo_apply:"应用",
+    checkout_summary_title:"🧾 订单摘要",checkout_total_label:"总计",
+    checkout_cod_notice:"💳 货到付款 — 订单送达时安全付款。",
+    checkout_placeorder:"下单 ✓",checkout_placing:"正在下单...",
+    confirm_title:"订单已提交！",confirm_continue:"继续购物",confirm_vieworders:"查看我的订单",
+    myorders_title:"📦 我的订单",
+    auth_welcome:"欢迎回来！👋",auth_login_sub:"登录以跟踪您的订单并获取专属优惠",
+    auth_email_ph:"电子邮箱",auth_pass_ph:"密码",auth_login_btn:"登录 →",
+    auth_noaccount:"还没有账户？",auth_signup:"免费注册",
+    auth_register_title:"加入 AAA Stores！🎉",auth_register_sub:"创建您的账户并开始购物",
+    auth_name_ph:"姓名",auth_pass_hint_ph:"密码（至少6位）",auth_create_btn:"创建账户 →",
+    auth_already:"已经注册了？",auth_login_link:"登录",
+    auth_error_login:"您输入的邮箱或密码不正确。请重试，或以访客身份继续浏览。",
+    auth_error_name:"请输入您的姓名。",
+    cart_title:"您的购物车",cart_items_suffix:"件商品",cart_empty:"您的购物车是空的。",cart_start_shopping:"开始购物",
+    cart_each:"单价",cart_subtotal:"小计",cart_delivery_free:"免费 🎉",cart_delivery:"配送",cart_total:"总计",cart_checkout_btn:"前往结账 →",
+    promo_prefix:"🎟️ 优惠码：",
+    badge_new:"新品",badge_sale:"特价",badge_hot:"🔥 热卖",
+    stock_in_stock:"有库存",stock_only_left:"仅剩",stock_left_suffix:"件！",stock_out:"缺货",
+    btn_add_cart:"🛒 加入购物车",btn_out_of_stock:"缺货",
+    notif_out_of_stock:"抱歉，该商品已缺货。",notif_only_available:"仅剩",notif_available_suffix:"件可用。",
+    notif_added_cart:"已加入购物车！🛒",
+    notif_fill_fields:"请填写所有必填字段。",notif_phone_numbers:"电话号码只能包含数字！",notif_valid_email:"请输入有效的电子邮箱地址！",
+    promo_enter_code:"请输入优惠码。",promo_add_items:"请先将商品加入购物车。",
+    promo_invalid:"❌ 优惠码无效或已过期。",promo_min_required:"❌ 此优惠码需要最低订单金额",promo_required_suffix:"。",
+    promo_max_uses:"❌ 此优惠码已达到使用次数限制。",promo_applied:"✅ 优惠码已应用！您节省了",promo_error:"验证优惠码时出错。",
+    myorders_login_prompt:"请登录以查看您的订单。",myorders_login_btn:"登录",
+    myorders_none:"暂无订单，快去购物吧！",myorders_shopnow:"立即购物",
+    myorders_total:"总计：",
+    confirm_thankyou:"谢谢您，",confirm_thankyou_suffix:"！您的订单已收到，将尽快为您配送。",
+    confirm_name:"姓名",confirm_total:"总计",confirm_discount:"折扣",confirm_address:"地址",confirm_status:"状态",confirm_status_pending:"处理中",
+    welcome_back:"欢迎回来！👋",welcome_to_store:"欢迎加入 AAA Stores，",logged_out:"已退出登录，期待再次相见！",
+    order_error_prefix:"错误："
+  }
+};
+let currentLang=localStorage.getItem('aaa_lang')||'en';
+function t(key){return (LANG[currentLang]&&LANG[currentLang][key])||LANG.en[key]||key;}
+function setLang(l){
+  currentLang=l;localStorage.setItem('aaa_lang',l);
+  const sel=document.getElementById('lang-select');if(sel) sel.value=l;
+  applyLanguage();
+}
+function applyLanguage(){
+  document.querySelectorAll('[data-i18n]').forEach(function(el){el.textContent=t(el.getAttribute('data-i18n'));});
+  document.querySelectorAll('[data-i18n-ph]').forEach(function(el){el.placeholder=t(el.getAttribute('data-i18n-ph'));});
+  document.documentElement.lang=currentLang;
+  // Re-render dynamic sections so JS-generated text (cards, cart, checkout, etc.) reflects the new language
+  if(typeof products!=='undefined'&&products.length){renderHome();}
+  if(document.getElementById('page-shop')&&document.getElementById('page-shop').classList.contains('active')) renderShop();
+  if(document.getElementById('page-cart')&&document.getElementById('page-cart').classList.contains('active')) renderCart();
+  if(document.getElementById('page-checkout')&&document.getElementById('page-checkout').classList.contains('active')) renderCheckout();
+  if(document.getElementById('page-myorders')&&document.getElementById('page-myorders').classList.contains('active')) renderMyOrders();
+}
 
 // SALE TIMER — counts down to the nearest active promo's expiry date (set from Admin).
 // Falls back to a daily midnight countdown if no active promo has an expiry set.
@@ -629,9 +893,9 @@ function doLogin(){
   const errEl=document.getElementById('auth-error');
   errEl.style.display='none';
   auth.signInWithEmailAndPassword(email,pass)
-    .then(()=>{closeAuth();notif('Welcome back! 👋');})
+    .then(()=>{closeAuth();notif(t('welcome_back'));})
     .catch(()=>{
-      errEl.textContent='⚠️ Your password or username is incorrect. Please type the correct password to login or enjoy the shop experience!';
+      errEl.textContent=t('auth_error_login');
       errEl.style.display='block';
     });
 }
@@ -642,13 +906,13 @@ function doRegister(){
   const pass=document.getElementById('reg-pass').value;
   const errEl=document.getElementById('reg-error');
   errEl.style.display='none';
-  if(!name){errEl.textContent='Please enter your name.';errEl.style.display='block';return;}
+  if(!name){errEl.textContent=t('auth_error_name');errEl.style.display='block';return;}
   auth.createUserWithEmailAndPassword(email,pass)
     .then(cred=>cred.user.updateProfile({displayName:name}))
-    .then(()=>{closeAuth();notif('Welcome to AAA Stores, '+name+'! 🎉');})
+    .then(()=>{closeAuth();notif(t('welcome_to_store')+' '+name+'! 🎉');})
     .catch(e=>{errEl.textContent=e.message;errEl.style.display='block';});
 }
-function doLogout(){auth.signOut().then(()=>notif('Logged out. See you soon!'));}
+function doLogout(){auth.signOut().then(()=>notif(t('logged_out')));}
 
 // PRODUCTS
 async function initProducts(){
@@ -713,17 +977,17 @@ function buildCatGrid(){
   document.getElementById('cat-grid').innerHTML=CATS.map(([cat,icon])=>{
     const items=products.filter(p=>p.category===cat);
     const popupItems=items.map(p=>'<div class="popup-item" onclick="openProduct('+p.id+')"><div class="popup-item-icon"><img src="'+p.image+'" alt=""/></div><div><div class="popup-item-name">'+p.name+'</div><div class="popup-item-price">'+fmt(p.price)+'</div></div></div>').join('');
-    return '<div class="cat-wrap"><div class="cat-card reveal" onclick="filterCat(\''+cat+'\')"><span class="cat-icon">'+icon+'</span><div class="cat-label">'+cat+'</div></div><div class="cat-popup"><div class="cat-popup-header"><h4>'+icon+' '+cat+' ('+items.length+')</h4></div><div class="cat-popup-body">'+popupItems+'</div><div class="popup-more" onclick="filterCat(\''+cat+'\')">View all '+items.length+' →</div></div></div>';
+    return '<div class="cat-wrap"><div class="cat-card reveal" onclick="filterCat(\''+cat+'\')"><span class="cat-icon">'+icon+'</span><div class="cat-label">'+cat+'</div></div><div class="cat-popup"><div class="cat-popup-header"><h4>'+icon+' '+cat+' ('+items.length+')</h4></div><div class="cat-popup-body">'+popupItems+'</div><div class="popup-more" onclick="filterCat(\''+cat+'\')">'+t('cat_viewall').replace('View All','View all '+items.length)+'</div></div></div>';
   }).join('');
 }
 
 function prodCard(p,idx){
   const badges=["new","sale","hot"];
-  const badgeLabels={new:"NEW",sale:"SALE",hot:"🔥 HOT"};
+  const badgeLabels={new:t('badge_new'),sale:t('badge_sale'),hot:t('badge_hot')};
   const b=badges[idx%3];
   const stockClass=p.stock>20?'stock-ok':p.stock>5?'stock-low':'stock-no';
-  const stockText=p.stock>20?p.stock+' in stock':p.stock>5?'Only '+p.stock+' left!':'Out of stock';
-  return '<div class="prod-card reveal"><div class="prod-img" onclick="openProduct('+p.id+')"><img src="'+p.image+'" alt="'+p.name+'" loading="lazy"/><span class="prod-badge '+b+'">'+badgeLabels[b]+'</span></div><div class="prod-body"><div class="prod-name" onclick="openProduct('+p.id+')">'+p.name+'</div><span class="badge">'+p.category+'</span><div class="stars" style="margin-top:5px">★★★★☆ <span style="color:#94a3b8;font-size:11px">(48)</span></div><div class="prod-price-row"><span class="prod-price">'+fmt(p.price)+'</span><span class="'+stockClass+'">'+stockText+'</span></div><button class="btn-cart" onclick="addToCart('+p.id+')" '+(p.stock===0?'disabled':'')+'>'+(p.stock===0?'Out of Stock':'🛒 Add to Cart')+'</button></div></div>';
+  const stockText=p.stock>20?p.stock+' '+t('stock_in_stock'):p.stock>5?t('stock_only_left')+' '+p.stock+' '+t('stock_left_suffix'):t('stock_out');
+  return '<div class="prod-card reveal"><div class="prod-img" onclick="openProduct('+p.id+')"><img src="'+p.image+'" alt="'+p.name+'" loading="lazy"/><span class="prod-badge '+b+'">'+badgeLabels[b]+'</span></div><div class="prod-body"><div class="prod-name" onclick="openProduct('+p.id+')">'+p.name+'</div><span class="badge">'+p.category+'</span><div class="stars" style="margin-top:5px">★★★★☆ <span style="color:#94a3b8;font-size:11px">(48)</span></div><div class="prod-price-row"><span class="prod-price">'+fmt(p.price)+'</span><span class="'+stockClass+'">'+stockText+'</span></div><button class="btn-cart" onclick="addToCart('+p.id+')" '+(p.stock===0?'disabled':'')+'>'+(p.stock===0?t('btn_out_of_stock'):t('btn_add_cart'))+'</button></div></div>';
 }
 
 function renderHome(){
@@ -748,13 +1012,13 @@ function openProduct(id){
   document.getElementById('d-cat').textContent=selProd.category;
   document.getElementById('d-name').textContent=selProd.name;
   document.getElementById('d-desc').textContent=selProd.desc;
-  document.getElementById('d-stock').textContent=selProd.stock+' in stock';
+  document.getElementById('d-stock').textContent=selProd.stock+' '+t('stock_in_stock');
   document.getElementById('d-qty').textContent=1;
   updateDetailBtn();goPage('product');
 }
 function updateDetailBtn(){
   document.getElementById('d-price').textContent=fmt(selProd.price);
-  document.getElementById('d-add-btn').textContent='🛒 Add '+detQty+' to Cart — '+fmt(selProd.price*detQty);
+  document.getElementById('d-add-btn').textContent=t('detail_add_template').replace('{qty}',detQty).replace('{price}',fmt(selProd.price*detQty));
 }
 function changeDetailQty(d){detQty=Math.max(1,Math.min(selProd.stock,detQty+d));document.getElementById('d-qty').textContent=detQty;updateDetailBtn();}
 function addDetailToCart(){addToCart(selProd.id,detQty);}
@@ -762,34 +1026,34 @@ function addDetailToCart(){addToCart(selProd.id,detQty);}
 function addToCart(id,qty){
   qty=qty||1;
   const p=products.find(x=>x.id===id);
-  if(!p||p.stock<=0){notif('Sorry, out of stock.');return;}
+  if(!p||p.stock<=0){notif(t('notif_out_of_stock'));return;}
   const ex=cart.find(i=>i.id===id);
-  if(ex&&ex.qty+qty>p.stock){notif('Only '+p.stock+' available.');return;}
+  if(ex&&ex.qty+qty>p.stock){notif(t('notif_only_available')+' '+p.stock+' '+t('notif_available_suffix'));return;}
   if(ex) ex.qty+=qty; else cart.push(Object.assign({},p,{qty:qty}));
-  updateCartCount();notif(p.name+' added to cart! 🛒');
+  updateCartCount();notif(p.name+' '+t('notif_added_cart'));
 }
 function updateCartCount(){
-  const t=cart.reduce((s,i)=>s+i.qty,0);
+  const c=cart.reduce((s,i)=>s+i.qty,0);
   const el=document.getElementById('cart-count');
-  el.textContent=t;el.style.display=t>0?'flex':'none';
+  el.textContent=c;el.style.display=c>0?'flex':'none';
 }
 function renderCart(){
   const total=cart.reduce((s,i)=>s+i.price*i.qty,0);
-  document.getElementById('cart-title').textContent='Your Cart ('+cart.reduce((s,i)=>s+i.qty,0)+' items)';
+  document.getElementById('cart-title').textContent=t('cart_title')+' ('+cart.reduce((s,i)=>s+i.qty,0)+' '+t('cart_items_suffix')+')';
   if(!cart.length){
-    document.getElementById('cart-body').innerHTML='<div class="empty"><div>🛒</div><p>Your cart is empty.</p><button class="btn-dark" onclick="goPage(\'shop\')" style="margin-top:12px">Start Shopping</button></div>';
+    document.getElementById('cart-body').innerHTML='<div class="empty"><div>🛒</div><p>'+t('cart_empty')+'</p><button class="btn-dark" onclick="goPage(\'shop\')" style="margin-top:12px">'+t('cart_start_shopping')+'</button></div>';
     return;
   }
-  const items=cart.map(item=>'<div class="cart-item"><div style="width:52px;height:52px;border-radius:10px;overflow:hidden;flex-shrink:0"><img src="'+item.image+'" alt="" style="width:100%;height:100%;object-fit:cover"/></div><div style="flex:1"><div style="font-size:14px;font-weight:700">'+item.name+'</div><div style="font-size:12px;color:#64748b">'+fmt(item.price)+' each</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="updateQty('+item.id+',-1)">−</button><span style="font-size:15px;font-weight:700;min-width:20px;text-align:center">'+item.qty+'</span><button class="qty-btn" onclick="updateQty('+item.id+',1)">+</button></div><div style="min-width:80px;text-align:right;font-weight:700;color:#6366f1;font-size:14px">'+fmt(item.price*item.qty)+'</div><button onclick="removeFromCart('+item.id+')" style="background:none;border:none;color:#ef4444;font-size:18px;cursor:pointer;margin-left:8px">✕</button></div>').join('');
-  const discRow=appliedPromo?'<div style="display:flex;justify-content:space-between;color:#059669;font-weight:700;font-size:14px;margin-bottom:8px"><span>🎟️ Promo: '+appliedPromo.code+'</span><span>-'+fmt(calcDiscount(total))+'</span></div>':'';
+  const items=cart.map(item=>'<div class="cart-item"><div style="width:52px;height:52px;border-radius:10px;overflow:hidden;flex-shrink:0"><img src="'+item.image+'" alt="" style="width:100%;height:100%;object-fit:cover"/></div><div style="flex:1"><div style="font-size:14px;font-weight:700">'+item.name+'</div><div style="font-size:12px;color:#64748b">'+fmt(item.price)+' '+t('cart_each')+'</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="updateQty('+item.id+',-1)">−</button><span style="font-size:15px;font-weight:700;min-width:20px;text-align:center">'+item.qty+'</span><button class="qty-btn" onclick="updateQty('+item.id+',1)">+</button></div><div style="min-width:80px;text-align:right;font-weight:700;color:#6366f1;font-size:14px">'+fmt(item.price*item.qty)+'</div><button onclick="removeFromCart('+item.id+')" style="background:none;border:none;color:#ef4444;font-size:18px;cursor:pointer;margin-left:8px">✕</button></div>').join('');
+  const discRow=appliedPromo?'<div style="display:flex;justify-content:space-between;color:#059669;font-weight:700;font-size:14px;margin-bottom:8px"><span>'+t('promo_prefix')+' '+appliedPromo.code+'</span><span>-'+fmt(calcDiscount(total))+'</span></div>':'';
   const finalTotal=Math.max(0,total-calcDiscount(total));
-  document.getElementById('cart-body').innerHTML='<div class="card-wrap">'+items+'</div><div class="cart-summary"><div class="summary-row"><span>Subtotal</span><span>'+fmt(total)+'</span></div>'+discRow+'<div class="summary-row"><span>Delivery</span><span style="color:#059669;font-weight:700">Free 🎉</span></div><div class="summary-total"><span>Total</span><span style="color:#6366f1">'+fmt(finalTotal)+'</span></div><button class="btn-checkout" onclick="goPage(\'checkout\')">Proceed to Checkout →</button></div>';
+  document.getElementById('cart-body').innerHTML='<div class="card-wrap">'+items+'</div><div class="cart-summary"><div class="summary-row"><span>'+t('cart_subtotal')+'</span><span>'+fmt(total)+'</span></div>'+discRow+'<div class="summary-row"><span>'+t('cart_delivery')+'</span><span style="color:#059669;font-weight:700">'+t('cart_delivery_free')+'</span></div><div class="summary-total"><span>'+t('cart_total')+'</span><span style="color:#6366f1">'+fmt(finalTotal)+'</span></div><button class="btn-checkout" onclick="goPage(\'checkout\')">'+t('cart_checkout_btn')+'</button></div>';
 }
 function updateQty(id,d){
   const p=products.find(x=>x.id===id);
   const item=cart.find(i=>i.id===id);if(!item) return;
   const nq=item.qty+d;
-  if(d>0&&p&&nq>p.stock){notif('Only '+p.stock+' available.');return;}
+  if(d>0&&p&&nq>p.stock){notif(t('notif_only_available')+' '+p.stock+' '+t('notif_available_suffix'));return;}
   item.qty=Math.max(0,nq);
   if(!item.qty) cart=cart.filter(i=>i.id!==id);
   updateCartCount();renderCart();
@@ -807,33 +1071,33 @@ async function applyPromo(){
   const code=document.getElementById('promo-input').value.trim().toUpperCase();
   const resultEl=document.getElementById('promo-result');
   resultEl.style.display='none';
-  if(!code){resultEl.textContent='Please enter a promo code.';resultEl.className='promo-result error';resultEl.style.display='block';return;}
+  if(!code){resultEl.textContent=t('promo_enter_code');resultEl.className='promo-result error';resultEl.style.display='block';return;}
   const subtotal=cart.reduce((s,i)=>s+i.price*i.qty,0);
-  if(!subtotal){resultEl.textContent='Add items to cart first.';resultEl.className='promo-result error';resultEl.style.display='block';return;}
+  if(!subtotal){resultEl.textContent=t('promo_add_items');resultEl.className='promo-result error';resultEl.style.display='block';return;}
   try{
     const snap=await db.collection("promoCodes").where("code","==",code).where("active","==",true).get();
     if(snap.empty){
       appliedPromo=null;
-      resultEl.textContent='❌ Invalid or expired promo code.';
+      resultEl.textContent=t('promo_invalid');
       resultEl.className='promo-result error';resultEl.style.display='block';return;
     }
     const promo={firestoreId:snap.docs[0].id,...snap.docs[0].data()};
     if(promo.min&&subtotal<promo.min){
       appliedPromo=null;
-      resultEl.textContent='❌ Minimum order of '+fmt(promo.min)+' required for this code.';
+      resultEl.textContent=t('promo_min_required')+' '+fmt(promo.min)+' '+t('promo_required_suffix');
       resultEl.className='promo-result error';resultEl.style.display='block';return;
     }
     if(promo.maxUses&&promo.usedCount>=promo.maxUses){
       appliedPromo=null;
-      resultEl.textContent='❌ This promo code has reached its usage limit.';
+      resultEl.textContent=t('promo_max_uses');
       resultEl.className='promo-result error';resultEl.style.display='block';return;
     }
     appliedPromo=promo;
     const disc=calcDiscount(subtotal);
-    resultEl.textContent='✅ Promo applied! You save '+fmt(disc);
+    resultEl.textContent=t('promo_applied')+' '+fmt(disc);
     resultEl.className='promo-result success';resultEl.style.display='block';
     renderCheckout();
-  }catch(e){resultEl.textContent='Error checking code.';resultEl.className='promo-result error';resultEl.style.display='block';}
+  }catch(e){resultEl.textContent=t('promo_error');resultEl.className='promo-result error';resultEl.style.display='block';}
 }
 
 function renderCheckout(){
@@ -844,7 +1108,7 @@ function renderCheckout(){
   const discRow=document.getElementById('checkout-discount-row');
   if(appliedPromo&&disc>0){
     discRow.style.display='flex';discRow.style.justifyContent='space-between';
-    discRow.innerHTML='<span>🎟️ Promo ('+appliedPromo.code+')</span><span>-'+fmt(disc)+'</span>';
+    discRow.innerHTML='<span>'+t('promo_prefix')+' ('+appliedPromo.code+')</span><span>-'+fmt(disc)+'</span>';
   } else {discRow.style.display='none';}
   document.getElementById('checkout-total').textContent=fmt(finalTotal);
   if(currentUser){
@@ -858,11 +1122,11 @@ async function placeOrder(){
   const phone=document.getElementById('f-phone').value.trim();
   const address=document.getElementById('f-address').value.trim();
   const email=document.getElementById('f-email').value.trim();
-  if(!name||!phone||!address||!email){notif('Please fill all required fields.');return;}
-  if(!/^\d+$/.test(phone)){notif('Phone number must contain numbers only!');return;}
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){notif('Please enter a valid email address!');return;}
+  if(!name||!phone||!address||!email){notif(t('notif_fill_fields'));return;}
+  if(!/^\d+$/.test(phone)){notif(t('notif_phone_numbers'));return;}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){notif(t('notif_valid_email'));return;}
   const btn=document.getElementById('place-order-btn');
-  btn.textContent='Placing Order...';btn.disabled=true;
+  btn.textContent=t('checkout_placing');btn.disabled=true;
   const subtotal=cart.reduce((s,i)=>s+i.price*i.qty,0);
   const disc=calcDiscount(subtotal);
   const finalTotal=Math.max(0,subtotal-disc);
@@ -892,23 +1156,23 @@ async function placeOrder(){
     });
     emailjs.send("service_jvfi5di","template_2kyy8ga",{customer_name:name,customer_email:email,order_items:cart.map(i=>i.name+' x'+i.qty+' - Rs. '+(i.price*i.qty).toLocaleString()).join('\n'),total:finalTotal.toLocaleString(),address}).catch(()=>{});
     cart.forEach(ci=>{const p=products.find(x=>x.id===ci.id);if(p) p.stock=Math.max(0,p.stock-ci.qty);});
-    document.getElementById('conf-msg').textContent='Thank you, '+name+'! Your order has been received and will be delivered soon.';
-    const discLine=disc>0?'<div class="confirm-row"><span style="color:#64748b">Discount</span><span style="color:#059669;font-weight:700">-'+fmt(disc)+'</span></div>':'';
-    document.getElementById('conf-details').innerHTML='<div class="confirm-row"><span style="color:#64748b">Name</span><span style="font-weight:700">'+name+'</span></div><div class="confirm-row"><span style="color:#64748b">Total</span><span style="font-weight:800;color:#6366f1">'+fmt(finalTotal)+'</span></div>'+discLine+'<div class="confirm-row"><span style="color:#64748b">Address</span><span>'+address+'</span></div><div class="confirm-row"><span style="color:#64748b">Status</span><span style="background:#d1fae5;color:#065f46;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700">Pending</span></div>';
+    document.getElementById('conf-msg').textContent=t('confirm_thankyou')+' '+name+t('confirm_thankyou_suffix');
+    const discLine=disc>0?'<div class="confirm-row"><span style="color:#64748b">'+t('confirm_discount')+'</span><span style="color:#059669;font-weight:700">-'+fmt(disc)+'</span></div>':'';
+    document.getElementById('conf-details').innerHTML='<div class="confirm-row"><span style="color:#64748b">'+t('confirm_name')+'</span><span style="font-weight:700">'+name+'</span></div><div class="confirm-row"><span style="color:#64748b">'+t('confirm_total')+'</span><span style="font-weight:800;color:#6366f1">'+fmt(finalTotal)+'</span></div>'+discLine+'<div class="confirm-row"><span style="color:#64748b">'+t('confirm_address')+'</span><span>'+address+'</span></div><div class="confirm-row"><span style="color:#64748b">'+t('confirm_status')+'</span><span style="background:#d1fae5;color:#065f46;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700">'+t('confirm_status_pending')+'</span></div>';
     cart=[];appliedPromo=null;updateCartCount();goPage('confirmation');
-  }catch(e){notif('Error: '+e.message);}
-  finally{btn.textContent='Place Order ✓';btn.disabled=false;}
+  }catch(e){notif(t('order_error_prefix')+' '+e.message);}
+  finally{btn.textContent=t('checkout_placeorder');btn.disabled=false;}
 }
 
 // MY ORDERS
 var myOrdersUnsub=null;
 function renderMyOrders(){
-  if(!currentUser){document.getElementById('my-orders-list').innerHTML='<div class="empty"><div>🔐</div><p>Please login to view your orders.</p><button class="btn-dark" onclick="openAuth()" style="margin-top:12px">Login</button></div>';return;}
-  document.getElementById('my-orders-list').innerHTML='<p style="color:#64748b">Loading...</p>';
+  if(!currentUser){document.getElementById('my-orders-list').innerHTML='<div class="empty"><div>🔐</div><p>'+t('myorders_login_prompt')+'</p><button class="btn-dark" onclick="openAuth()" style="margin-top:12px">'+t('myorders_login_btn')+'</button></div>';return;}
+  document.getElementById('my-orders-list').innerHTML='<p style="color:#64748b">'+t('loading')+'</p>';
   if(myOrdersUnsub) myOrdersUnsub();
   myOrdersUnsub=db.collection("orders").where("userId","==",currentUser.uid)
     .onSnapshot(function(snap){
-      if(snap.empty){document.getElementById('my-orders-list').innerHTML='<div class="empty"><div>📦</div><p>No orders yet. Start shopping!</p><button class="btn-dark" onclick="goPage(\'shop\')" style="margin-top:12px">Shop Now</button></div>';return;}
+      if(snap.empty){document.getElementById('my-orders-list').innerHTML='<div class="empty"><div>📦</div><p>'+t('myorders_none')+'</p><button class="btn-dark" onclick="goPage(\'shop\')" style="margin-top:12px">'+t('myorders_shopnow')+'</button></div>';return;}
       var orders=snap.docs.map(d=>d.data()).sort((a,b)=>new Date(b.createdAt||0)-new Date(a.createdAt||0));
       document.getElementById('my-orders-list').innerHTML=orders.map(o=>myOrderCard(o)).join('');
     },function(err){document.getElementById('my-orders-list').innerHTML='<div class="empty"><div>⚠️</div><p>'+err.message+'</p></div>';});
@@ -924,10 +1188,15 @@ function myOrderCard(o){
     ?'<div style="background:#fee2e2;color:#991b1b;padding:10px;border-radius:10px;font-size:13px;font-weight:700;text-align:center;margin:10px 0">❌ Order Cancelled</div>'
     :'<div class="status-tracker"><div class="status-track-line"></div><div class="status-track-fill" style="width:'+fillPct+'%"></div>'+statuses.map((s,i)=>{const cls=i<idx?'done':i===idx?'active':'';const icons=['🕐','📦','✅'];return '<div class="status-step"><div class="status-dot '+cls+'">'+(cls==='done'?'✓':icons[i])+'</div><div class="status-label '+cls+'">'+s+'</div></div>';}).join('')+'</div>';
   const discRow=o.discount&&o.discount>0?'<div style="font-size:12px;color:#059669;font-weight:700;margin-top:4px">🎟️ Promo saved: '+fmt(o.discount)+'</div>':'';
-  return '<div class="my-order-card"><div class="my-order-header"><div><div style="font-weight:800;font-size:14px">'+o.orderId+'</div><div style="font-size:12px;color:#94a3b8;margin-top:2px">📅 '+o.date+'</div></div><span class="status-pill" style="background:'+bg+';color:'+tc+'">'+o.status+'</span></div>'+tracker+'<div class="my-order-items">'+(o.items||[]).map(i=>'<div class="my-order-item-row"><img src="'+i.image+'" alt=""/> <span>'+i.name+' × '+i.qty+'</span><span style="margin-left:auto;font-weight:600;color:#6366f1">'+fmt(i.price*i.qty)+'</span></div>').join('')+'</div>'+discRow+'<div style="border-top:1px solid #f1f5f9;padding-top:8px;margin-top:8px;display:flex;justify-content:space-between;align-items:center"><div class="my-order-total">Total: '+fmt(o.total)+'</div><div style="font-size:12px;color:#94a3b8">📍 '+o.customer.address+'</div></div></div>';
+  return '<div class="my-order-card"><div class="my-order-header"><div><div style="font-weight:800;font-size:14px">'+o.orderId+'</div><div style="font-size:12px;color:#94a3b8;margin-top:2px">📅 '+o.date+'</div></div><span class="status-pill" style="background:'+bg+';color:'+tc+'">'+o.status+'</span></div>'+tracker+'<div class="my-order-items">'+(o.items||[]).map(i=>'<div class="my-order-item-row"><img src="'+i.image+'" alt=""/> <span>'+i.name+' × '+i.qty+'</span><span style="margin-left:auto;font-weight:600;color:#6366f1">'+fmt(i.price*i.qty)+'</span></div>').join('')+'</div>'+discRow+'<div style="border-top:1px solid #f1f5f9;padding-top:8px;margin-top:8px;display:flex;justify-content:space-between;align-items:center"><div class="my-order-total">'+t('myorders_total')+' '+fmt(o.total)+'</div><div style="font-size:12px;color:#94a3b8">📍 '+o.customer.address+'</div></div></div>';
 }
 
 initProducts();
+applyLanguage();
+document.addEventListener('DOMContentLoaded',function(){
+  var sel=document.getElementById('lang-select');
+  if(sel) sel.value=currentLang;
+});
 </script>
 </body>
 </html>
