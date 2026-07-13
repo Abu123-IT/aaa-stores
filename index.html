@@ -556,7 +556,7 @@ const LANG={
     hero_shopnow:"Shop Now →",hero_join:"Join & Save 🎁",
     hero_stat_products:"Products",hero_stat_customers:"Customers",hero_stat_support:"Support",hero_stat_free:"Free",hero_stat_delivery:"Delivery",
     feat_delivery:"Free Delivery",feat_secure:"Secure Payment",feat_returns:"Easy Returns",feat_support:"24/7 Support",feat_genuine:"100% Genuine",
-    cat_title_pre:"Shop by",cat_title_span:"Category",cat_viewall:"View All →",cat_all:"All",
+    cat_title_pre:"Shop by",cat_title_span:"Category",cat_viewall:"View All →",cat_all:"All",results_found:"products found",
     featured_title_pre:"⭐ Featured",featured_title_span:"Products",featured_seeall:"See All →",
     loading:"Loading...",loading_orders:"Loading your orders...",
     testimonials_title:"What Our Customers Say 💬",testimonials_sub:"Join thousands of happy shoppers across Sri Lanka",
@@ -615,7 +615,7 @@ const LANG={
     hero_shopnow:"මිලදී ගන්න →",hero_join:"එකතු වී ඉතිරි කරන්න 🎁",
     hero_stat_products:"නිෂ්පාදන",hero_stat_customers:"පාරිභෝගිකයින්",hero_stat_support:"සහාය",hero_stat_free:"නොමිලේ",hero_stat_delivery:"බෙදාහැරීම",
     feat_delivery:"නොමිලේ බෙදාහැරීම",feat_secure:"ආරක්ෂිත ගෙවීම",feat_returns:"පහසු ආපසු දීම",feat_support:"24/7 සහාය",feat_genuine:"100% සැබෑ භාණ්ඩ",
-    cat_title_pre:"කාණ්ඩ අනුව",cat_title_span:"සාප්පු යන්න",cat_viewall:"සියල්ල බලන්න →",cat_all:"සියල්ල",
+    cat_title_pre:"කාණ්ඩ අනුව",cat_title_span:"සාප්පු යන්න",cat_viewall:"සියල්ල බලන්න →",cat_all:"සියල්ල",results_found:"නිෂ්පාදන හමු විය",
     featured_title_pre:"⭐ විශේෂ",featured_title_span:"නිෂ්පාදන",featured_seeall:"සියල්ල බලන්න →",
     loading:"පූරණය වෙමින්...",loading_orders:"ඔබේ ඇණවුම් පූරණය වෙමින්...",
     testimonials_title:"අපගේ පාරිභෝගිකයින් පවසන දේ 💬",testimonials_sub:"ශ්‍රී ලංකාව පුරා සතුටින් සිටින දහස් ගණන් සාප්පු කරන්නන් සමඟ එකතු වන්න",
@@ -673,7 +673,7 @@ const LANG={
     hero_shopnow:"இப்போது வாங்குங்கள் →",hero_join:"சேர்ந்து சேமிக்கவும் 🎁",
     hero_stat_products:"தயாரிப்புகள்",hero_stat_customers:"வாடிக்கையாளர்கள்",hero_stat_support:"ஆதரவு",hero_stat_free:"இலவசம்",hero_stat_delivery:"டெலிவரி",
     feat_delivery:"இலவச டெலிவரி",feat_secure:"பாதுகாப்பான கட்டணம்",feat_returns:"எளிதான திரும்பப் பெறுதல்",feat_support:"24/7 ஆதரவு",feat_genuine:"100% உண்மையானது",
-    cat_title_pre:"பிரிவு வாரியாக",cat_title_span:"வாங்குங்கள்",cat_viewall:"அனைத்தையும் காண →",cat_all:"அனைத்தும்",
+    cat_title_pre:"பிரிவு வாரியாக",cat_title_span:"வாங்குங்கள்",cat_viewall:"அனைத்தையும் காண →",cat_all:"அனைத்தும்",results_found:"தயாரிப்புகள் கிடைத்தன",
     featured_title_pre:"⭐ சிறப்பு",featured_title_span:"தயாரிப்புகள்",featured_seeall:"அனைத்தையும் காண →",
     loading:"ஏற்றுகிறது...",loading_orders:"உங்கள் ஆர்டர்கள் ஏற்றப்படுகின்றன...",
     testimonials_title:"எங்கள் வாடிக்கையாளர்கள் கூறுவது 💬",testimonials_sub:"இலங்கை முழுவதும் உள்ள ஆயிரக்கணக்கான மகிழ்ச்சியான வாடிக்கையாளர்களுடன் சேருங்கள்",
@@ -731,7 +731,7 @@ const LANG={
     hero_shopnow:"立即购买 →",hero_join:"加入并省钱 🎁",
     hero_stat_products:"商品",hero_stat_customers:"顾客",hero_stat_support:"客服",hero_stat_free:"免费",hero_stat_delivery:"配送",
     feat_delivery:"免费配送",feat_secure:"安全支付",feat_returns:"轻松退货",feat_support:"24/7客服",feat_genuine:"100%正品",
-    cat_title_pre:"按分类",cat_title_span:"购买",cat_viewall:"查看全部 →",cat_all:"全部",
+    cat_title_pre:"按分类",cat_title_span:"购买",cat_viewall:"查看全部 →",cat_all:"全部",results_found:"件商品",
     featured_title_pre:"⭐ 精选",featured_title_span:"商品",featured_seeall:"查看全部 →",
     loading:"加载中...",loading_orders:"正在加载您的订单...",
     testimonials_title:"顾客怎么说 💬",testimonials_sub:"加入斯里兰卡数千名满意的顾客",
@@ -786,6 +786,7 @@ function setLang(l){
   currentLang=l;localStorage.setItem('aaa_lang',l);
   const sel=document.getElementById('lang-select');if(sel) sel.value=l;
   applyLanguage();
+  ensureProductTranslations().then(applyLanguage);
 }
 function applyLanguage(){
   document.querySelectorAll('[data-i18n]').forEach(function(el){el.textContent=t(el.getAttribute('data-i18n'));});
@@ -794,9 +795,48 @@ function applyLanguage(){
   // Re-render dynamic sections so JS-generated text (cards, cart, checkout, etc.) reflects the new language
   if(typeof products!=='undefined'&&products.length){renderHome();}
   if(document.getElementById('page-shop')&&document.getElementById('page-shop').classList.contains('active')) renderShop();
+  if(document.getElementById('page-product')&&document.getElementById('page-product').classList.contains('active')&&selProd) openProduct(selProd.id);
   if(document.getElementById('page-cart')&&document.getElementById('page-cart').classList.contains('active')) renderCart();
   if(document.getElementById('page-checkout')&&document.getElementById('page-checkout').classList.contains('active')) renderCheckout();
   if(document.getElementById('page-myorders')&&document.getElementById('page-myorders').classList.contains('active')) renderMyOrders();
+}
+
+// ===== AUTO-TRANSLATE PRODUCT DATA (name/description/category) =====
+// Admin always enters product info in English. When a customer picks a non-English
+// language, we translate that text on the fly (free Google Translate endpoint) and
+// cache results in localStorage so repeat visits/switches are instant and offline-safe.
+let prodTransCache=(function(){try{return JSON.parse(localStorage.getItem('aaa_prod_trans')||'{}');}catch(e){return {};}})();
+function saveProdTransCache(){try{localStorage.setItem('aaa_prod_trans',JSON.stringify(prodTransCache));}catch(e){}}
+const GT_LANG_MAP={si:'si',ta:'ta',zh:'zh-CN'};
+function tp(text){ // translate-product-text: returns cached translation, else original (English) as safe fallback
+  if(currentLang==='en'||!text) return text;
+  return (prodTransCache[currentLang]&&prodTransCache[currentLang][text])||text;
+}
+async function translateOne(text,gtLang){
+  try{
+    const res=await fetch('https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl='+gtLang+'&dt=t&q='+encodeURIComponent(text));
+    const data=await res.json();
+    return data[0].map(function(chunk){return chunk[0];}).join('');
+  }catch(e){return text;} // network/CORS failure -> silently keep English, never breaks the page
+}
+async function ensureProductTranslations(){
+  const gtLang=GT_LANG_MAP[currentLang];
+  if(!gtLang) return; // English selected — nothing to translate
+  if(!prodTransCache[currentLang]) prodTransCache[currentLang]={};
+  const cache=prodTransCache[currentLang];
+  const uniqueTexts=new Set();
+  (products||[]).forEach(function(p){
+    if(p.name) uniqueTexts.add(p.name);
+    if(p.desc) uniqueTexts.add(p.desc);
+    if(p.category) uniqueTexts.add(p.category);
+  });
+  CATS.forEach(function(c){uniqueTexts.add(c[0]);});
+  const toTranslate=[...uniqueTexts].filter(function(txt){return !cache[txt];});
+  if(!toTranslate.length) return;
+  await Promise.all(toTranslate.map(async function(txt){
+    cache[txt]=await translateOne(txt,gtLang);
+  }));
+  saveProdTransCache();
 }
 
 // SALE TIMER — counts down to the nearest active promo's expiry date (set from Admin).
@@ -921,6 +961,7 @@ async function initProducts(){
     if(!snap.empty) products=snap.docs.map(d=>({firestoreId:d.id,...d.data()}));
   }catch(e){products=[];}
   loadHomePromos();
+  if(currentLang!=='en'){await ensureProductTranslations();}
   renderHome();
 }
 
@@ -976,8 +1017,8 @@ function filterCat(c){document.getElementById('shop-cat').value=c;goPage('shop')
 function buildCatGrid(){
   document.getElementById('cat-grid').innerHTML=CATS.map(([cat,icon])=>{
     const items=products.filter(p=>p.category===cat);
-    const popupItems=items.map(p=>'<div class="popup-item" onclick="openProduct('+p.id+')"><div class="popup-item-icon"><img src="'+p.image+'" alt=""/></div><div><div class="popup-item-name">'+p.name+'</div><div class="popup-item-price">'+fmt(p.price)+'</div></div></div>').join('');
-    return '<div class="cat-wrap"><div class="cat-card reveal" onclick="filterCat(\''+cat+'\')"><span class="cat-icon">'+icon+'</span><div class="cat-label">'+cat+'</div></div><div class="cat-popup"><div class="cat-popup-header"><h4>'+icon+' '+cat+' ('+items.length+')</h4></div><div class="cat-popup-body">'+popupItems+'</div><div class="popup-more" onclick="filterCat(\''+cat+'\')">'+t('cat_viewall').replace('View All','View all '+items.length)+'</div></div></div>';
+    const popupItems=items.map(p=>'<div class="popup-item" onclick="openProduct('+p.id+')"><div class="popup-item-icon"><img src="'+p.image+'" alt=""/></div><div><div class="popup-item-name">'+tp(p.name)+'</div><div class="popup-item-price">'+fmt(p.price)+'</div></div></div>').join('');
+    return '<div class="cat-wrap"><div class="cat-card reveal" onclick="filterCat(\''+cat+'\')"><span class="cat-icon">'+icon+'</span><div class="cat-label">'+tp(cat)+'</div></div><div class="cat-popup"><div class="cat-popup-header"><h4>'+icon+' '+tp(cat)+' ('+items.length+')</h4></div><div class="cat-popup-body">'+popupItems+'</div><div class="popup-more" onclick="filterCat(\''+cat+'\')">'+t('cat_viewall').replace('View All','View all '+items.length)+'</div></div></div>';
   }).join('');
 }
 
@@ -987,7 +1028,8 @@ function prodCard(p,idx){
   const b=badges[idx%3];
   const stockClass=p.stock>20?'stock-ok':p.stock>5?'stock-low':'stock-no';
   const stockText=p.stock>20?p.stock+' '+t('stock_in_stock'):p.stock>5?t('stock_only_left')+' '+p.stock+' '+t('stock_left_suffix'):t('stock_out');
-  return '<div class="prod-card reveal"><div class="prod-img" onclick="openProduct('+p.id+')"><img src="'+p.image+'" alt="'+p.name+'" loading="lazy"/><span class="prod-badge '+b+'">'+badgeLabels[b]+'</span></div><div class="prod-body"><div class="prod-name" onclick="openProduct('+p.id+')">'+p.name+'</div><span class="badge">'+p.category+'</span><div class="stars" style="margin-top:5px">★★★★☆ <span style="color:#94a3b8;font-size:11px">(48)</span></div><div class="prod-price-row"><span class="prod-price">'+fmt(p.price)+'</span><span class="'+stockClass+'">'+stockText+'</span></div><button class="btn-cart" onclick="addToCart('+p.id+')" '+(p.stock===0?'disabled':'')+'>'+(p.stock===0?t('btn_out_of_stock'):t('btn_add_cart'))+'</button></div></div>';
+  const pname=tp(p.name);
+  return '<div class="prod-card reveal"><div class="prod-img" onclick="openProduct('+p.id+')"><img src="'+p.image+'" alt="'+pname+'" loading="lazy"/><span class="prod-badge '+b+'">'+badgeLabels[b]+'</span></div><div class="prod-body"><div class="prod-name" onclick="openProduct('+p.id+')">'+pname+'</div><span class="badge">'+tp(p.category)+'</span><div class="stars" style="margin-top:5px">★★★★☆ <span style="color:#94a3b8;font-size:11px">(48)</span></div><div class="prod-price-row"><span class="prod-price">'+fmt(p.price)+'</span><span class="'+stockClass+'">'+stockText+'</span></div><button class="btn-cart" onclick="addToCart('+p.id+')" '+(p.stock===0?'disabled':'')+'>'+(p.stock===0?t('btn_out_of_stock'):t('btn_add_cart'))+'</button></div></div>';
 }
 
 function renderHome(){
@@ -999,8 +1041,8 @@ function renderHome(){
 function renderShop(){
   const s=document.getElementById('shop-search').value.toLowerCase();
   const c=document.getElementById('shop-cat').value;
-  const f=products.filter(p=>(c==='All'||p.category===c)&&(p.name.toLowerCase().includes(s)||p.category.toLowerCase().includes(s)));
-  document.getElementById('result-count').textContent=f.length+' products found';
+  const f=products.filter(p=>(c==='All'||p.category===c)&&(p.name.toLowerCase().includes(s)||p.category.toLowerCase().includes(s)||tp(p.name).toLowerCase().includes(s)));
+  document.getElementById('result-count').textContent=f.length+' '+t('results_found');
   document.getElementById('shop-grid').innerHTML=f.map((p,i)=>prodCard(p,i)).join('');
   setTimeout(initReveal,100);
 }
@@ -1008,10 +1050,10 @@ function renderShop(){
 function openProduct(id){
   selProd=products.find(p=>p.id===id);if(!selProd) return;
   detQty=1;
-  document.getElementById('d-img').innerHTML='<img src="'+selProd.image+'" alt="'+selProd.name+'"/>';
-  document.getElementById('d-cat').textContent=selProd.category;
-  document.getElementById('d-name').textContent=selProd.name;
-  document.getElementById('d-desc').textContent=selProd.desc;
+  document.getElementById('d-img').innerHTML='<img src="'+selProd.image+'" alt="'+tp(selProd.name)+'"/>';
+  document.getElementById('d-cat').textContent=tp(selProd.category);
+  document.getElementById('d-name').textContent=tp(selProd.name);
+  document.getElementById('d-desc').textContent=tp(selProd.desc);
   document.getElementById('d-stock').textContent=selProd.stock+' '+t('stock_in_stock');
   document.getElementById('d-qty').textContent=1;
   updateDetailBtn();goPage('product');
@@ -1044,7 +1086,7 @@ function renderCart(){
     document.getElementById('cart-body').innerHTML='<div class="empty"><div>🛒</div><p>'+t('cart_empty')+'</p><button class="btn-dark" onclick="goPage(\'shop\')" style="margin-top:12px">'+t('cart_start_shopping')+'</button></div>';
     return;
   }
-  const items=cart.map(item=>'<div class="cart-item"><div style="width:52px;height:52px;border-radius:10px;overflow:hidden;flex-shrink:0"><img src="'+item.image+'" alt="" style="width:100%;height:100%;object-fit:cover"/></div><div style="flex:1"><div style="font-size:14px;font-weight:700">'+item.name+'</div><div style="font-size:12px;color:#64748b">'+fmt(item.price)+' '+t('cart_each')+'</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="updateQty('+item.id+',-1)">−</button><span style="font-size:15px;font-weight:700;min-width:20px;text-align:center">'+item.qty+'</span><button class="qty-btn" onclick="updateQty('+item.id+',1)">+</button></div><div style="min-width:80px;text-align:right;font-weight:700;color:#6366f1;font-size:14px">'+fmt(item.price*item.qty)+'</div><button onclick="removeFromCart('+item.id+')" style="background:none;border:none;color:#ef4444;font-size:18px;cursor:pointer;margin-left:8px">✕</button></div>').join('');
+  const items=cart.map(item=>'<div class="cart-item"><div style="width:52px;height:52px;border-radius:10px;overflow:hidden;flex-shrink:0"><img src="'+item.image+'" alt="" style="width:100%;height:100%;object-fit:cover"/></div><div style="flex:1"><div style="font-size:14px;font-weight:700">'+tp(item.name)+'</div><div style="font-size:12px;color:#64748b">'+fmt(item.price)+' '+t('cart_each')+'</div></div><div class="qty-ctrl"><button class="qty-btn" onclick="updateQty('+item.id+',-1)">−</button><span style="font-size:15px;font-weight:700;min-width:20px;text-align:center">'+item.qty+'</span><button class="qty-btn" onclick="updateQty('+item.id+',1)">+</button></div><div style="min-width:80px;text-align:right;font-weight:700;color:#6366f1;font-size:14px">'+fmt(item.price*item.qty)+'</div><button onclick="removeFromCart('+item.id+')" style="background:none;border:none;color:#ef4444;font-size:18px;cursor:pointer;margin-left:8px">✕</button></div>').join('');
   const discRow=appliedPromo?'<div style="display:flex;justify-content:space-between;color:#059669;font-weight:700;font-size:14px;margin-bottom:8px"><span>'+t('promo_prefix')+' '+appliedPromo.code+'</span><span>-'+fmt(calcDiscount(total))+'</span></div>':'';
   const finalTotal=Math.max(0,total-calcDiscount(total));
   document.getElementById('cart-body').innerHTML='<div class="card-wrap">'+items+'</div><div class="cart-summary"><div class="summary-row"><span>'+t('cart_subtotal')+'</span><span>'+fmt(total)+'</span></div>'+discRow+'<div class="summary-row"><span>'+t('cart_delivery')+'</span><span style="color:#059669;font-weight:700">'+t('cart_delivery_free')+'</span></div><div class="summary-total"><span>'+t('cart_total')+'</span><span style="color:#6366f1">'+fmt(finalTotal)+'</span></div><button class="btn-checkout" onclick="goPage(\'checkout\')">'+t('cart_checkout_btn')+'</button></div>';
@@ -1104,7 +1146,7 @@ function renderCheckout(){
   const subtotal=cart.reduce((s,i)=>s+i.price*i.qty,0);
   const disc=calcDiscount(subtotal);
   const finalTotal=Math.max(0,subtotal-disc);
-  document.getElementById('checkout-items').innerHTML=cart.map(i=>'<div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px;color:#475569"><span>'+i.name+' × '+i.qty+'</span><span style="font-weight:600">'+fmt(i.price*i.qty)+'</span></div>').join('');
+  document.getElementById('checkout-items').innerHTML=cart.map(i=>'<div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px;color:#475569"><span>'+tp(i.name)+' × '+i.qty+'</span><span style="font-weight:600">'+fmt(i.price*i.qty)+'</span></div>').join('');
   const discRow=document.getElementById('checkout-discount-row');
   if(appliedPromo&&disc>0){
     discRow.style.display='flex';discRow.style.justifyContent='space-between';
@@ -1188,7 +1230,7 @@ function myOrderCard(o){
     ?'<div style="background:#fee2e2;color:#991b1b;padding:10px;border-radius:10px;font-size:13px;font-weight:700;text-align:center;margin:10px 0">❌ Order Cancelled</div>'
     :'<div class="status-tracker"><div class="status-track-line"></div><div class="status-track-fill" style="width:'+fillPct+'%"></div>'+statuses.map((s,i)=>{const cls=i<idx?'done':i===idx?'active':'';const icons=['🕐','📦','✅'];return '<div class="status-step"><div class="status-dot '+cls+'">'+(cls==='done'?'✓':icons[i])+'</div><div class="status-label '+cls+'">'+s+'</div></div>';}).join('')+'</div>';
   const discRow=o.discount&&o.discount>0?'<div style="font-size:12px;color:#059669;font-weight:700;margin-top:4px">🎟️ Promo saved: '+fmt(o.discount)+'</div>':'';
-  return '<div class="my-order-card"><div class="my-order-header"><div><div style="font-weight:800;font-size:14px">'+o.orderId+'</div><div style="font-size:12px;color:#94a3b8;margin-top:2px">📅 '+o.date+'</div></div><span class="status-pill" style="background:'+bg+';color:'+tc+'">'+o.status+'</span></div>'+tracker+'<div class="my-order-items">'+(o.items||[]).map(i=>'<div class="my-order-item-row"><img src="'+i.image+'" alt=""/> <span>'+i.name+' × '+i.qty+'</span><span style="margin-left:auto;font-weight:600;color:#6366f1">'+fmt(i.price*i.qty)+'</span></div>').join('')+'</div>'+discRow+'<div style="border-top:1px solid #f1f5f9;padding-top:8px;margin-top:8px;display:flex;justify-content:space-between;align-items:center"><div class="my-order-total">'+t('myorders_total')+' '+fmt(o.total)+'</div><div style="font-size:12px;color:#94a3b8">📍 '+o.customer.address+'</div></div></div>';
+  return '<div class="my-order-card"><div class="my-order-header"><div><div style="font-weight:800;font-size:14px">'+o.orderId+'</div><div style="font-size:12px;color:#94a3b8;margin-top:2px">📅 '+o.date+'</div></div><span class="status-pill" style="background:'+bg+';color:'+tc+'">'+o.status+'</span></div>'+tracker+'<div class="my-order-items">'+(o.items||[]).map(i=>'<div class="my-order-item-row"><img src="'+i.image+'" alt=""/> <span>'+tp(i.name)+' × '+i.qty+'</span><span style="margin-left:auto;font-weight:600;color:#6366f1">'+fmt(i.price*i.qty)+'</span></div>').join('')+'</div>'+discRow+'<div style="border-top:1px solid #f1f5f9;padding-top:8px;margin-top:8px;display:flex;justify-content:space-between;align-items:center"><div class="my-order-total">'+t('myorders_total')+' '+fmt(o.total)+'</div><div style="font-size:12px;color:#94a3b8">📍 '+o.customer.address+'</div></div></div>';
 }
 
 initProducts();
