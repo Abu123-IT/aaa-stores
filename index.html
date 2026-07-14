@@ -6,7 +6,8 @@
 <title>AAA Stores — Your One Stop Shop</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,sans-serif;background:#f8fafc;color:#1e293b;min-height:100vh}
+html{overflow-x:hidden}
+body{font-family:system-ui,sans-serif;background:#f8fafc;color:#1e293b;min-height:100vh;overflow-x:hidden}
 input,select{font-family:inherit;outline:none}
 button{font-family:inherit;cursor:pointer}
 nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1px solid #e2e8f0;padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:200}
@@ -54,9 +55,16 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
 .btn-outline{background:rgba(255,255,255,.08);color:#fff;border:2px solid rgba(255,255,255,.4);padding:8px 22px;border-radius:50px;font-size:13px;font-weight:600;cursor:pointer;transition:all .25s;backdrop-filter:blur(8px)}
 .btn-outline:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.7);transform:translateY(-2px)}
 .hero-stats{display:flex;gap:0;justify-content:center}
-.hero-stat{padding:8px 18px;border-right:1px solid rgba(255,255,255,.12);text-align:center}
+.hero-stat{padding:8px 18px;border-right:1px solid rgba(255,255,255,.12);text-align:center;opacity:0;transform:translateY(10px);animation:statReveal .5s ease forwards}
+.hero-stat:nth-child(1){animation-delay:.15s}
+.hero-stat:nth-child(2){animation-delay:.35s}
+.hero-stat:nth-child(3){animation-delay:.55s}
+.hero-stat:nth-child(4){animation-delay:.75s}
+@keyframes statReveal{to{opacity:1;transform:translateY(0)}}
 .hero-stat:last-child{border-right:none}
-.hero-stat-num{font-size:16px;font-weight:900;color:#f59e0b;line-height:1}
+.hero-stat-num{font-size:16px;font-weight:900;color:#f59e0b;line-height:1;display:inline-block}
+.hero-stat-num.stat-pop{animation:statPop .45s cubic-bezier(.34,1.56,.64,1)}
+@keyframes statPop{0%{transform:scale(1)}55%{transform:scale(1.22)}100%{transform:scale(1)}}
 .hero-stat-label{font-size:10px;color:#94a3b8;margin-top:2px;font-weight:500}
 
 /* FEATURES */
@@ -281,9 +289,20 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
 .btn-dark:hover{background:#334155}
 
 @media(max-width:768px){
-  nav{padding:0 16px;height:56px}
-  .search-input{width:110px}.search-input:focus{width:140px}
-  .lang-select{padding:6px 4px;font-size:11px;max-width:64px}
+  nav{padding:0 10px;height:52px;gap:4px}
+  .logo{font-size:15px;gap:4px;flex-shrink:0}
+  .logo span{display:none}
+  .nav-links{gap:0}
+  .nav-btn{padding:6px 7px;font-size:0}
+  .nav-btn::before{content:attr(data-icon);font-size:17px}
+  .nav-right{gap:5px}
+  .search-wrap{display:none}
+  .lang-select{padding:5px 2px;font-size:10px;max-width:44px;border-radius:8px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
+  .cart-btn{padding:6px 9px;font-size:0;gap:0}
+  .cart-btn .cart-count{font-size:11px}
+  .user-btn{padding:6px 10px;font-size:11px}
+  .mobile-search-row{display:block;padding:10px 14px 0}
+  .mobile-search-row input{width:100%;border:1.5px solid #e2e8f0;border-radius:12px;padding:9px 16px 9px 38px;font-size:13px;background:#f8fafc;background-image:none}
   .hero-content h1{font-size:22px}
   .hero-stats{flex-wrap:wrap}
   .hero-stat{padding:6px 12px}
@@ -291,6 +310,8 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
   .section{padding:28px 16px}
   .features-inner{gap:16px}
 }
+.mobile-search-row{display:none;position:relative}
+.mobile-search-row::before{content:'🔍';position:absolute;left:28px;top:19px;font-size:13px;pointer-events:none}
 </style>
 </head>
 <body>
@@ -325,9 +346,9 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
 <nav>
   <div class="logo" onclick="goPage('home')">🏪 AAA<span>Stores</span></div>
   <div class="nav-links">
-    <button class="nav-btn active" id="nb-home" onclick="goPage('home')" data-i18n="nav_home">🏠 Home</button>
-    <button class="nav-btn" id="nb-shop" onclick="goPage('shop')" data-i18n="nav_shop">🛍️ Shop</button>
-    <button class="nav-btn" id="nb-myorders" onclick="goPage('myorders')" style="display:none" data-i18n="nav_myorders">📦 My Orders</button>
+    <button class="nav-btn active" id="nb-home" onclick="goPage('home')" data-i18n="nav_home" data-icon="🏠">🏠 Home</button>
+    <button class="nav-btn" id="nb-shop" onclick="goPage('shop')" data-i18n="nav_shop" data-icon="🛍️">🛍️ Shop</button>
+    <button class="nav-btn" id="nb-myorders" onclick="goPage('myorders')" style="display:none" data-i18n="nav_myorders" data-icon="📦">📦 My Orders</button>
   </div>
   <div class="nav-right">
     <select class="lang-select" id="lang-select" onchange="setLang(this.value)" title="Select language / භාෂාව / மொழி / 语言">
@@ -344,6 +365,9 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
     <button class="user-btn" id="user-btn" onclick="openAuth()" data-i18n="nav_login">Login</button>
   </div>
 </nav>
+<div class="mobile-search-row">
+  <input id="nav-search-mobile" data-i18n-ph="search_ph" placeholder="Search products..." oninput="navSearch(this.value)"/>
+</div>
 
 <!-- HOME -->
 <div class="page active" id="page-home">
@@ -367,10 +391,10 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
         <button class="btn-outline" onclick="openAuth()" data-i18n="hero_join">Join & Save 🎁</button>
       </div>
       <div class="hero-stats">
-        <div class="hero-stat"><div class="hero-stat-num">1000+</div><div class="hero-stat-label" data-i18n="hero_stat_products">Products</div></div>
-        <div class="hero-stat"><div class="hero-stat-num">5000+</div><div class="hero-stat-label" data-i18n="hero_stat_customers">Customers</div></div>
-        <div class="hero-stat"><div class="hero-stat-num">24/7</div><div class="hero-stat-label" data-i18n="hero_stat_support">Support</div></div>
-        <div class="hero-stat"><div class="hero-stat-num" data-i18n="hero_stat_free">Free</div><div class="hero-stat-label" data-i18n="hero_stat_delivery">Delivery</div></div>
+        <div class="hero-stat"><div class="hero-stat-num" id="stat-products" data-target="1000" data-suffix="+">0</div><div class="hero-stat-label" data-i18n="hero_stat_products">Products</div></div>
+        <div class="hero-stat"><div class="hero-stat-num" id="stat-customers" data-target="5000" data-suffix="+">0</div><div class="hero-stat-label" data-i18n="hero_stat_customers">Customers</div></div>
+        <div class="hero-stat"><div class="hero-stat-num stat-static">24/7</div><div class="hero-stat-label" data-i18n="hero_stat_support">Support</div></div>
+        <div class="hero-stat"><div class="hero-stat-num stat-static" data-i18n="hero_stat_free">Free</div><div class="hero-stat-label" data-i18n="hero_stat_delivery">Delivery</div></div>
       </div>
     </div>
   </div>
@@ -1234,6 +1258,34 @@ function myOrderCard(o){
   const discRow=o.discount&&o.discount>0?'<div style="font-size:12px;color:#059669;font-weight:700;margin-top:4px">🎟️ Promo saved: '+fmt(o.discount)+'</div>':'';
   return '<div class="my-order-card"><div class="my-order-header"><div><div style="font-weight:800;font-size:14px">'+o.orderId+'</div><div style="font-size:12px;color:#94a3b8;margin-top:2px">📅 '+o.date+'</div></div><span class="status-pill" style="background:'+bg+';color:'+tc+'">'+o.status+'</span></div>'+tracker+'<div class="my-order-items">'+(o.items||[]).map(i=>'<div class="my-order-item-row"><img src="'+i.image+'" alt=""/> <span>'+tp(i.name)+' × '+i.qty+'</span><span style="margin-left:auto;font-weight:600;color:#6366f1">'+fmt(i.price*i.qty)+'</span></div>').join('')+'</div>'+discRow+'<div style="border-top:1px solid #f1f5f9;padding-top:8px;margin-top:8px;display:flex;justify-content:space-between;align-items:center"><div class="my-order-total">'+t('myorders_total')+' '+fmt(o.total)+'</div><div style="font-size:12px;color:#94a3b8">📍 '+o.customer.address+'</div></div></div>';
 }
+
+// HERO STAT COUNT-UP ANIMATION — counts 0 → target with ease-out, staggered per stat, pops on finish
+function animateStatCounter(el,target,suffix,duration,delay){
+  setTimeout(function(){
+    const start=performance.now();
+    function tick(now){
+      const progress=Math.min((now-start)/duration,1);
+      const eased=1-Math.pow(1-progress,3); // ease-out cubic — fast start, gentle settle
+      const val=Math.floor(eased*target);
+      el.textContent=val.toLocaleString()+suffix;
+      if(progress<1){requestAnimationFrame(tick);}
+      else{
+        el.textContent=target.toLocaleString()+suffix;
+        el.classList.add('stat-pop');
+        setTimeout(function(){el.classList.remove('stat-pop');},450);
+      }
+    }
+    requestAnimationFrame(tick);
+  },delay);
+}
+function initHeroStatCounters(){
+  document.querySelectorAll('.hero-stat-num[data-target]').forEach(function(el,i){
+    const target=parseInt(el.getAttribute('data-target'),10);
+    const suffix=el.getAttribute('data-suffix')||'';
+    animateStatCounter(el,target,suffix,1400,150+i*180);
+  });
+}
+initHeroStatCounters();
 
 initProducts();
 applyLanguage();
