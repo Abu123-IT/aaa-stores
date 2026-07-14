@@ -281,6 +281,13 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
 
 /* NOTIF */
 #notif{position:fixed;top:20px;right:20px;background:#1e293b;color:#fff;padding:12px 20px;border-radius:14px;z-index:9999;font-size:13px;display:none;box-shadow:0 8px 32px rgba(0,0,0,.25);animation:slideIn .3s ease;font-weight:600;max-width:300px}
+.whatsapp-float{position:fixed;bottom:22px;right:22px;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(37,211,102,.5);z-index:900;cursor:pointer;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease;animation:waFadeIn .5s ease .6s both}
+.whatsapp-float:hover{transform:scale(1.08);box-shadow:0 8px 26px rgba(37,211,102,.65)}
+.whatsapp-float svg{width:30px;height:30px;fill:#fff}
+.whatsapp-float::before{content:'';position:absolute;inset:0;border-radius:50%;background:#25D366;animation:waPulse 2.2s ease-out infinite;z-index:-1}
+@keyframes waPulse{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.9);opacity:0}}
+@keyframes waFadeIn{from{opacity:0;transform:translateY(20px) scale(.8)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:768px){.whatsapp-float{width:52px;height:52px;bottom:16px;right:16px}.whatsapp-float svg{width:26px;height:26px}}
 @keyframes slideIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
 .empty{text-align:center;padding:52px 0;color:#64748b}
 .empty div{font-size:48px;margin-bottom:14px}
@@ -316,6 +323,9 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
 </head>
 <body>
 <div id="notif"></div>
+<a class="whatsapp-float" href="https://wa.me/94766504063?text=Hi%20AAA%20Stores!%20I%20have%20a%20question." target="_blank" rel="noopener" aria-label="Chat on WhatsApp" title="Chat with us on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.198.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M20.52 3.449C12.831-3.984.106 1.407.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652c1.746.943 3.71 1.444 5.71 1.447h.005c7.688 0 12.421-6.276 12.424-13.478.001-3.406-1.316-6.607-3.954-9.868zm-8.474 18.297h-.004c-1.774-.001-3.514-.475-5.036-1.372l-.361-.213-3.75.976 1.001-3.653-.235-.375a10.29 10.29 0 01-1.581-5.516c.002-5.678 4.626-10.301 10.317-10.301 2.762.001 5.353 1.078 7.301 3.027 1.949 1.95 3.017 4.543 3.016 7.305-.003 5.677-4.626 10.301-10.32 10.301z"/></svg>
+</a>
 
 <!-- AUTH MODAL -->
 <div class="modal-overlay" id="auth-modal">
