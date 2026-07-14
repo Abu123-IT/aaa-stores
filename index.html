@@ -115,6 +115,10 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
 .prod-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .prod-card:hover .prod-img img{transform:scale(1.1)}
 .prod-badge{position:absolute;top:10px;left:10px;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;z-index:1}
+.wishlist-heart{position:absolute;top:8px;right:8px;width:30px;height:30px;background:rgba(255,255,255,.92);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;z-index:2;cursor:pointer;transition:transform .15s ease;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.wishlist-heart:hover{transform:scale(1.15)}
+.wishlist-heart.active{animation:heartPop .35s ease}
+@keyframes heartPop{0%{transform:scale(1)}45%{transform:scale(1.35)}100%{transform:scale(1)}}
 .prod-badge.new{background:linear-gradient(135deg,#6366f1,#4f46e5);color:#fff}
 .prod-badge.sale{background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff}
 .prod-badge.hot{background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff}
@@ -306,6 +310,7 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
   .search-wrap{display:none}
   .lang-select{padding:5px 2px;font-size:10px;max-width:44px;border-radius:8px;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
   .cart-btn{padding:6px 9px;font-size:0;gap:0}
+  .btn-icon{font-size:16px}
   .cart-btn .cart-count{font-size:11px}
   .user-btn{padding:6px 10px;font-size:11px}
   .mobile-search-row{display:block;padding:10px 14px 0}
@@ -371,7 +376,8 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
       <span class="search-icon">🔍</span>
       <input class="search-input" id="nav-search" data-i18n-ph="search_ph" placeholder="Search products..." oninput="navSearch(this.value)"/>
     </div>
-    <button class="cart-btn" onclick="goPage('cart')">🛒 <span class="cart-count" id="cart-count">0</span></button>
+    <button class="cart-btn wishlist-btn" onclick="goPage('wishlist')"><span class="btn-icon">❤️</span> <span class="cart-count" id="wishlist-count" style="display:none">0</span></button>
+    <button class="cart-btn" onclick="goPage('cart')"><span class="btn-icon">🛒</span> <span class="cart-count" id="cart-count">0</span></button>
     <button class="user-btn" id="user-btn" onclick="openAuth()" data-i18n="nav_login">Login</button>
   </div>
 </nav>
@@ -504,6 +510,14 @@ nav{background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-bottom:1p
   </div>
 </div>
 
+<!-- WISHLIST -->
+<div class="page" id="page-wishlist">
+  <div class="cart-container">
+    <h2 style="font-size:22px;font-weight:800;margin-bottom:20px;letter-spacing:-0.5px" data-i18n="wishlist_title">❤️ My Wishlist</h2>
+    <div id="wishlist-body"></div>
+  </div>
+</div>
+
 <!-- CHECKOUT -->
 <div class="page" id="page-checkout">
   <div class="checkout-container">
@@ -633,6 +647,7 @@ const LANG={
     promo_max_uses:"❌ This promo code has reached its usage limit.",promo_applied:"✅ Promo applied! You save",promo_error:"Error checking code.",
     myorders_login_prompt:"Please login to view your orders.",myorders_login_btn:"Login",
     myorders_none:"No orders yet. Start shopping!",myorders_shopnow:"Shop Now",
+    wishlist_title:"❤️ My Wishlist",wishlist_empty:"Your wishlist is empty.",wishlist_login_prompt:"Please login to view your wishlist.",wishlist_login_btn:"Login",wishlist_added:"Added to wishlist! ❤️",wishlist_removed:"Removed from wishlist.",wishlist_login_required:"Please login to save favourites.",
     myorders_total:"Total:",
     confirm_thankyou:"Thank you,",confirm_thankyou_suffix:"! Your order has been received and will be delivered soon.",
     confirm_name:"Name",confirm_total:"Total",confirm_discount:"Discount",confirm_address:"Address",confirm_status:"Status",confirm_status_pending:"Pending",
@@ -691,6 +706,7 @@ const LANG={
     promo_max_uses:"❌ මෙම වට්ටම් කේතයේ භාවිත සීමාව ඉකුත් වී ඇත.",promo_applied:"✅ වට්ටම යෙදුවා! ඔබ ඉතිරි කරන්නේ",promo_error:"කේතය පරීක්ෂා කිරීමේ දෝෂයක්.",
     myorders_login_prompt:"ඔබේ ඇණවුම් බැලීමට කරුණාකර පිවිසෙන්න.",myorders_login_btn:"පිවිසෙන්න",
     myorders_none:"තවම ඇණවුම් නැත. සාප්පු කිරීම ආරම්භ කරන්න!",myorders_shopnow:"දැන් සාප්පු කරන්න",
+    wishlist_title:"❤️ මගේ කැමති ලැයිස්තුව",wishlist_empty:"ඔබේ කැමති ලැයිස්තුව හිස්ය.",wishlist_login_prompt:"ඔබේ කැමති ලැයිස්තුව බැලීමට කරුණාකර පිවිසෙන්න.",wishlist_login_btn:"පිවිසෙන්න",wishlist_added:"කැමති ලැයිස්තුවට එකතු කළා! ❤️",wishlist_removed:"කැමති ලැයිස්තුවෙන් ඉවත් කළා.",wishlist_login_required:"ප්‍රියතමයන් සුරැකීමට කරුණාකර පිවිසෙන්න.",
     myorders_total:"එකතුව:",
     confirm_thankyou:"ස්තූතියි,",confirm_thankyou_suffix:"! ඔබේ ඇණවුම ලැබී ඇති අතර ඉක්මනින් බෙදාහරිනු ලැබේ.",
     confirm_name:"නම",confirm_total:"එකතුව",confirm_discount:"වට්ටම",confirm_address:"ලිපිනය",confirm_status:"තත්ත්වය",confirm_status_pending:"සකසමින්",
@@ -749,6 +765,7 @@ const LANG={
     promo_max_uses:"❌ இந்த சலுகை குறியீடு பயன்பாட்டு வரம்பை எட்டிவிட்டது.",promo_applied:"✅ சலுகை பயன்படுத்தப்பட்டது! நீங்கள் சேமிப்பது",promo_error:"குறியீட்டைச் சரிபார்ப்பதில் பிழை.",
     myorders_login_prompt:"உங்கள் ஆர்டர்களைக் காண உள்நுழையவும்.",myorders_login_btn:"உள்நுழைய",
     myorders_none:"இதுவரை ஆர்டர்கள் இல்லை. ஷாப்பிங் தொடங்குங்கள்!",myorders_shopnow:"இப்போது வாங்குங்கள்",
+    wishlist_title:"❤️ எனது விருப்பப்பட்டியல்",wishlist_empty:"உங்கள் விருப்பப்பட்டியல் காலியாக உள்ளது.",wishlist_login_prompt:"உங்கள் விருப்பப்பட்டியலைக் காண உள்நுழையவும்.",wishlist_login_btn:"உள்நுழைய",wishlist_added:"விருப்பப்பட்டியலில் சேர்க்கப்பட்டது! ❤️",wishlist_removed:"விருப்பப்பட்டியலிலிருந்து அகற்றப்பட்டது.",wishlist_login_required:"பிடித்தவைகளைச் சேமிக்க உள்நுழையவும்.",
     myorders_total:"மொத்தம்:",
     confirm_thankyou:"நன்றி,",confirm_thankyou_suffix:"! உங்கள் ஆர்டர் பெறப்பட்டது, விரைவில் டெலிவரி செய்யப்படும்.",
     confirm_name:"பெயர்",confirm_total:"மொத்தம்",confirm_discount:"தள்ளுபடி",confirm_address:"முகவரி",confirm_status:"நிலை",confirm_status_pending:"நிலுவையில்",
@@ -807,6 +824,7 @@ const LANG={
     promo_max_uses:"❌ 此优惠码已达到使用次数限制。",promo_applied:"✅ 优惠码已应用！您节省了",promo_error:"验证优惠码时出错。",
     myorders_login_prompt:"请登录以查看您的订单。",myorders_login_btn:"登录",
     myorders_none:"暂无订单，快去购物吧！",myorders_shopnow:"立即购物",
+    wishlist_title:"❤️ 我的收藏",wishlist_empty:"您的收藏夹是空的。",wishlist_login_prompt:"请登录以查看您的收藏夹。",wishlist_login_btn:"登录",wishlist_added:"已加入收藏！❤️",wishlist_removed:"已从收藏夹移除。",wishlist_login_required:"请登录以保存收藏。",
     myorders_total:"总计：",
     confirm_thankyou:"谢谢您，",confirm_thankyou_suffix:"！您的订单已收到，将尽快为您配送。",
     confirm_name:"姓名",confirm_total:"总计",confirm_discount:"折扣",confirm_address:"地址",confirm_status:"状态",confirm_status_pending:"处理中",
@@ -834,6 +852,7 @@ function applyLanguage(){
   if(document.getElementById('page-cart')&&document.getElementById('page-cart').classList.contains('active')) renderCart();
   if(document.getElementById('page-checkout')&&document.getElementById('page-checkout').classList.contains('active')) renderCheckout();
   if(document.getElementById('page-myorders')&&document.getElementById('page-myorders').classList.contains('active')) renderMyOrders();
+  if(document.getElementById('page-wishlist')&&document.getElementById('page-wishlist').classList.contains('active')) renderWishlistPage();
 }
 
 // ===== AUTO-TRANSLATE PRODUCT DATA (name/description/category) =====
@@ -951,11 +970,59 @@ auth.onAuthStateChanged(function(user){
     document.getElementById('view-orders-btn').style.display='inline-block';
     document.getElementById('f-email').value=user.email||'';
     if(user.displayName) document.getElementById('f-name').value=user.displayName;
+    loadWishlist();
   } else {
     btn.textContent='Login';btn.onclick=openAuth;
     document.getElementById('nb-myorders').style.display='none';
+    wishlist=[];updateWishlistCount();
+    if(document.getElementById('page-wishlist').classList.contains('active')) renderWishlistPage();
   }
 });
+
+// ===== WISHLIST =====
+let wishlist=[]; // array of product ids, synced to Firestore per logged-in user
+async function loadWishlist(){
+  if(!currentUser){wishlist=[];updateWishlistCount();return;}
+  try{
+    const doc=await db.collection("wishlists").doc(currentUser.uid).get();
+    wishlist=(doc.exists&&doc.data().productIds)?doc.data().productIds:[];
+  }catch(e){wishlist=[];}
+  updateWishlistCount();
+  if(typeof products!=='undefined'&&products.length) renderHome();
+  if(document.getElementById('page-shop')&&document.getElementById('page-shop').classList.contains('active')) renderShop();
+  if(document.getElementById('page-wishlist')&&document.getElementById('page-wishlist').classList.contains('active')) renderWishlistPage();
+}
+async function saveWishlist(){
+  if(!currentUser) return;
+  try{await db.collection("wishlists").doc(currentUser.uid).set({productIds:wishlist});}catch(e){}
+}
+function updateWishlistCount(){
+  const el=document.getElementById('wishlist-count');
+  el.textContent=wishlist.length;
+  el.style.display=wishlist.length>0?'flex':'none';
+}
+function toggleWishlist(id,evt){
+  if(evt) evt.stopPropagation();
+  if(!currentUser){notif(t('wishlist_login_required'));openAuth();return;}
+  const idx=wishlist.indexOf(id);
+  if(idx>-1){wishlist.splice(idx,1);notif(t('wishlist_removed'));}
+  else{wishlist.push(id);notif(t('wishlist_added'));}
+  saveWishlist();updateWishlistCount();
+  // refresh heart icons + re-render whichever product views are visible
+  document.querySelectorAll('.wishlist-heart[data-pid="'+id+'"]').forEach(function(el){
+    el.classList.toggle('active');el.textContent=wishlist.includes(id)?'❤️':'🤍';
+    el.classList.add('active');setTimeout(function(){el.classList.remove('active');},350);
+  });
+  if(document.getElementById('page-wishlist').classList.contains('active')) renderWishlistPage();
+}
+function renderWishlistPage(){
+  const body=document.getElementById('wishlist-body');
+  if(!currentUser){body.innerHTML='<div class="empty"><div>🔐</div><p>'+t('wishlist_login_prompt')+'</p><button class="btn-dark" onclick="openAuth()" style="margin-top:12px">'+t('wishlist_login_btn')+'</button></div>';return;}
+  const items=products.filter(p=>wishlist.includes(p.id));
+  if(!items.length){body.innerHTML='<div class="empty"><div>🤍</div><p>'+t('wishlist_empty')+'</p><button class="btn-dark" onclick="goPage(\'shop\')" style="margin-top:12px">'+t('cart_start_shopping')+'</button></div>';return;}
+  body.innerHTML='<div class="prod-grid">'+items.map((p,i)=>prodCard(p,i)).join('')+'</div>';
+  setTimeout(initReveal,100);
+}
 
 function openAuth(){document.getElementById('auth-modal').classList.add('active');showLogin();}
 function closeAuth(){document.getElementById('auth-modal').classList.remove('active');}
@@ -1044,6 +1111,7 @@ function goPage(p){
   if(p==='checkout') renderCheckout();
   if(p==='home') renderHome();
   if(p==='myorders') renderMyOrders();
+  if(p==='wishlist') renderWishlistPage();
   window.scrollTo(0,0);
 }
 function navSearch(v){document.getElementById('shop-search').value=v;goPage('shop');}
@@ -1064,7 +1132,8 @@ function prodCard(p,idx){
   const stockClass=p.stock>20?'stock-ok':p.stock>5?'stock-low':'stock-no';
   const stockText=p.stock>20?p.stock+' '+t('stock_in_stock'):p.stock>5?t('stock_only_left')+' '+p.stock+' '+t('stock_left_suffix'):t('stock_out');
   const pname=tp(p.name);
-  return '<div class="prod-card reveal"><div class="prod-img" onclick="openProduct('+p.id+')"><img src="'+p.image+'" alt="'+pname+'" loading="lazy"/><span class="prod-badge '+b+'">'+badgeLabels[b]+'</span></div><div class="prod-body"><div class="prod-name" onclick="openProduct('+p.id+')">'+pname+'</div><span class="badge">'+tp(p.category)+'</span><div class="stars" style="margin-top:5px">★★★★☆ <span style="color:#94a3b8;font-size:11px">(48)</span></div><div class="prod-price-row"><span class="prod-price">'+fmt(p.price)+'</span><span class="'+stockClass+'">'+stockText+'</span></div><button class="btn-cart" onclick="addToCart('+p.id+')" '+(p.stock===0?'disabled':'')+'>'+(p.stock===0?t('btn_out_of_stock'):t('btn_add_cart'))+'</button></div></div>';
+  const isWished=wishlist.includes(p.id);
+  return '<div class="prod-card reveal"><div class="prod-img" onclick="openProduct('+p.id+')"><img src="'+p.image+'" alt="'+pname+'" loading="lazy"/><span class="prod-badge '+b+'">'+badgeLabels[b]+'</span><span class="wishlist-heart" data-pid="'+p.id+'" onclick="toggleWishlist('+p.id+',event)">'+(isWished?'❤️':'🤍')+'</span></div><div class="prod-body"><div class="prod-name" onclick="openProduct('+p.id+')">'+pname+'</div><span class="badge">'+tp(p.category)+'</span><div class="stars" style="margin-top:5px">★★★★☆ <span style="color:#94a3b8;font-size:11px">(48)</span></div><div class="prod-price-row"><span class="prod-price">'+fmt(p.price)+'</span><span class="'+stockClass+'">'+stockText+'</span></div><button class="btn-cart" onclick="addToCart('+p.id+')" '+(p.stock===0?'disabled':'')+'>'+(p.stock===0?t('btn_out_of_stock'):t('btn_add_cart'))+'</button></div></div>';
 }
 
 function renderHome(){
